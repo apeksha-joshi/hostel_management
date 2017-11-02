@@ -1,3 +1,4 @@
+import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -9,6 +10,9 @@ public class main_class {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		db_config.connect_to_database();
+		
+		gui gui_class = new gui();
+		gui_class.start_app();
 		
 		
 		/*hostel_operations ho = new hostel_operations();

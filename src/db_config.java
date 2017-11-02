@@ -11,7 +11,8 @@ public class db_config {
 	private static String db_password = "";
 	private static String db_name = "hostel_management";
 	private static String db_host = "localhost";
-	
+//	call the gui from the main class u llo do kor i do?
+	//please do
 	public static void connect_to_database(){
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://"+ db_host +"/"+ db_name +"", db_username, db_password);
