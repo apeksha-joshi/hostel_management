@@ -4,9 +4,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -14,11 +20,18 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ScrollPaneConstants;
 
 public class gui extends JFrame {
 
+	private String search_str = null;
 	private JPanel contentPane;
 	private JTextField stu_name;
 	private JTextField stu_father;
@@ -31,31 +44,9 @@ public class gui extends JFrame {
 	private JTextField stu_address;
 	private JTextField stu_doj;
 	private JTextField stu_dol;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTextField textField_19;
-	private JTextField textField_20;
-	private JTextField textField_21;
-	private JTextField textField_22;
-	private JTextField textField_23;
-	private JTextField textField_24;
-	private JTextField textField_25;
-	private JTextField textField_26;
-	private JTextField textField_27;
-	private JTextField textField_28;
-	private JTextField textField_29;
-	private JTextField textField_30;
-	private JTextField textField_31;
-	private JTextField textField_32;
-	private JTextField textField_33;
-	private JTextField textField_34;
-	private JTextField textField_35;
+	private JTextField stu1_name;
+	private JTextField stu2_name;
+	private JTextField stu3_name;
 	private JTextField st_name;
 	private JTextField st_phone;
 	private JTextField st_dept;
@@ -66,29 +57,9 @@ public class gui extends JFrame {
 	private JTextField st_salary;
 	private JTextField st_doj;
 	private JTextField st_dol;
-	private JTextField textField_46;
-	private JTextField textField_47;
-	private JTextField textField_48;
-	private JTextField textField_49;
-	private JTextField textField_50;
-	private JTextField textField_51;
-	private JTextField textField_52;
-	private JTextField textField_53;
-	private JTextField textField_54;
-	private JTextField textField_55;
-	private JTextField textField_56;
-	private JTextField textField_57;
-	private JTextField textField_58;
-	private JTextField textField_59;
-	private JTextField textField_60;
-	private JTextField textField_61;
-	private JTextField textField_62;
-	private JTextField textField_63;
-	private JTextField textField_64;
-	private JTextField textField_65;
-	private JTextField textField_66;
-	private JTextField textField_67;
-	private JTextField textField_68;
+	private JTextField st1_name;
+	private JTextField st2_name;
+	private JTextField st3_name;
 	private JTextField textField_69;
 	private JTextField textField_70;
 	private JTextField textField_71;
@@ -98,7 +69,39 @@ public class gui extends JFrame {
 	private JTextField textField_75;
 	private JTextField textField_76;
 	private JTextField textField_77;
-
+	private JTable table_ret_stu;
+	private JTable table_ret_st;
+    DefaultTableModel dm;
+    private JTable table_up_stu;
+    
+    private JTextField st2_id;
+    private JTextField st2_name2;
+    private JTextField st2_phone;
+    private JTextField st2_dept;
+    private JTextField st2_dob;
+    private JTextField st2_age;
+    private JTextField st2_gender;
+    private JTextField st2_address;
+    private JTextField st2_salary;
+    private JTextField st2_doj;
+    private JTextField st2_dol;
+    private JTable table_up_st;
+    private JTextField stu2_id;
+    private JTextField stu2_name2;
+    private JTextField stu2_father;
+    private JTextField stu2_phone;
+    private JTextField stu2_age;
+    private JTextField stu2_gender;
+    private JTextField stu2_dob;
+    private JTextField stu2_branch;
+    private JTextField stu2_semester;
+    private JTextField stu2_address;
+    private JTextField stu2_doj;
+    private JTextField stu2_dol;
+    private JTable table_del_stu;
+    private JTextField stu3_id;
+    private JTable table_del_st;
+    private JTextField st3_id;
 	/**
 	 * Launch the application.
 	 */
@@ -118,6 +121,21 @@ public class gui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	/*private void createColumns() throws Exception {
+		dm=(DefaultTableModel)table_up_stu.getModel();
+		dm.addColumn("ID");
+		dm.addColumn("Name");
+		dm.addColumn("Father's Name");
+		dm.addColumn("Phone Number");
+		dm.addColumn("Age");
+		dm.addColumn("Gender");
+		dm.addColumn("DOB");
+		dm.addColumn("Branch");
+		dm.addColumn("Semester");
+		dm.addColumn("Home Address");
+		dm.addColumn("doj");
+		dm.addColumn("dol");
+	}*/
 	public gui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 649);
@@ -396,8 +414,21 @@ public class gui extends JFrame {
 				student.put(11, stu_dol.getText());
 				
 				ho.add_student(student);
+				
+				JOptionPane.showMessageDialog(null, "Data Inserted");
+				stu_name.setText("");
+				stu_father.setText("");
+				stu_phone.setText("");
+				stu_age.setText("");
+				stu_gender.setText("");
+				stu_dob.setText("");
+				stu_branch.setText("");
+				stu_sem.setText("");
+				stu_address.setText("");
+				stu_doj.setText("");
+				stu_dol.setText("");
 				}catch(Exception ex) {
-					System.out.println(ex);
+					JOptionPane.showMessageDialog(null, "Failed");
 				}
 			}
 		});
@@ -408,16 +439,32 @@ public class gui extends JFrame {
 		contentPane.add(retrieve_student, "p3");
 		retrieve_student.setLayout(null);
 		
-		JLabel lblEnterStudentId = new JLabel("Enter Student ID");
+		JLabel lblEnterStudentId = new JLabel("Enter Student Name");
 		lblEnterStudentId.setBounds(79, 47, 105, 14);
 		retrieve_student.add(lblEnterStudentId);
 		
-		textField_11 = new JTextField();
-		textField_11.setBounds(272, 44, 86, 20);
-		retrieve_student.add(textField_11);
-		textField_11.setColumns(10);
+		stu1_name = new JTextField();
+		stu1_name.setBounds(272, 44, 86, 20);
+		retrieve_student.add(stu1_name);
+		stu1_name.setColumns(10);
+		
+		
 		
 		JButton btnGo = new JButton("Go");
+		btnGo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				db_config.connect_to_database();
+			
+				try {
+						ResultSet rs = db_config.getData_operation(stu1_name.getText(),"student");
+						table_ret_stu.setModel(DbUtils.resultSetToTableModel(rs));
+						stu1_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnGo.setBounds(511, 43, 89, 23);
 		retrieve_student.add(btnGo);
 		
@@ -425,119 +472,41 @@ public class gui extends JFrame {
 		separator.setBounds(0, 96, 688, 2);
 		retrieve_student.add(separator);
 		
-		JLabel lblName_1 = new JLabel("Name");
-		lblName_1.setBounds(180, 119, 46, 14);
-		retrieve_student.add(lblName_1);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 124, 668, 255);
+		retrieve_student.add(scrollPane);
 		
-		JLabel lblFathersName_1 = new JLabel("Father's Name");
-		lblFathersName_1.setBounds(180, 161, 96, 14);
-		retrieve_student.add(lblFathersName_1);
-		
-		JLabel lblPhoneNumber_1 = new JLabel("Phone Number");
-		lblPhoneNumber_1.setBounds(180, 203, 96, 14);
-		retrieve_student.add(lblPhoneNumber_1);
-		
-		JLabel lblAge_1 = new JLabel("Age");
-		lblAge_1.setBounds(180, 245, 46, 14);
-		retrieve_student.add(lblAge_1);
-		
-		JLabel lblGender_1 = new JLabel("Gender");
-		lblGender_1.setBounds(180, 288, 46, 14);
-		retrieve_student.add(lblGender_1);
-		
-		JLabel lblDob_1 = new JLabel("DOB");
-		lblDob_1.setBounds(180, 331, 46, 14);
-		retrieve_student.add(lblDob_1);
-		
-		JLabel lblBranch_1 = new JLabel("Branch");
-		lblBranch_1.setBounds(180, 373, 46, 14);
-		retrieve_student.add(lblBranch_1);
-		
-		JLabel lblSem = new JLabel("Semester");
-		lblSem.setBounds(180, 413, 46, 14);
-		retrieve_student.add(lblSem);
-		
-		JLabel lblHomeAddress_1 = new JLabel("Home Address");
-		lblHomeAddress_1.setBounds(180, 450, 96, 14);
-		retrieve_student.add(lblHomeAddress_1);
-		
-		JLabel lblDoj_1 = new JLabel("DOJ");
-		lblDoj_1.setBounds(180, 488, 46, 14);
-		retrieve_student.add(lblDoj_1);
-		
-		JLabel lblDol_1 = new JLabel("DOL");
-		lblDol_1.setBounds(180, 527, 46, 14);
-		retrieve_student.add(lblDol_1);
-		
-		textField_12 = new JTextField();
-		textField_12.setBounds(362, 116, 86, 20);
-		retrieve_student.add(textField_12);
-		textField_12.setColumns(10);
-		
-		textField_13 = new JTextField();
-		textField_13.setBounds(362, 158, 86, 20);
-		retrieve_student.add(textField_13);
-		textField_13.setColumns(10);
-		
-		textField_14 = new JTextField();
-		textField_14.setBounds(362, 200, 86, 20);
-		retrieve_student.add(textField_14);
-		textField_14.setColumns(10);
-		
-		textField_15 = new JTextField();
-		textField_15.setBounds(362, 242, 86, 20);
-		retrieve_student.add(textField_15);
-		textField_15.setColumns(10);
-		
-		textField_16 = new JTextField();
-		textField_16.setBounds(362, 285, 86, 20);
-		retrieve_student.add(textField_16);
-		textField_16.setColumns(10);
-		
-		textField_17 = new JTextField();
-		textField_17.setBounds(362, 328, 86, 20);
-		retrieve_student.add(textField_17);
-		textField_17.setColumns(10);
-		
-		textField_18 = new JTextField();
-		textField_18.setBounds(362, 370, 86, 20);
-		retrieve_student.add(textField_18);
-		textField_18.setColumns(10);
-		
-		textField_19 = new JTextField();
-		textField_19.setBounds(362, 410, 86, 20);
-		retrieve_student.add(textField_19);
-		textField_19.setColumns(10);
-		
-		textField_20 = new JTextField();
-		textField_20.setBounds(362, 447, 86, 20);
-		retrieve_student.add(textField_20);
-		textField_20.setColumns(10);
-		
-		textField_21 = new JTextField();
-		textField_21.setBounds(362, 485, 86, 20);
-		retrieve_student.add(textField_21);
-		textField_21.setColumns(10);
-		
-		textField_22 = new JTextField();
-		textField_22.setBounds(362, 524, 86, 20);
-		retrieve_student.add(textField_22);
-		textField_22.setColumns(10);
+		table_ret_stu = new JTable();
+		scrollPane.setViewportView(table_ret_stu);
 		
 		JPanel update_student = new JPanel();
 		contentPane.add(update_student, "p4");
 		update_student.setLayout(null);
 		
-		JLabel lblEnterStudentId_1 = new JLabel("Enter Student ID");
+		JLabel lblEnterStudentId_1 = new JLabel("Enter Student Name");
 		lblEnterStudentId_1.setBounds(88, 37, 113, 14);
 		update_student.add(lblEnterStudentId_1);
 		
-		textField_23 = new JTextField();
-		textField_23.setBounds(286, 34, 86, 20);
-		update_student.add(textField_23);
-		textField_23.setColumns(10);
+		stu2_name = new JTextField();
+		stu2_name.setBounds(286, 34, 86, 20);
+		update_student.add(stu2_name);
+		stu2_name.setColumns(10);
 		
 		JButton btnGo_1 = new JButton("Go");
+		btnGo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				search_str = stu2_name.getText();
+				try {
+						ResultSet rs = db_config.getData_operation(stu2_name.getText(),"student");
+						table_up_stu.setModel(DbUtils.resultSetToTableModel(rs));
+						stu2_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnGo_1.setBounds(523, 33, 89, 23);
 		update_student.add(btnGo_1);
 		
@@ -545,129 +514,282 @@ public class gui extends JFrame {
 		separator_1.setBounds(0, 84, 688, 2);
 		update_student.add(separator_1);
 		
-		JLabel lblName_2 = new JLabel("Name");
-		lblName_2.setBounds(180, 108, 46, 14);
-		update_student.add(lblName_2);
+		JPanel stu_up_details = new JPanel();
+		stu_up_details.setBounds(10, 289, 668, 279);
+		update_student.add(stu_up_details);
+		stu_up_details.setLayout(null);
+		stu_up_details.setVisible(false);
 		
-		JLabel lblFathersName_2 = new JLabel("Father's Name");
-		lblFathersName_2.setBounds(180, 148, 98, 14);
-		update_student.add(lblFathersName_2);
 		
-		JLabel lblPhoneNumber_2 = new JLabel("Phone Number");
-		lblPhoneNumber_2.setBounds(180, 187, 98, 14);
-		update_student.add(lblPhoneNumber_2);
 		
-		JLabel lblAge_2 = new JLabel("Age");
-		lblAge_2.setBounds(180, 225, 46, 14);
-		update_student.add(lblAge_2);
 		
-		JLabel lblGender_2 = new JLabel("Gender");
-		lblGender_2.setBounds(180, 261, 46, 14);
-		update_student.add(lblGender_2);
 		
-		JLabel lblDob_2 = new JLabel("DOB");
-		lblDob_2.setBounds(180, 299, 46, 14);
-		update_student.add(lblDob_2);
-		
-		JLabel lblBranch_2 = new JLabel("Branch");
-		lblBranch_2.setBounds(180, 338, 46, 14);
-		update_student.add(lblBranch_2);
-		
-		JLabel lblSemester_1 = new JLabel("Semester");
-		lblSemester_1.setBounds(180, 376, 46, 14);
-		update_student.add(lblSemester_1);
-		
-		JLabel lblHomeAddress_2 = new JLabel("Home Address");
-		lblHomeAddress_2.setBounds(180, 419, 98, 14);
-		update_student.add(lblHomeAddress_2);
-		
-		JLabel lblDoj_2 = new JLabel("DOJ");
-		lblDoj_2.setBounds(180, 461, 46, 14);
-		update_student.add(lblDoj_2);
-		
-		JLabel lblDol_2 = new JLabel("DOL");
-		lblDol_2.setBounds(180, 499, 46, 14);
-		update_student.add(lblDol_2);
-		
-		textField_24 = new JTextField();
-		textField_24.setBounds(377, 105, 86, 20);
-		update_student.add(textField_24);
-		textField_24.setColumns(10);
-		
-		textField_25 = new JTextField();
-		textField_25.setBounds(377, 145, 86, 20);
-		update_student.add(textField_25);
-		textField_25.setColumns(10);
-		
-		textField_26 = new JTextField();
-		textField_26.setBounds(377, 184, 86, 20);
-		update_student.add(textField_26);
-		textField_26.setColumns(10);
-		
-		textField_27 = new JTextField();
-		textField_27.setBounds(377, 222, 86, 20);
-		update_student.add(textField_27);
-		textField_27.setColumns(10);
-		
-		textField_28 = new JTextField();
-		textField_28.setBounds(377, 258, 86, 20);
-		update_student.add(textField_28);
-		textField_28.setColumns(10);
-		
-		textField_29 = new JTextField();
-		textField_29.setBounds(377, 296, 86, 20);
-		update_student.add(textField_29);
-		textField_29.setColumns(10);
-		
-		textField_30 = new JTextField();
-		textField_30.setBounds(377, 335, 86, 20);
-		update_student.add(textField_30);
-		textField_30.setColumns(10);
-		
-		textField_31 = new JTextField();
-		textField_31.setBounds(377, 373, 86, 20);
-		update_student.add(textField_31);
-		textField_31.setColumns(10);
-		
-		textField_32 = new JTextField();
-		textField_32.setBounds(377, 416, 86, 20);
-		update_student.add(textField_32);
-		textField_32.setColumns(10);
-		
-		textField_33 = new JTextField();
-		textField_33.setBounds(377, 458, 86, 20);
-		update_student.add(textField_33);
-		textField_33.setColumns(10);
-		
-		textField_34 = new JTextField();
-		textField_34.setBounds(377, 496, 86, 20);
-		update_student.add(textField_34);
-		textField_34.setColumns(10);
+		//createColumns();
 		
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(264, 531, 89, 23);
-		update_student.add(btnUpdate);
+		btnUpdate.setBounds(407, 229, 89, 23);
+		stu_up_details.add(btnUpdate);
+		
+		JLabel lblName_1 = new JLabel("Student ID");
+		lblName_1.setBounds(34, 29, 46, 14);
+		stu_up_details.add(lblName_1);
+		
+		JLabel lblNewLabel = new JLabel("Name");
+		lblNewLabel.setBounds(34, 59, 46, 14);
+		stu_up_details.add(lblNewLabel);
+		
+		JLabel lblFathersName_1 = new JLabel("Father's Name");
+		lblFathersName_1.setBounds(34, 90, 89, 14);
+		stu_up_details.add(lblFathersName_1);
+		
+		JLabel lblPhoneNumber_1 = new JLabel("Phone Number");
+		lblPhoneNumber_1.setBounds(34, 128, 89, 14);
+		stu_up_details.add(lblPhoneNumber_1);
+		
+		JLabel lblAge_1 = new JLabel("Age");
+		lblAge_1.setBounds(34, 167, 46, 14);
+		stu_up_details.add(lblAge_1);
+		
+		JLabel lblGender_1 = new JLabel("Gender");
+		lblGender_1.setBounds(34, 201, 46, 14);
+		stu_up_details.add(lblGender_1);
+		
+		JLabel lblDob_1 = new JLabel("DOB");
+		lblDob_1.setBounds(34, 233, 46, 14);
+		stu_up_details.add(lblDob_1);
+		
+		stu2_id = new JTextField();
+		stu2_id.setBounds(183, 26, 86, 20);
+		stu_up_details.add(stu2_id);
+		stu2_id.setColumns(10);
+		
+		stu2_name2 = new JTextField();
+		stu2_name2.setBounds(183, 56, 86, 20);
+		stu_up_details.add(stu2_name2);
+		stu2_name2.setColumns(10);
+		
+		stu2_father = new JTextField();
+		stu2_father.setBounds(183, 87, 86, 20);
+		stu_up_details.add(stu2_father);
+		stu2_father.setColumns(10);
+		
+		stu2_phone = new JTextField();
+		stu2_phone.setBounds(183, 125, 86, 20);
+		stu_up_details.add(stu2_phone);
+		stu2_phone.setColumns(10);
+		
+		stu2_age = new JTextField();
+		stu2_age.setBounds(183, 164, 86, 20);
+		stu_up_details.add(stu2_age);
+		stu2_age.setColumns(10);
+		
+		stu2_gender = new JTextField();
+		stu2_gender.setBounds(183, 198, 86, 20);
+		stu_up_details.add(stu2_gender);
+		stu2_gender.setColumns(10);
+		
+		stu2_dob = new JTextField();
+		stu2_dob.setBounds(183, 230, 86, 20);
+		stu_up_details.add(stu2_dob);
+		stu2_dob.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Branch");
+		lblNewLabel_1.setBounds(346, 29, 46, 14);
+		stu_up_details.add(lblNewLabel_1);
+		
+		JLabel lblSemester_1 = new JLabel("Semester");
+		lblSemester_1.setBounds(346, 59, 46, 14);
+		stu_up_details.add(lblSemester_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Home Address");
+		lblNewLabel_2.setBounds(346, 90, 46, 14);
+		stu_up_details.add(lblNewLabel_2);
+		
+		JLabel lblDoj_1 = new JLabel("DOJ");
+		lblDoj_1.setBounds(346, 128, 46, 14);
+		stu_up_details.add(lblDoj_1);
+		
+		JLabel lblDol_1 = new JLabel("DOL");
+		lblDol_1.setBounds(346, 167, 46, 14);
+		stu_up_details.add(lblDol_1);
+		
+		stu2_branch = new JTextField();
+		stu2_branch.setBounds(504, 26, 86, 20);
+		stu_up_details.add(stu2_branch);
+		stu2_branch.setColumns(10);
+		
+		stu2_semester = new JTextField();
+		stu2_semester.setBounds(504, 56, 86, 20);
+		stu_up_details.add(stu2_semester);
+		stu2_semester.setColumns(10);
+		
+		stu2_address = new JTextField();
+		stu2_address.setBounds(504, 87, 86, 20);
+		stu_up_details.add(stu2_address);
+		stu2_address.setColumns(10);
+		
+		stu2_doj = new JTextField();
+		stu2_doj.setBounds(504, 125, 86, 20);
+		stu_up_details.add(stu2_doj);
+		stu2_doj.setColumns(10);
+		
+		stu2_dol = new JTextField();
+		stu2_dol.setBounds(504, 164, 86, 20);
+		stu_up_details.add(stu2_dol);
+		stu2_dol.setColumns(10);
+		
+		table_up_stu = new JTable();
+		table_up_stu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				stu_up_details.setVisible(true);
+				stu2_id.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 0).toString());
+				stu2_name2.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 1).toString());
+				stu2_father.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 2).toString());
+				stu2_phone.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 3).toString());
+				stu2_age.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
+				stu2_gender.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 5).toString());
+				stu2_dob.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 6).toString());
+				stu2_branch.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 7).toString());
+				stu2_semester.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 8).toString());
+				stu2_address.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 9).toString());
+				stu2_doj.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 10).toString());
+				stu2_dol.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 11).toString());
+			}
+		});
+		table_up_stu.setBounds(10, 97, 668, 181);
+		update_student.add(table_up_stu);
+		
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					db_config.connect_to_database();
+				
+				
+				
+				String query = "update student set student_id = '"+stu2_id.getText()+"', name = '"+stu2_name2.getText()+"',father_name = '"+stu2_father.getText()+"',phone_number = '"+stu2_phone.getText()+"',age = '"+stu2_age.getText()+"',gender = '"+stu2_gender.getText()+"',dob = '"+stu2_dob.getText()+"',branch = '"+stu2_branch.getText()+"',semester = '"+stu2_semester.getText()+"',home_address = '"+stu2_address.getText()+"',doj = '"+stu2_doj.getText()+"',dol = '"+stu2_dol.getText()+"'where student_id='"+stu2_id.getText()+"'";
+				db_config.update_operation(query);
+				
+				ResultSet rs = db_config.getData_operation(stu2_name2.getText(),"student");
+				table_up_stu.setModel(DbUtils.resultSetToTableModel(rs));
+				//stu2_name.setText("");
+				
+				//System.out.println("value of he table is "+table_up_stu);
+				/*dm.setValueAt(stu2_id.getText(), table_up_stu.getSelectedRow(), 0);
+				dm.setValueAt(stu2_name2.getText(), table_up_stu.getSelectedRow(), 1);
+				dm.setValueAt(stu2_father.getText(), table_up_stu.getSelectedRow(), 2);
+				dm.setValueAt(stu2_phone.getText(), table_up_stu.getSelectedRow(), 3);
+				dm.setValueAt(stu2_age.getText(), table_up_stu.getSelectedRow(), 4);
+				dm.setValueAt(stu2_gender.getText(), table_up_stu.getSelectedRow(), 5);
+				dm.setValueAt(stu2_dob.getText(), table_up_stu.getSelectedRow(), 6);
+				dm.setValueAt(stu2_branch.getText(), table_up_stu.getSelectedRow(), 7);
+				dm.setValueAt(stu2_semester.getText(), table_up_stu.getSelectedRow(), 8);
+				dm.setValueAt(stu2_address.getText(), table_up_stu.getSelectedRow(), 9);
+				dm.setValueAt(stu2_doj.getText(), table_up_stu.getSelectedRow(), 10);
+				dm.setValueAt(stu2_dol.getText(), table_up_stu.getSelectedRow(), 11);*/
+				JOptionPane.showMessageDialog(null, "Data Updated");
+				stu2_id.setText("");
+				stu2_name2.setText("");
+				stu2_father.setText("");
+				stu2_phone.setText("");
+				stu2_age.setText("");
+				stu2_gender.setText("");
+				stu2_dob.setText("");
+				stu2_branch.setText("");
+				stu2_semester.setText("");
+				stu2_address.setText("");
+				stu2_doj.setText("");
+				stu2_dol.setText("");
+				}catch(Exception e2) {
+					JOptionPane.showMessageDialog(null, "Update Failed");
+				}
+			}
+		});
 		
 		JPanel delete_student = new JPanel();
 		contentPane.add(delete_student, "p5");
 		delete_student.setLayout(null);
 		
-		JLabel lblEnterStudentId_2 = new JLabel("Enter Student ID");
+		JLabel lblEnterStudentId_2 = new JLabel("Enter Student Name");
 		lblEnterStudentId_2.setBounds(90, 56, 97, 14);
 		delete_student.add(lblEnterStudentId_2);
 		
-		textField_35 = new JTextField();
-		textField_35.setBounds(287, 53, 86, 20);
-		delete_student.add(textField_35);
-		textField_35.setColumns(10);
+		stu3_name = new JTextField();
+		stu3_name.setBounds(287, 53, 86, 20);
+		delete_student.add(stu3_name);
+		stu3_name.setColumns(10);
 		
-		JButton btnUpdate_1 = new JButton("Delete");
+		JButton btnUpdate_1 = new JButton("Get Details");
+		btnUpdate_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				db_config.connect_to_database();
+				
+				try {
+						ResultSet rs = db_config.getData_operation(stu3_name.getText(),"student");
+						table_del_stu.setModel(DbUtils.resultSetToTableModel(rs));
+						stu3_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnUpdate_1.setBounds(510, 52, 89, 23);
 		delete_student.add(btnUpdate_1);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(0, 115, 688, 2);
 		delete_student.add(separator_2);
+		
+		JPanel stu_del_details = new JPanel();
+		stu_del_details.setBounds(20, 352, 658, 181);
+		delete_student.add(stu_del_details);
+		stu_del_details.setLayout(null);
+		stu_del_details.setVisible(false);
+		
+		table_del_stu = new JTable();
+		table_del_stu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				stu_del_details.setVisible(true);
+				stu3_id.setText(table_del_stu.getValueAt(table_del_stu.getSelectedRow(), 0).toString());
+			}
+		});
+		table_del_stu.setBounds(10, 128, 668, 213);
+		delete_student.add(table_del_stu);
+		
+		
+		
+		JLabel lblStudentId_2 = new JLabel("Student ID");
+		lblStudentId_2.setBounds(206, 41, 46, 14);
+		stu_del_details.add(lblStudentId_2);
+		
+		stu3_id = new JTextField();
+		stu3_id.setBounds(391, 38, 86, 20);
+		stu_del_details.add(stu3_id);
+		stu3_id.setColumns(10);
+		
+		JButton btnDelete_1 = new JButton("Delete");
+		btnDelete_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+				db_config.connect_to_database();
+				String query = "update student set dol = NOW() where student_id ='"+stu3_id.getText()+"';";
+				db_config.update_operation(query);
+				
+				ResultSet rs3 = db_config.delete_operation(stu3_id.getText(),"student");
+				table_del_stu.setModel(DbUtils.resultSetToTableModel(rs3));
+				JOptionPane.showMessageDialog(null, "Deleted");
+				stu3_id.setText("");
+				}
+				catch(Exception exe) {
+					//JOptionPane.showMessageDialog(null, "Could not Delete");
+					System.out.println(exe);
+				}
+			}
+		});
+		btnDelete_1.setBounds(300, 111, 89, 23);
+		stu_del_details.add(btnDelete_1);
 		
 		JPanel add_staff = new JPanel();
 		contentPane.add(add_staff, "p6");
@@ -789,8 +911,19 @@ db_config.connect_to_database();
 				
 				
 				ho.add_faculty(faculty);
+				JOptionPane.showMessageDialog(null, "Data Inserted");
+				st_name.setText("");
+				st_phone.setText("");
+				st_dept.setText("");
+				st_dob.setText("");
+				st_age.setText("");
+				st_gender.setText("");
+				st_address.setText("");
+				st_salary.setText("");
+				st_doj.setText("");
+				st_dol.setText("");
 				}catch(Exception ex) {
-					System.out.println(ex);
+					JOptionPane.showMessageDialog(null, "Failed");
 				}
 				
 			}
@@ -802,16 +935,28 @@ db_config.connect_to_database();
 		contentPane.add(retrieve_staff, "p7");
 		retrieve_staff.setLayout(null);
 		
-		JLabel lblEnterStaffId = new JLabel("Enter Staff ID");
+		JLabel lblEnterStaffId = new JLabel("Enter Staff Name");
 		lblEnterStaffId.setBounds(97, 40, 114, 14);
 		retrieve_staff.add(lblEnterStaffId);
 		
-		textField_46 = new JTextField();
-		textField_46.setBounds(289, 37, 86, 20);
-		retrieve_staff.add(textField_46);
-		textField_46.setColumns(10);
+		st1_name = new JTextField();
+		st1_name.setBounds(289, 37, 86, 20);
+		retrieve_staff.add(st1_name);
+		st1_name.setColumns(10);
 		
 		JButton btnGo_2 = new JButton("Go");
+		btnGo_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				db_config.connect_to_database();
+				try {
+					ResultSet rs = db_config.getData_operation(st1_name.getText(),"faculty");
+					table_ret_st.setModel(DbUtils.resultSetToTableModel(rs));
+					st1_name.setText("");
+			}catch(Exception e1) {
+				System.out.println("error"+e1);
+			}
+			}
+		});
 		btnGo_2.setBounds(509, 36, 89, 23);
 		retrieve_staff.add(btnGo_2);
 		
@@ -819,110 +964,39 @@ db_config.connect_to_database();
 		separator_3.setBounds(0, 96, 688, 2);
 		retrieve_staff.add(separator_3);
 		
-		JLabel lblName_4 = new JLabel("Name");
-		lblName_4.setBounds(199, 124, 46, 14);
-		retrieve_staff.add(lblName_4);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 131, 668, 267);
+		retrieve_staff.add(scrollPane_1);
 		
-		JLabel lblPhoneNumber_4 = new JLabel("Phone Number");
-		lblPhoneNumber_4.setBounds(199, 160, 89, 14);
-		retrieve_staff.add(lblPhoneNumber_4);
-		
-		JLabel lblDepartment_1 = new JLabel("Department");
-		lblDepartment_1.setBounds(199, 202, 101, 14);
-		retrieve_staff.add(lblDepartment_1);
-		
-		JLabel lblDob_4 = new JLabel("DOB");
-		lblDob_4.setBounds(199, 241, 46, 14);
-		retrieve_staff.add(lblDob_4);
-		
-		JLabel lblAge_4 = new JLabel("Age");
-		lblAge_4.setBounds(199, 283, 46, 14);
-		retrieve_staff.add(lblAge_4);
-		
-		JLabel lblGender_4 = new JLabel("Gender");
-		lblGender_4.setBounds(199, 326, 46, 14);
-		retrieve_staff.add(lblGender_4);
-		
-		JLabel lblAddress_1 = new JLabel("Address");
-		lblAddress_1.setBounds(199, 373, 46, 14);
-		retrieve_staff.add(lblAddress_1);
-		
-		JLabel lblSalary_1 = new JLabel("Salary");
-		lblSalary_1.setBounds(199, 412, 46, 14);
-		retrieve_staff.add(lblSalary_1);
-		
-		JLabel lblDoj_4 = new JLabel("DOJ");
-		lblDoj_4.setBounds(199, 452, 46, 14);
-		retrieve_staff.add(lblDoj_4);
-		
-		JLabel lblDol_4 = new JLabel("DOL");
-		lblDol_4.setBounds(199, 493, 46, 14);
-		retrieve_staff.add(lblDol_4);
-		
-		textField_47 = new JTextField();
-		textField_47.setBounds(380, 121, 86, 20);
-		retrieve_staff.add(textField_47);
-		textField_47.setColumns(10);
-		
-		textField_48 = new JTextField();
-		textField_48.setBounds(380, 157, 86, 20);
-		retrieve_staff.add(textField_48);
-		textField_48.setColumns(10);
-		
-		textField_49 = new JTextField();
-		textField_49.setBounds(380, 199, 86, 20);
-		retrieve_staff.add(textField_49);
-		textField_49.setColumns(10);
-		
-		textField_50 = new JTextField();
-		textField_50.setBounds(380, 238, 86, 20);
-		retrieve_staff.add(textField_50);
-		textField_50.setColumns(10);
-		
-		textField_51 = new JTextField();
-		textField_51.setBounds(380, 280, 86, 20);
-		retrieve_staff.add(textField_51);
-		textField_51.setColumns(10);
-		
-		textField_52 = new JTextField();
-		textField_52.setBounds(380, 323, 86, 20);
-		retrieve_staff.add(textField_52);
-		textField_52.setColumns(10);
-		
-		textField_53 = new JTextField();
-		textField_53.setBounds(380, 370, 86, 20);
-		retrieve_staff.add(textField_53);
-		textField_53.setColumns(10);
-		
-		textField_54 = new JTextField();
-		textField_54.setBounds(380, 409, 86, 20);
-		retrieve_staff.add(textField_54);
-		textField_54.setColumns(10);
-		
-		textField_55 = new JTextField();
-		textField_55.setBounds(380, 449, 86, 20);
-		retrieve_staff.add(textField_55);
-		textField_55.setColumns(10);
-		
-		textField_56 = new JTextField();
-		textField_56.setBounds(380, 490, 86, 20);
-		retrieve_staff.add(textField_56);
-		textField_56.setColumns(10);
+		table_ret_st = new JTable();
+		scrollPane_1.setViewportView(table_ret_st);
 		
 		JPanel update_staff = new JPanel();
 		contentPane.add(update_staff, "p8");
 		update_staff.setLayout(null);
 		
-		JLabel lblEnterStaffId_1 = new JLabel("Enter Staff ID");
+		JLabel lblEnterStaffId_1 = new JLabel("Enter Staff Name");
 		lblEnterStaffId_1.setBounds(105, 34, 101, 14);
 		update_staff.add(lblEnterStaffId_1);
 		
-		textField_57 = new JTextField();
-		textField_57.setBounds(282, 31, 86, 20);
-		update_staff.add(textField_57);
-		textField_57.setColumns(10);
+		st2_name = new JTextField();
+		st2_name.setBounds(282, 31, 86, 20);
+		update_staff.add(st2_name);
+		st2_name.setColumns(10);
 		
 		JButton btnGo_3 = new JButton("Go");
+		btnGo_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				db_config.connect_to_database();
+				try {
+					ResultSet rs = db_config.getData_operation(st2_name.getText(),"faculty");
+					table_up_st.setModel(DbUtils.resultSetToTableModel(rs));
+					st2_name.setText("");
+			}catch(Exception e1) {
+				System.out.println("error"+e1);
+			}
+			}
+		});
 		btnGo_3.setBounds(493, 30, 89, 23);
 		update_staff.add(btnGo_3);
 		
@@ -930,120 +1004,268 @@ db_config.connect_to_database();
 		separator_4.setBounds(0, 89, 688, 2);
 		update_staff.add(separator_4);
 		
-		JLabel lblName_5 = new JLabel("Name");
-		lblName_5.setBounds(184, 115, 46, 14);
-		update_staff.add(lblName_5);
 		
-		JLabel lblPhoneNumber_5 = new JLabel("Phone Number");
-		lblPhoneNumber_5.setBounds(184, 159, 89, 14);
-		update_staff.add(lblPhoneNumber_5);
+				
+				/*table_up_st.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						stu2_id.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 0).toString());
+						stu2_name2.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 1).toString());
+						stu2_father.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 2).toString());
+						stu2_phone.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 3).toString());
+						stu2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 4).toString());
+						stu2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
+						stu2_dob.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
+						stu2_branch.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
+						stu2_semester.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
+						stu2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
+						stu2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
+						stu2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 11).toString());
+					}
+				});*/
 		
-		JLabel lblDepartmant = new JLabel("Department");
-		lblDepartmant.setBounds(184, 199, 86, 14);
-		update_staff.add(lblDepartmant);
+		JPanel staff_up_details = new JPanel();
+		staff_up_details.setBounds(10, 300, 668, 234);
+		update_staff.add(staff_up_details);
+		staff_up_details.setLayout(null);
+		staff_up_details.setVisible(false);
 		
-		JLabel lblDob_5 = new JLabel("DOB");
-		lblDob_5.setBounds(184, 239, 46, 14);
-		update_staff.add(lblDob_5);
+		JLabel lblStaffId = new JLabel("Staff ID");
+		lblStaffId.setBounds(25, 11, 46, 14);
+		staff_up_details.add(lblStaffId);
 		
-		JLabel lblAge_5 = new JLabel("Age");
-		lblAge_5.setBounds(184, 282, 46, 14);
-		update_staff.add(lblAge_5);
+		JLabel lblName_2 = new JLabel("Name");
+		lblName_2.setBounds(25, 47, 46, 14);
+		staff_up_details.add(lblName_2);
 		
-		JLabel lblGender_5 = new JLabel("Gender");
-		lblGender_5.setBounds(184, 322, 46, 14);
-		update_staff.add(lblGender_5);
+		JLabel lblPhoneNumber_2 = new JLabel("Phone Number");
+		lblPhoneNumber_2.setBounds(25, 85, 91, 14);
+		staff_up_details.add(lblPhoneNumber_2);
 		
-		JLabel lblAddress_2 = new JLabel("Address");
-		lblAddress_2.setBounds(184, 366, 46, 14);
-		update_staff.add(lblAddress_2);
+		JLabel lblDepartment_1 = new JLabel("Department");
+		lblDepartment_1.setBounds(25, 121, 46, 14);
+		staff_up_details.add(lblDepartment_1);
 		
-		JLabel lblSalary_2 = new JLabel("Salary");
-		lblSalary_2.setBounds(184, 406, 46, 14);
-		update_staff.add(lblSalary_2);
+		JLabel lblDob_2 = new JLabel("DOB");
+		lblDob_2.setBounds(25, 153, 46, 14);
+		staff_up_details.add(lblDob_2);
 		
-		JLabel lblDoj_5 = new JLabel("DOJ");
-		lblDoj_5.setBounds(184, 447, 46, 14);
-		update_staff.add(lblDoj_5);
+		JLabel lblAge_2 = new JLabel("Age");
+		lblAge_2.setBounds(25, 194, 46, 14);
+		staff_up_details.add(lblAge_2);
 		
-		JLabel lblDol_5 = new JLabel("DOL");
-		lblDol_5.setBounds(184, 487, 46, 14);
-		update_staff.add(lblDol_5);
+		st2_id = new JTextField();
+		st2_id.setBounds(183, 8, 86, 20);
+		staff_up_details.add(st2_id);
+		st2_id.setColumns(10);
 		
-		textField_58 = new JTextField();
-		textField_58.setBounds(382, 112, 86, 20);
-		update_staff.add(textField_58);
-		textField_58.setColumns(10);
+		st2_name2 = new JTextField();
+		st2_name2.setBounds(183, 44, 86, 20);
+		staff_up_details.add(st2_name2);
+		st2_name2.setColumns(10);
 		
-		textField_59 = new JTextField();
-		textField_59.setBounds(382, 156, 86, 20);
-		update_staff.add(textField_59);
-		textField_59.setColumns(10);
+		st2_phone = new JTextField();
+		st2_phone.setBounds(183, 82, 86, 20);
+		staff_up_details.add(st2_phone);
+		st2_phone.setColumns(10);
 		
-		textField_60 = new JTextField();
-		textField_60.setBounds(382, 196, 86, 20);
-		update_staff.add(textField_60);
-		textField_60.setColumns(10);
+		st2_dept = new JTextField();
+		st2_dept.setBounds(183, 118, 86, 20);
+		staff_up_details.add(st2_dept);
+		st2_dept.setColumns(10);
 		
-		textField_61 = new JTextField();
-		textField_61.setBounds(382, 236, 86, 20);
-		update_staff.add(textField_61);
-		textField_61.setColumns(10);
+		st2_dob = new JTextField();
+		st2_dob.setBounds(183, 150, 86, 20);
+		staff_up_details.add(st2_dob);
+		st2_dob.setColumns(10);
 		
-		textField_62 = new JTextField();
-		textField_62.setBounds(382, 279, 86, 20);
-		update_staff.add(textField_62);
-		textField_62.setColumns(10);
+		st2_age = new JTextField();
+		st2_age.setBounds(183, 191, 86, 20);
+		staff_up_details.add(st2_age);
+		st2_age.setColumns(10);
 		
-		textField_63 = new JTextField();
-		textField_63.setBounds(382, 319, 86, 20);
-		update_staff.add(textField_63);
-		textField_63.setColumns(10);
+		JLabel lblGender_2 = new JLabel("Gender");
+		lblGender_2.setBounds(361, 11, 46, 14);
+		staff_up_details.add(lblGender_2);
 		
-		textField_64 = new JTextField();
-		textField_64.setBounds(382, 363, 86, 20);
-		update_staff.add(textField_64);
-		textField_64.setColumns(10);
+		JLabel lblHomeAddress_2 = new JLabel("Home Address");
+		lblHomeAddress_2.setBounds(361, 47, 107, 14);
+		staff_up_details.add(lblHomeAddress_2);
 		
-		textField_65 = new JTextField();
-		textField_65.setBounds(382, 403, 86, 20);
-		update_staff.add(textField_65);
-		textField_65.setColumns(10);
+		JLabel lblSalary_1 = new JLabel("Salary");
+		lblSalary_1.setBounds(361, 85, 46, 14);
+		staff_up_details.add(lblSalary_1);
 		
-		textField_66 = new JTextField();
-		textField_66.setBounds(382, 444, 86, 20);
-		update_staff.add(textField_66);
-		textField_66.setColumns(10);
+		JLabel lblDoj_2 = new JLabel("DOJ");
+		lblDoj_2.setBounds(361, 121, 46, 14);
+		staff_up_details.add(lblDoj_2);
 		
-		textField_67 = new JTextField();
-		textField_67.setBounds(382, 484, 86, 20);
-		update_staff.add(textField_67);
-		textField_67.setColumns(10);
+		JLabel lblDol_2 = new JLabel("DOL");
+		lblDol_2.setBounds(361, 153, 46, 14);
+		staff_up_details.add(lblDol_2);
 		
 		JButton btnUpdate_2 = new JButton("Update");
-		btnUpdate_2.setBounds(268, 523, 89, 23);
-		update_staff.add(btnUpdate_2);
+		btnUpdate_2.setBounds(440, 190, 89, 23);
+		staff_up_details.add(btnUpdate_2);
+		
+		st2_gender = new JTextField();
+		st2_gender.setBounds(508, 8, 86, 20);
+		staff_up_details.add(st2_gender);
+		st2_gender.setColumns(10);
+		
+		st2_address = new JTextField();
+		st2_address.setBounds(508, 44, 86, 20);
+		staff_up_details.add(st2_address);
+		st2_address.setColumns(10);
+		
+		st2_salary = new JTextField();
+		st2_salary.setBounds(508, 79, 86, 20);
+		staff_up_details.add(st2_salary);
+		st2_salary.setColumns(10);
+		
+		st2_doj = new JTextField();
+		st2_doj.setBounds(508, 118, 86, 20);
+		staff_up_details.add(st2_doj);
+		st2_doj.setColumns(10);
+		
+		st2_dol = new JTextField();
+		st2_dol.setBounds(508, 150, 86, 20);
+		staff_up_details.add(st2_dol);
+		st2_dol.setColumns(10);
+		
+		table_up_st = new JTable();
+		table_up_st.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				staff_up_details.setVisible(true);
+				st2_id.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 0).toString());
+				st2_name2.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 1).toString());
+				st2_phone.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 2).toString());
+				st2_dept.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 3).toString());
+				st2_dob.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 4).toString());
+				st2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
+				st2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
+				st2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
+				st2_salary.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
+				
+				st2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
+				st2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
+			}
+		});
+		table_up_st.setBounds(10, 102, 668, 190);
+		update_staff.add(table_up_st);
+		btnUpdate_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					db_config.connect_to_database();
+					
+					ResultSet rs = db_config.getData_operation(st2_name2.getText(),"faculty");
+					table_up_st.setModel(DbUtils.resultSetToTableModel(rs));
+				String query = "update faculty set faculty_id = '"+st2_id.getText()+"',name = '"+st2_name2.getText()+"',phone_number = '"+st2_phone.getText()+"',department = '"+st2_dept.getText()+"',dob = '"+st2_dob.getText()+"',age = '"+st2_age.getText()+"',gender = '"+st2_gender.getText()+"',address = '"+st2_address.getText()+"',salary = '"+st2_salary.getText()+"',doj = '"+st2_doj.getText()+"',dol = '"+st2_dol.getText()+"'where faculty_id='"+st2_id.getText()+"'";
+				db_config.update_operation(query);
+				
+				ResultSet rs2 = db_config.getData_operation(st2_name2.getText(),"faculty");
+				table_up_st.setModel(DbUtils.resultSetToTableModel(rs2));
+				JOptionPane.showMessageDialog(null, "Data Updated");
+				st2_id.setText("");
+				st2_name2.setText("");
+				st2_phone.setText("");
+				st2_dept.setText("");
+				st2_dob.setText("");
+				st2_age.setText("");
+				st2_gender.setText("");
+				st2_address.setText("");
+				st2_salary.setText("");
+				st2_doj.setText("");
+				st2_dol.setText("");
+				}catch(Exception e2) {
+					JOptionPane.showMessageDialog(null, "Update Failed");
+				}
+			}
+		});
 		
 		JPanel delete_staff = new JPanel();
 		contentPane.add(delete_staff, "p9");
 		delete_staff.setLayout(null);
 		
-		JLabel lblEnterStaffId_2 = new JLabel("Enter Staff ID");
+		JLabel lblEnterStaffId_2 = new JLabel("Enter Staff Name");
 		lblEnterStaffId_2.setBounds(81, 41, 100, 14);
 		delete_staff.add(lblEnterStaffId_2);
 		
-		textField_68 = new JTextField();
-		textField_68.setBounds(286, 38, 86, 20);
-		delete_staff.add(textField_68);
-		textField_68.setColumns(10);
+		st3_name = new JTextField();
+		st3_name.setBounds(286, 38, 86, 20);
+		delete_staff.add(st3_name);
+		st3_name.setColumns(10);
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Get Details");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				db_config.connect_to_database();
+				try {
+					ResultSet rs = db_config.getData_operation(st3_name.getText(),"faculty");
+					table_del_st.setModel(DbUtils.resultSetToTableModel(rs));
+					st3_name.setText("");
+			}catch(Exception e1) {
+				System.out.println("error"+e1);
+			}
+			}
+		});
 		btnDelete.setBounds(506, 37, 89, 23);
 		delete_staff.add(btnDelete);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(0, 95, 688, 2);
 		delete_staff.add(separator_5);
+		JPanel st_del_details = new JPanel();
+		st_del_details.setBounds(20, 329, 658, 210);
+		delete_staff.add(st_del_details);
+		st_del_details.setLayout(null);
+		st_del_details.setVisible(false);
+		
+		table_del_st = new JTable();
+		table_del_st.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				st_del_details.setVisible(true);
+				st3_id.setText(table_del_st.getValueAt(table_del_st.getSelectedRow(), 0).toString());
+			}
+		});
+		table_del_st.setBounds(10, 108, 668, 210);
+		delete_staff.add(table_del_st);
+		
+		
+		
+		JLabel lblStaffName = new JLabel("Staff ID");
+		lblStaffName.setBounds(200, 82, 46, 14);
+		st_del_details.add(lblStaffName);
+		
+		st3_id = new JTextField();
+		st3_id.setBounds(372, 79, 86, 20);
+		st_del_details.add(st3_id);
+		st3_id.setColumns(10);
+		
+		JButton btnDelete_2 = new JButton("Delete");
+		btnDelete_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					db_config.connect_to_database();
+					String query = "update faculty set dol = NOW() where faculty_id ='"+st3_id.getText()+"';";
+					db_config.update_operation(query);
+					
+					ResultSet rs3 = db_config.delete_operation(st3_id.getText(),"faculty");
+					table_del_st.setModel(DbUtils.resultSetToTableModel(rs3));
+					JOptionPane.showMessageDialog(null, "Deleted");
+					st3_id.setText("");
+					}
+					catch(Exception exe) {
+						//JOptionPane.showMessageDialog(null, "Could not Delete");
+						System.out.println(exe);
+					}
+			}
+		});
+		btnDelete_2.setBounds(271, 140, 89, 23);
+		st_del_details.add(btnDelete_2);
 		
 		JPanel assign_room = new JPanel();
 		contentPane.add(assign_room, "p10");

@@ -47,4 +47,95 @@ public class db_config {
 		}
 		preparedStmt.execute();
 	}
+	
+//public static ResultSet get_student(String s) throws SQLException {
+		
+		//PreparedStatement ps = conn.prepareStatement("Select * from student where student_id=?;");
+		//ps.setString(1, s);
+		//ResultSet rs = ps.executeQuery();
+		//return rs;
+	//}
+
+public static ResultSet getData_operation(String name, String table_name) throws SQLException {
+	// TODO Auto-generated method stub
+	String query = null;
+	if(table_name == "student") {
+		query="Select * from student where name like ?;";
+	}else if(table_name == "faculty") {
+		query="Select * from faculty where name like ?;";
+	}else {
+		System.out.println("Encountered new table name please handle accordingly");
+		System.exit(1);
+	}
+	
+	PreparedStatement ps = conn.prepareStatement(query);
+	name="%"+ name +"%";
+	ps.setString(1, name);
+	ResultSet rs = ps.executeQuery();
+	return rs;
+	//return null;
 }
+
+
+/*public static ResultSet get_staff(String s) throws SQLException {
+	// TODO Auto-generated method stub
+	String query="Select * from faculty where name=?;";
+	PreparedStatement ps = conn.prepareStatement(query);
+	ps.setString(1, s);
+	ResultSet rs = ps.executeQuery();
+	return rs;
+	//return null;
+}*/
+
+/*public static ResultSet del_student(String s) throws SQLException {
+	// TODO Auto-generated method stub
+	String query="Select * from student where student_id = ?;";
+	PreparedStatement ps = conn.prepareStatement(query);
+	//s="%"+ s +"%";
+	ps.setInt(1, Integer.parseInt(s));
+	ResultSet rs = ps.executeQuery();
+	return rs;
+	//return null;
+}*/
+
+
+public static ResultSet delete_operation(String id, String table_name) throws SQLException {
+	// TODO Auto-generated method stub
+	String query = null;
+	if(table_name == "student") {
+		query="Select * from student where student_id = ?;";
+	}else if(table_name == "faculty") {
+		query="Select * from faculty where faculty_id = ?;";
+	}else {
+		System.out.println("Encountered new table name please handle accordingly");
+		System.exit(1);
+	}
+	
+	PreparedStatement ps = conn.prepareStatement(query);
+	//s="%"+ s +"%";
+	ps.setInt(1, Integer.parseInt(id));
+	ResultSet rs = ps.executeQuery();
+	return rs;
+	//return null;
+}
+
+/*public static ResultSet del_staff(String s) throws SQLException {
+	// TODO Auto-generated method stub
+	String query="Select * from faculty where faculty_id = ?;";
+	PreparedStatement ps = conn.prepareStatement(query);
+	//s="%"+ s +"%";
+	ps.setInt(1, Integer.parseInt(s));
+	ResultSet rs = ps.executeQuery();
+	return rs;
+	//return null;
+}*/
+
+
+
+public static void update_operation(String query) throws SQLException{
+	Statement st = conn.createStatement();
+	st.executeUpdate(query);
+}
+}
+//oh u ll be here?..i thought u have some work ui have to go after 1030 okwe 
+//

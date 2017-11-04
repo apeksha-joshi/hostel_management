@@ -13,7 +13,9 @@ public class main_class {
 		
 		gui gui_class = new gui();
 		gui_class.start_app();
-		
+		//show create table *table_name* without *..ok:)thanks!cool
+		//
+				
 		
 		/*hostel_operations ho = new hostel_operations();
 		HashMap<Integer, String> student = new HashMap<Integer, String>();

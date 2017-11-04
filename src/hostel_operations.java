@@ -43,3 +43,5 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, faculty);
 	}
 }
+
+	//ok juswet  malkel  it like na?waiwhere is retrieve student?
