@@ -1,6 +1,8 @@
 import java.awt.List;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 public class hostel_operations {
@@ -36,11 +38,51 @@ private static db_config db_ops = new db_config();
 		return result_set;
 	}
 	
-	public void add_faculty(HashMap<Integer, String> faculty) throws SQLException{
+	public void add_faculty(HashMap<Integer, String> faculty) throws Exception{
 		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`,`age`,`gender` ,`address`,`salary` ,`doj` ,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
 				
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, faculty);
+	}
+	
+	public void faculty_incharge_rooms(String hostel_id) throws Exception {
+		
+		String query = "Select room_no from room where hostel_id = "+ Integer.parseInt(hostel_id) +";";
+		String query_faculty = "Select 	faculty_id from faculty;";
+		
+		ArrayList<Integer>room_ids = new ArrayList<Integer>();
+		ArrayList<Integer>faculty_ids = new ArrayList<Integer>();
+		
+		
+		PreparedStatement ps = db_config.conn.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			room_ids.add((Integer) rs.getObject(1));
+		}
+				
+		ps = db_config.conn.prepareStatement(query_faculty);
+		ResultSet rs_1 = ps.executeQuery();
+		
+		while(rs_1.next()) {
+			faculty_ids.add((Integer) rs_1.getObject(1));
+		}
+		
+		int rooms = room_ids.size();
+		int faculty_count = faculty_ids.size();
+		
+		//assigning the rooms in round robin fashion
+		for(int i=0,j=0;i<rooms;i++,j++) {
+			if(i == faculty_ids.size()) {
+				j=0;
+			}
+			String update_query = "Update room set faculty_id = "+faculty_ids.get(j)+" where room_no = "+ room_ids.get(i) +";";
+			System.out.println("the query is "+update_query);
+			Statement st = db_config.conn.createStatement();
+			st.executeUpdate(update_query);
+		}
+		
+		
 	}
 }
 

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 public class db_config {
-	private static Connection conn = null;
+	public static Connection conn = null;
 	private static String db_username = "root";
 	private static String db_password = "";
 	private static String db_name = "hostel_management";
@@ -77,28 +77,6 @@ public static ResultSet getData_operation(String name, String table_name) throws
 }
 
 
-/*public static ResultSet get_staff(String s) throws SQLException {
-	// TODO Auto-generated method stub
-	String query="Select * from faculty where name=?;";
-	PreparedStatement ps = conn.prepareStatement(query);
-	ps.setString(1, s);
-	ResultSet rs = ps.executeQuery();
-	return rs;
-	//return null;
-}*/
-
-/*public static ResultSet del_student(String s) throws SQLException {
-	// TODO Auto-generated method stub
-	String query="Select * from student where student_id = ?;";
-	PreparedStatement ps = conn.prepareStatement(query);
-	//s="%"+ s +"%";
-	ps.setInt(1, Integer.parseInt(s));
-	ResultSet rs = ps.executeQuery();
-	return rs;
-	//return null;
-}*/
-
-
 public static ResultSet delete_operation(String id, String table_name) throws SQLException {
 	// TODO Auto-generated method stub
 	String query = null;
@@ -119,23 +97,9 @@ public static ResultSet delete_operation(String id, String table_name) throws SQ
 	//return null;
 }
 
-/*public static ResultSet del_staff(String s) throws SQLException {
-	// TODO Auto-generated method stub
-	String query="Select * from faculty where faculty_id = ?;";
-	PreparedStatement ps = conn.prepareStatement(query);
-	//s="%"+ s +"%";
-	ps.setInt(1, Integer.parseInt(s));
-	ResultSet rs = ps.executeQuery();
-	return rs;
-	//return null;
-}*/
-
-
 
 public static void update_operation(String query) throws SQLException{
 	Statement st = conn.createStatement();
 	st.executeUpdate(query);
+ }
 }
-}
-//oh u ll be here?..i thought u have some work ui have to go after 1030 okwe 
-//
