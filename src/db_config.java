@@ -63,7 +63,10 @@ public static ResultSet getData_operation(String name, String table_name) throws
 		query="Select * from student where name like ?;";
 	}else if(table_name == "faculty") {
 		query="Select * from faculty where name like ?;";
-	}else {
+	}else if(table_name == "room") {
+		query = "Select s.student_id,s.name,r.room_no,r.hostel_id from student s,room_allot_student r where s.student_id=r.student_id and s.name like ?;";
+	}
+	else {
 		System.out.println("Encountered new table name please handle accordingly");
 		System.exit(1);
 	}
@@ -95,6 +98,14 @@ public static ResultSet delete_operation(String id, String table_name) throws SQ
 	ResultSet rs = ps.executeQuery();
 	return rs;
 	//return null;
+}
+
+public static ResultSet room_op(String query) throws SQLException{
+
+	PreparedStatement ps = conn.prepareStatement(query);
+	ResultSet rs = ps.executeQuery(query);
+	System.out.println(rs);
+	return rs;
 }
 
 

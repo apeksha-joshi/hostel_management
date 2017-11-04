@@ -45,6 +45,12 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, faculty);
 	}
 	
+	//public void allot_room(HashMap<Integer, String> room) throws Exception{
+	//	String insert_query="INSERT INTO `hostelmanagement`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
+	//	System.out.println("insert query is "+insert_query);
+	//	db_ops.insert_data(insert_query, room);
+	//}
+	
 	public void faculty_incharge_rooms(String hostel_id) throws Exception {
 		
 		String query = "Select room_no from room where hostel_id = "+ Integer.parseInt(hostel_id) +";";
@@ -83,6 +89,14 @@ private static db_config db_ops = new db_config();
 		}
 		
 		
+	}
+
+	public void allot_room(HashMap<Integer, String> room) throws Exception {
+		// TODO Auto-generated method stub
+		//String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
+		String insert_query="INSERT INTO  `hostel_management`.`room_allot_student` (`room_no` ,`student_id` ,`hostel_id`)VALUES (?,?,?);";
+		System.out.println("insert query is "+insert_query);
+		db_ops.insert_data(insert_query, room);
 	}
 }
 

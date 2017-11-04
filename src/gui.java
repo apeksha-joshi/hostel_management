@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.jdbc.Statement;
+
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JMenuBar;
@@ -60,11 +62,11 @@ public class gui extends JFrame {
 	private JTextField st1_name;
 	private JTextField st2_name;
 	private JTextField st3_name;
-	private JTextField textField_69;
-	private JTextField textField_70;
-	private JTextField textField_71;
-	private JTextField textField_72;
-	private JTextField textField_73;
+	private JTextField room_id;
+	private JTextField room_hid;
+	private JTextField room_no;
+	private JTextField room2_name;
+	private JTextField room3_hid;
 	private JTextField textField_74;
 	private JTextField textField_75;
 	private JTextField textField_76;
@@ -102,6 +104,10 @@ public class gui extends JFrame {
     private JTextField stu3_id;
     private JTable table_del_st;
     private JTextField st3_id;
+    private JTable table_room;
+    private JTextField room2_id;
+    private JTextField room3_no;
+    private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -393,6 +399,9 @@ public class gui extends JFrame {
 		add_student.add(stu_dol);
 		stu_dol.setColumns(10);
 		
+		
+		
+		
 		JButton btnInsert = new JButton("Insert");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -416,6 +425,8 @@ public class gui extends JFrame {
 				ho.add_student(student);
 				
 				JOptionPane.showMessageDialog(null, "Data Inserted");
+				CardLayout c =(CardLayout)(contentPane.getLayout());
+				c.show(contentPane,"p10");
 				stu_name.setText("");
 				stu_father.setText("");
 				stu_phone.setText("");
@@ -912,6 +923,9 @@ db_config.connect_to_database();
 				
 				ho.add_faculty(faculty);
 				JOptionPane.showMessageDialog(null, "Data Inserted");
+				CardLayout c =(CardLayout)(contentPane.getLayout());
+				c.show(contentPane,"p10");
+				
 				st_name.setText("");
 				st_phone.setText("");
 				st_dept.setText("");
@@ -1288,22 +1302,37 @@ db_config.connect_to_database();
 		lblRoomNumber_1.setBounds(199, 193, 89, 14);
 		assign_room.add(lblRoomNumber_1);
 		
-		textField_69 = new JTextField();
-		textField_69.setBounds(359, 90, 86, 20);
-		assign_room.add(textField_69);
-		textField_69.setColumns(10);
+		room_id = new JTextField();
+		room_id.setBounds(359, 90, 86, 20);
+		assign_room.add(room_id);
+		room_id.setColumns(10);
 		
-		textField_70 = new JTextField();
-		textField_70.setBounds(359, 139, 86, 20);
-		assign_room.add(textField_70);
-		textField_70.setColumns(10);
+		room_hid = new JTextField();
+		room_hid.setBounds(359, 139, 86, 20);
+		assign_room.add(room_hid);
+		room_hid.setColumns(10);
 		
-		textField_71 = new JTextField();
-		textField_71.setBounds(359, 190, 86, 20);
-		assign_room.add(textField_71);
-		textField_71.setColumns(10);
+		room_no = new JTextField();
+		room_no.setBounds(359, 190, 86, 20);
+		assign_room.add(room_no);
+		room_no.setColumns(10);
 		
 		JButton btnAssign = new JButton("Assign");
+		btnAssign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				try {
+				hostel_operations ho = new hostel_operations();
+				HashMap<Integer, String> room = new HashMap<Integer, String>();
+				room.put(1, room_id.getText());
+				room.put(2, room_hid.getText());
+				room.put(3, room_no.getText());
+				ho.allot_room(room);
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+			}
+		});
 		btnAssign.setBounds(267, 277, 89, 23);
 		assign_room.add(btnAssign);
 		
@@ -1311,16 +1340,30 @@ db_config.connect_to_database();
 		contentPane.add(leave_room, "p11");
 		leave_room.setLayout(null);
 		
-		JLabel lblEnterStudentId_3 = new JLabel("Enter student ID");
+		JLabel lblEnterStudentId_3 = new JLabel("Enter student Name");
 		lblEnterStudentId_3.setBounds(94, 48, 111, 14);
 		leave_room.add(lblEnterStudentId_3);
 		
-		textField_72 = new JTextField();
-		textField_72.setBounds(280, 45, 86, 20);
-		leave_room.add(textField_72);
-		textField_72.setColumns(10);
+		room2_name = new JTextField();
+		room2_name.setBounds(280, 45, 86, 20);
+		leave_room.add(room2_name);
+		room2_name.setColumns(10);
 		
-		JButton btnLeave = new JButton("Leave");
+		JButton btnLeave = new JButton("Get Details");
+		btnLeave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				
+				try {
+						ResultSet rs = db_config.getData_operation(room2_name.getText(),"room");
+						table_room.setModel(DbUtils.resultSetToTableModel(rs));
+						room2_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnLeave.setBounds(513, 44, 89, 23);
 		leave_room.add(btnLeave);
 		
@@ -1328,26 +1371,109 @@ db_config.connect_to_database();
 		separator_6.setBounds(0, 100, 698, 2);
 		leave_room.add(separator_6);
 		
+		JPanel room_details = new JPanel();
+		room_details.setBounds(10, 338, 668, 208);
+		leave_room.add(room_details);
+		room_details.setLayout(null);
+		room_details.setVisible(false);
+		
+		table_room = new JTable();
+		table_room.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				room_details.setVisible(true);
+				room2_id.setText(table_room.getValueAt(table_room.getSelectedRow(), 0).toString());
+			}
+		});
+		table_room.setBounds(10, 113, 668, 217);
+		leave_room.add(table_room);
+		
+		
+		
+		JLabel lblStudentId_3 = new JLabel("Student ID");
+		lblStudentId_3.setBounds(200, 48, 46, 14);
+		room_details.add(lblStudentId_3);
+		
+		room2_id = new JTextField();
+		room2_id.setBounds(383, 45, 86, 20);
+		room_details.add(room2_id);
+		room2_id.setColumns(10);
+		
+		JButton btnLeave_1 = new JButton("Leave");
+		btnLeave_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					try {
+					db_config.connect_to_database();
+					String query = "update student set dol = NOW() where student_id ='"+room2_id.getText()+"';";
+					db_config.update_operation(query);
+					
+					ResultSet rs3 = db_config.delete_operation(room2_id.getText(),"student");
+					table_room.setModel(DbUtils.resultSetToTableModel(rs3));
+					JOptionPane.showMessageDialog(null, "Left");
+					room2_id.setText("");
+					}
+					catch(Exception exe) {
+						JOptionPane.showMessageDialog(null, "Could not Delete");
+						//System.out.println(exe);
+					}
+			}
+		});
+		btnLeave_1.setBounds(281, 107, 89, 23);
+		room_details.add(btnLeave_1);
+		
 		JPanel view_room = new JPanel();
 		contentPane.add(view_room, "p12");
 		view_room.setLayout(null);
 		
-		JLabel lblEnterStudentId_4 = new JLabel("Enter Student ID");
-		lblEnterStudentId_4.setBounds(94, 67, 102, 14);
+		JLabel lblEnterStudentId_4 = new JLabel("Enter Hostel ID");
+		lblEnterStudentId_4.setBounds(92, 42, 102, 14);
 		view_room.add(lblEnterStudentId_4);
 		
-		textField_73 = new JTextField();
-		textField_73.setBounds(286, 64, 86, 20);
-		view_room.add(textField_73);
-		textField_73.setColumns(10);
+		room3_hid = new JTextField();
+		room3_hid.setBounds(287, 39, 86, 20);
+		view_room.add(room3_hid);
+		room3_hid.setColumns(10);
 		
 		JButton btnGetDetails = new JButton("Get Details");
+		btnGetDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					db_config.connect_to_database();
+					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM room_allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
+					
+					ResultSet rs =db_config.room_op(query);
+					System.out.println(rs);
+					table_room.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}catch(Exception exe) {
+				//JOptionPane.showMessageDialog(null, "Error");
+				System.out.println(exe);
+			   }
+			}
+		});
 		btnGetDetails.setBounds(505, 63, 89, 23);
 		view_room.add(btnGetDetails);
 		
 		JSeparator separator_7 = new JSeparator();
-		separator_7.setBounds(0, 126, 688, 2);
+		separator_7.setBounds(0, 157, 688, 2);
 		view_room.add(separator_7);
+		
+		JLabel lblEnterRoomNumber = new JLabel("Enter Room Number");
+		lblEnterRoomNumber.setBounds(92, 97, 127, 14);
+		view_room.add(lblEnterRoomNumber);
+		
+		room3_no = new JTextField();
+		room3_no.setBounds(287, 94, 86, 20);
+		view_room.add(room3_no);
+		room3_no.setColumns(10);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 170, 668, 225);
+		view_room.add(scrollPane_2);
+		
+		table = new JTable();
+		scrollPane_2.setViewportView(table);
 		
 		JPanel fees_pay = new JPanel();
 		contentPane.add(fees_pay, "p13");
