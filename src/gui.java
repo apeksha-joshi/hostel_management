@@ -113,6 +113,7 @@ public class gui extends JFrame {
     private JComboBox stu_gender;
     private JComboBox st_gender;
     private JComboBox room_no;
+    private JTextField stu_dol;
    
 	/**
 	 * Launch the application.
@@ -415,7 +416,7 @@ public class gui extends JFrame {
 				student.put(8, stu_sem.getText());
 				student.put(9, stu_address.getText());
 				student.put(10, stu_doj.getText());
-				
+				student.put(11, stu_dol.getText());
 				
 				ho.add_student(student);
 				
@@ -432,13 +433,14 @@ public class gui extends JFrame {
 				stu_sem.setText("");
 				stu_address.setText("");
 				stu_doj.setText("");
-				
+				stu_dol.setText("");
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Failed");
+					//JOptionPane.showMessageDialog(null, "Failed");
+					System.out.println(ex);
 				}
 			}
 		});
-		btnInsert.setBounds(276, 508, 89, 23);
+		btnInsert.setBounds(277, 520, 89, 23);
 		add_student.add(btnInsert);
 		String gender[] = {"M","F"};
 		stu_gender = new JComboBox(gender);
@@ -446,6 +448,15 @@ public class gui extends JFrame {
 			
 		stu_gender.setBounds(372, 238, 86, 20);
 		add_student.add(stu_gender);
+		
+		JLabel lblDol = new JLabel("DOL");
+		lblDol.setBounds(200, 486, 46, 14);
+		add_student.add(lblDol);
+		
+		stu_dol = new JTextField();
+		stu_dol.setBounds(372, 489, 86, 20);
+		add_student.add(stu_dol);
+		stu_dol.setColumns(10);
 		
 		JPanel retrieve_student = new JPanel();
 		contentPane.add(retrieve_student, "p3");
@@ -1324,9 +1335,9 @@ db_config.connect_to_database();
 				hostel_operations ho = new hostel_operations();
 				HashMap<Integer, String> room = new HashMap<Integer, String>();
 				room.put(1, room_id.getText());
-				room.put(2, room_hid.getText());
+				room.put(3, room_hid.getText());
 				
-				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
+				room.put(2,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				ho.allot_room(room);
 				}catch(Exception ex) {
 					System.out.println(ex);
@@ -1450,7 +1461,7 @@ db_config.connect_to_database();
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					db_config.connect_to_database();
-					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM room_allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
+					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
 					
 					ResultSet rs =db_config.room_op(query);
 					

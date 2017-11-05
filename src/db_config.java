@@ -64,9 +64,9 @@ public static ResultSet getData_operation(String name, String table_name) throws
 	}else if(table_name == "faculty") {
 		query="Select * from faculty where name like ?;";
 	}else if(table_name == "room") {
-		query = "Select s.student_id,s.name,r.room_no,r.hostel_id from student s,room_allot_student r where s.student_id=r.student_id and s.name like ?;";
-	}else if(table_name == "student_fees") {
-		query = "select sf.student_id,s.name,sf.monthly_status,sf.payment_date from student s, student_fees sf where sf.student_id=s.student_id and s.name like ?;";
+		query = "Select s.student_id,s.name,r.room_no,r.hostel_id from student s,allot_student r where s.student_id=r.student_id and s.name like ?;";
+	}else if(table_name == "fees") {
+		query = "select sf.student_id,s.name,sf.monthly_status,sf.payment_date from student s,fees sf where sf.student_id=s.student_id and s.name like ?;";
 	}
 	else {
 		System.out.println("Encountered new table name please handle accordingly");

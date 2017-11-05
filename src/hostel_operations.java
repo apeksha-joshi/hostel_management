@@ -10,7 +10,7 @@ private static db_config db_ops = new db_config();
 	
 	/*insert student into the db*/
 	public void add_student(HashMap<Integer, String> student) throws SQLException{
-		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `age`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`,`dol`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `age`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`, `dol`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, student);
 	}
@@ -39,7 +39,7 @@ private static db_config db_ops = new db_config();
 	}
 	
 	public void add_faculty(HashMap<Integer, String> faculty) throws Exception{
-		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`,`age`,`gender` ,`address`,`salary` ,`doj` ,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`,`age`,`gender` ,`address`,`salary` ,`doj`,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
 				
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, faculty);
@@ -101,7 +101,7 @@ private static db_config db_ops = new db_config();
 	public void allot_room(HashMap<Integer, String> room) throws Exception {
 		// TODO Auto-generated method stub
 		//String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
-		String insert_query="INSERT INTO  `hostel_management`.`room_allot_student` (`room_no` ,`student_id` ,`hostel_id`)VALUES (?,?,?);";
+		String insert_query="INSERT INTO  `hostel_management`.`allot_student` (`student_id` ,`room_no` ,`hostel_id`)VALUES (?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, room);
 	}
