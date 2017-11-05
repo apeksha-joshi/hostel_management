@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.Statement;
 
+
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JMenuBar;
@@ -18,8 +19,11 @@ import javax.swing.JOptionPane;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.ComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
@@ -35,6 +39,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class gui extends JFrame {
 
@@ -160,9 +166,15 @@ public class gui extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnStudent = new JMenu("Student");
+		mnStudent.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
+		Image img = new ImageIcon(this.getClass().getResource("/student.png")).getImage();
+		mnStudent.setIcon(new ImageIcon(img));
 		menuBar.add(mnStudent);
 		
 		JMenuItem mntmAdd = new JMenuItem("Add");
+		mntmAdd.setFont(new Font("Mongolian Baiti", Font.BOLD, 13));
+		Image img1 = new ImageIcon(this.getClass().getResource("/add_student.png")).getImage();
+		 mntmAdd.setIcon(new ImageIcon(img1));
 		mntmAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -172,6 +184,9 @@ public class gui extends JFrame {
 		mnStudent.add(mntmAdd);
 		
 		JMenuItem mntmRetrieve = new JMenuItem("Retrieve");
+		mntmRetrieve.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img2 = new ImageIcon(this.getClass().getResource("/retrieve.png")).getImage();
+		 mntmRetrieve.setIcon(new ImageIcon(img2));
 		mntmRetrieve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -181,6 +196,9 @@ public class gui extends JFrame {
 		mnStudent.add(mntmRetrieve);
 		
 		JMenuItem mntmUpdate = new JMenuItem("Update");
+		mntmUpdate.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img4 = new ImageIcon(this.getClass().getResource("/update.png")).getImage();
+		mntmUpdate.setIcon(new ImageIcon(img4));
 		mntmUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -190,6 +208,9 @@ public class gui extends JFrame {
 		mnStudent.add(mntmUpdate);
 		
 		JMenuItem mntmDelete = new JMenuItem("Delete");
+		mntmDelete.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img3 = new ImageIcon(this.getClass().getResource("/delete.png")).getImage();
+		 mntmDelete.setIcon(new ImageIcon(img3));
 		mntmDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -199,9 +220,15 @@ public class gui extends JFrame {
 		mnStudent.add(mntmDelete);
 		
 		JMenu mnStaff = new JMenu("Staff");
+		mnStaff.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
+		Image img5 = new ImageIcon(this.getClass().getResource("/staff.png")).getImage();
+		mnStaff.setIcon(new ImageIcon(img5));
 		menuBar.add(mnStaff);
 		
 		JMenuItem mntmAdd_1 = new JMenuItem("Add");
+		mntmAdd_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img6 = new ImageIcon(this.getClass().getResource("/add_student.png")).getImage();
+		 mntmAdd_1.setIcon(new ImageIcon(img6));
 		mntmAdd_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -211,6 +238,9 @@ public class gui extends JFrame {
 		mnStaff.add(mntmAdd_1);
 		
 		JMenuItem mntmRetrieve_1 = new JMenuItem("Retrieve");
+		mntmRetrieve_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img7 = new ImageIcon(this.getClass().getResource("/retrieve.png")).getImage();
+		 mntmRetrieve_1.setIcon(new ImageIcon(img7));
 		mntmRetrieve_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -220,6 +250,9 @@ public class gui extends JFrame {
 		mnStaff.add(mntmRetrieve_1);
 		
 		JMenuItem mntmUpdate_1 = new JMenuItem("Update");
+		mntmUpdate_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img8 = new ImageIcon(this.getClass().getResource("/update.png")).getImage();
+		mntmUpdate_1.setIcon(new ImageIcon(img8));
 		mntmUpdate_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -229,6 +262,9 @@ public class gui extends JFrame {
 		mnStaff.add(mntmUpdate_1);
 		
 		JMenuItem mntmDelete_1 = new JMenuItem("Delete");
+		mntmDelete_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img9 = new ImageIcon(this.getClass().getResource("/delete.png")).getImage();
+		 mntmDelete_1.setIcon(new ImageIcon(img9));
 		mntmDelete_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -238,9 +274,15 @@ public class gui extends JFrame {
 		mnStaff.add(mntmDelete_1);
 		
 		JMenu mnRoom = new JMenu("Room");
+		 mnRoom.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
+		Image img10 = new ImageIcon(this.getClass().getResource("/room.png")).getImage();
+		mnRoom.setIcon(new ImageIcon(img10));
 		menuBar.add(mnRoom);
 		
 		JMenuItem mntmAssign = new JMenuItem("Assign");
+		mntmAssign.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img11 = new ImageIcon(this.getClass().getResource("/assign.png")).getImage();
+		mntmAssign.setIcon(new ImageIcon(img11));
 		mntmAssign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -250,6 +292,9 @@ public class gui extends JFrame {
 		mnRoom.add(mntmAssign);
 		
 		JMenuItem mntmLeave = new JMenuItem("Leave");
+		mntmLeave.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img12 = new ImageIcon(this.getClass().getResource("/leave.png")).getImage();
+		mntmLeave.setIcon(new ImageIcon(img12));
 		mntmLeave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -259,6 +304,9 @@ public class gui extends JFrame {
 		mnRoom.add(mntmLeave);
 		
 		JMenuItem mntmView = new JMenuItem("View");
+		mntmView.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img13 = new ImageIcon(this.getClass().getResource("/view.png")).getImage();
+		mntmView.setIcon(new ImageIcon(img13));
 		mntmView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -268,9 +316,15 @@ public class gui extends JFrame {
 		mnRoom.add(mntmView);
 		
 		JMenu mnFeeDetails = new JMenu("Fee Details");
+		mnFeeDetails.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
+			Image img14 = new ImageIcon(this.getClass().getResource("/fees.png")).getImage();
+			mnFeeDetails.setIcon(new ImageIcon(img14));
 		menuBar.add(mnFeeDetails);
 		
 		JMenuItem mntmPay = new JMenuItem("Pay");
+		mntmPay.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img15 = new ImageIcon(this.getClass().getResource("/pay.png")).getImage();
+		mntmPay.setIcon(new ImageIcon(img15));
 		mntmPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -280,6 +334,9 @@ public class gui extends JFrame {
 		mnFeeDetails.add(mntmPay);
 		
 		JMenuItem mntmView_1 = new JMenuItem("View");
+		mntmView_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
+		Image img16 = new ImageIcon(this.getClass().getResource("/view.png")).getImage();
+		mntmView_1.setIcon(new ImageIcon(img16));
 		mntmView_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout c =(CardLayout)(contentPane.getLayout());
@@ -287,12 +344,26 @@ public class gui extends JFrame {
 			}
 		});
 		mnFeeDetails.add(mntmView_1);
+		
+		JButton btn_home = new JButton("Home");
+		btn_home.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
+		btn_home.setBackground(Color.LIGHT_GRAY);
+		Image img39 = new ImageIcon(this.getClass().getResource("/home.png")).getImage();
+		btn_home.setIcon(new ImageIcon(img39));
+		btn_home.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout c =(CardLayout)(contentPane.getLayout());
+				c.show(contentPane,"p1");
+			}
+		});
+		menuBar.add(btn_home);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel first = new JPanel();
+		first.setFont(new Font("Mongolian Baiti", Font.BOLD, 14));
 		contentPane.add(first, "p1");
 		first.setLayout(null);
 		
@@ -302,6 +373,7 @@ public class gui extends JFrame {
 		first.add(lblHostelManagement);
 		
 		JPanel add_student = new JPanel();
+		add_student.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		contentPane.add(add_student, "p2");
 		add_student.setLayout(null);
 		
@@ -311,87 +383,106 @@ public class gui extends JFrame {
 		add_student.add(lblEnterStudentDetails);
 		
 		JLabel lblName = new JLabel("Name");
+		lblName.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblName.setBounds(200, 70, 46, 14);
 		add_student.add(lblName);
 		
 		JLabel lblFathersName = new JLabel("Father's Name");
+		lblFathersName.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblFathersName.setBounds(200, 112, 111, 14);
 		add_student.add(lblFathersName);
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
+		lblPhoneNumber.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblPhoneNumber.setBounds(200, 158, 111, 14);
 		add_student.add(lblPhoneNumber);
 		
 		JLabel lblAge = new JLabel("Age");
-		lblAge.setBounds(200, 199, 46, 14);
+		lblAge.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblAge.setBounds(200, 199, 46, 21);
 		add_student.add(lblAge);
 		
 		JLabel lblGender = new JLabel("Gender");
-		lblGender.setBounds(200, 241, 46, 14);
+		lblGender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblGender.setBounds(200, 241, 61, 14);
 		add_student.add(lblGender);
 		
 		JLabel lblDob = new JLabel("DOB");
+		lblDob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDob.setBounds(200, 281, 46, 14);
 		add_student.add(lblDob);
 		
 		JLabel lblBranch = new JLabel("Branch");
-		lblBranch.setBounds(200, 324, 46, 14);
+		lblBranch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblBranch.setBounds(200, 324, 61, 14);
 		add_student.add(lblBranch);
 		
 		JLabel lblSemester = new JLabel("Semester");
-		lblSemester.setBounds(200, 368, 46, 14);
+		lblSemester.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblSemester.setBounds(200, 368, 86, 14);
 		add_student.add(lblSemester);
 		
 		JLabel lblHomeAddress = new JLabel("Home Address");
+		lblHomeAddress.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblHomeAddress.setBounds(200, 407, 102, 14);
 		add_student.add(lblHomeAddress);
 		
 		JLabel lblDoj = new JLabel("DOJ");
+		lblDoj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDoj.setBounds(200, 450, 46, 14);
 		add_student.add(lblDoj);
 		
 		stu_name = new JTextField();
-		stu_name.setBounds(372, 67, 86, 20);
+		stu_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_name.setBounds(372, 67, 111, 20);
 		add_student.add(stu_name);
 		stu_name.setColumns(10);
 		
 		stu_father = new JTextField();
-		stu_father.setBounds(372, 109, 86, 20);
+		stu_father.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_father.setBounds(372, 109, 111, 20);
 		add_student.add(stu_father);
 		stu_father.setColumns(10);
 		
 		stu_phone = new JTextField();
-		stu_phone.setBounds(372, 155, 86, 20);
+		stu_phone.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_phone.setBounds(372, 155, 111, 20);
 		add_student.add(stu_phone);
 		stu_phone.setColumns(10);
 		
 		stu_age = new JTextField();
-		stu_age.setBounds(372, 196, 86, 20);
+		stu_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_age.setBounds(372, 196, 111, 20);
 		add_student.add(stu_age);
 		stu_age.setColumns(10);
 		
 		stu_dob = new JTextField();
-		stu_dob.setBounds(372, 278, 86, 20);
+		stu_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_dob.setBounds(372, 278, 111, 20);
 		add_student.add(stu_dob);
 		stu_dob.setColumns(10);
 		
 		stu_branch = new JTextField();
-		stu_branch.setBounds(372, 321, 86, 20);
+		stu_branch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_branch.setBounds(372, 321, 111, 20);
 		add_student.add(stu_branch);
 		stu_branch.setColumns(10);
 		
 		stu_sem = new JTextField();
-		stu_sem.setBounds(372, 365, 86, 20);
+		stu_sem.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_sem.setBounds(372, 365, 111, 20);
 		add_student.add(stu_sem);
 		stu_sem.setColumns(10);
 		
 		stu_address = new JTextField();
-		stu_address.setBounds(372, 404, 86, 20);
+		stu_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_address.setBounds(372, 404, 111, 20);
 		add_student.add(stu_address);
 		stu_address.setColumns(10);
 		
 		stu_doj = new JTextField();
-		stu_doj.setBounds(372, 444, 86, 20);
+		stu_doj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_doj.setBounds(372, 444, 111, 20);
 		add_student.add(stu_doj);
 		stu_doj.setColumns(10);
 		
@@ -399,6 +490,9 @@ public class gui extends JFrame {
 		
 		
 		JButton btnInsert = new JButton("Insert");
+		btnInsert.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img17 = new ImageIcon(this.getClass().getResource("/insert.png")).getImage();
+		btnInsert.setIcon(new ImageIcon(img17));
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -440,21 +534,24 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnInsert.setBounds(277, 520, 89, 23);
+		btnInsert.setBounds(268, 520, 135, 33);
 		add_student.add(btnInsert);
 		String gender[] = {"M","F"};
 		stu_gender = new JComboBox(gender);
+		stu_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		
 			
-		stu_gender.setBounds(372, 238, 86, 20);
+		stu_gender.setBounds(372, 238, 111, 20);
 		add_student.add(stu_gender);
 		
 		JLabel lblDol = new JLabel("DOL");
+		lblDol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDol.setBounds(200, 486, 46, 14);
 		add_student.add(lblDol);
 		
 		stu_dol = new JTextField();
-		stu_dol.setBounds(372, 489, 86, 20);
+		stu_dol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_dol.setBounds(372, 489, 111, 20);
 		add_student.add(stu_dol);
 		stu_dol.setColumns(10);
 		
@@ -463,17 +560,22 @@ public class gui extends JFrame {
 		retrieve_student.setLayout(null);
 		
 		JLabel lblEnterStudentId = new JLabel("Enter Student Name");
-		lblEnterStudentId.setBounds(79, 47, 105, 14);
+		lblEnterStudentId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStudentId.setBounds(79, 47, 145, 20);
 		retrieve_student.add(lblEnterStudentId);
 		
 		stu1_name = new JTextField();
+		stu1_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu1_name.setBounds(272, 44, 86, 20);
 		retrieve_student.add(stu1_name);
 		stu1_name.setColumns(10);
 		
 		
 		
-		JButton btnGo = new JButton("Go");
+		JButton btnGo = new JButton("Get Details");
+		btnGo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img19 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGo.setIcon(new ImageIcon(img19));
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
@@ -488,7 +590,7 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnGo.setBounds(511, 43, 89, 23);
+		btnGo.setBounds(469, 37, 138, 33);
 		retrieve_student.add(btnGo);
 		
 		JSeparator separator = new JSeparator();
@@ -507,15 +609,20 @@ public class gui extends JFrame {
 		update_student.setLayout(null);
 		
 		JLabel lblEnterStudentId_1 = new JLabel("Enter Student Name");
-		lblEnterStudentId_1.setBounds(88, 37, 113, 14);
+		lblEnterStudentId_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStudentId_1.setBounds(88, 37, 149, 20);
 		update_student.add(lblEnterStudentId_1);
 		
 		stu2_name = new JTextField();
-		stu2_name.setBounds(286, 34, 86, 20);
+		stu2_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu2_name.setBounds(286, 34, 133, 20);
 		update_student.add(stu2_name);
 		stu2_name.setColumns(10);
 		
-		JButton btnGo_1 = new JButton("Go");
+		JButton btnGo_1 = new JButton("Get Details");
+		btnGo_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img20 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGo_1.setIcon(new ImageIcon(img20));
 		btnGo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -530,7 +637,7 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnGo_1.setBounds(523, 33, 89, 23);
+		btnGo_1.setBounds(493, 22, 133, 33);
 		update_student.add(btnGo_1);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -550,118 +657,150 @@ public class gui extends JFrame {
 		//createColumns();
 		
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(407, 229, 89, 23);
+		btnUpdate.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img18 = new ImageIcon(this.getClass().getResource("/update3.png")).getImage();
+		btnUpdate.setIcon(new ImageIcon(img18));
+		btnUpdate.setBounds(407, 219, 141, 33);
 		stu_up_details.add(btnUpdate);
 		
 		JLabel lblName_1 = new JLabel("Student ID");
-		lblName_1.setBounds(34, 29, 46, 14);
+		lblName_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
+		lblName_1.setBounds(34, 29, 78, 14);
 		stu_up_details.add(lblName_1);
 		
 		JLabel lblNewLabel = new JLabel("Name");
+		lblNewLabel.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblNewLabel.setBounds(34, 59, 46, 14);
 		stu_up_details.add(lblNewLabel);
 		
 		JLabel lblFathersName_1 = new JLabel("Father's Name");
+		lblFathersName_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblFathersName_1.setBounds(34, 90, 89, 14);
 		stu_up_details.add(lblFathersName_1);
 		
 		JLabel lblPhoneNumber_1 = new JLabel("Phone Number");
-		lblPhoneNumber_1.setBounds(34, 128, 89, 14);
+		lblPhoneNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
+		lblPhoneNumber_1.setBounds(34, 128, 123, 14);
 		stu_up_details.add(lblPhoneNumber_1);
 		
 		JLabel lblAge_1 = new JLabel("Age");
+		lblAge_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblAge_1.setBounds(34, 167, 46, 14);
 		stu_up_details.add(lblAge_1);
 		
 		JLabel lblGender_1 = new JLabel("Gender");
+		lblGender_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblGender_1.setBounds(34, 201, 46, 14);
 		stu_up_details.add(lblGender_1);
 		
 		JLabel lblDob_1 = new JLabel("DOB");
+		lblDob_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblDob_1.setBounds(34, 233, 46, 14);
 		stu_up_details.add(lblDob_1);
 		
 		stu2_id = new JTextField();
+		stu2_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_id.setBounds(183, 26, 86, 20);
 		stu_up_details.add(stu2_id);
 		stu2_id.setColumns(10);
 		
 		stu2_name2 = new JTextField();
+		stu2_name2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_name2.setBounds(183, 56, 86, 20);
 		stu_up_details.add(stu2_name2);
 		stu2_name2.setColumns(10);
 		
 		stu2_father = new JTextField();
+		stu2_father.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_father.setBounds(183, 87, 86, 20);
 		stu_up_details.add(stu2_father);
 		stu2_father.setColumns(10);
 		
 		stu2_phone = new JTextField();
+		stu2_phone.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_phone.setBounds(183, 125, 86, 20);
 		stu_up_details.add(stu2_phone);
 		stu2_phone.setColumns(10);
 		
 		stu2_age = new JTextField();
+		stu2_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_age.setBounds(183, 164, 86, 20);
 		stu_up_details.add(stu2_age);
 		stu2_age.setColumns(10);
 		
 		stu2_gender = new JTextField();
+		stu2_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_gender.setBounds(183, 198, 86, 20);
 		stu_up_details.add(stu2_gender);
 		stu2_gender.setColumns(10);
 		
 		stu2_dob = new JTextField();
+		stu2_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_dob.setBounds(183, 230, 86, 20);
 		stu_up_details.add(stu2_dob);
 		stu2_dob.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Branch");
+		lblNewLabel_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(346, 29, 46, 14);
 		stu_up_details.add(lblNewLabel_1);
 		
 		JLabel lblSemester_1 = new JLabel("Semester");
-		lblSemester_1.setBounds(346, 59, 46, 14);
+		lblSemester_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
+		lblSemester_1.setBounds(346, 59, 78, 14);
 		stu_up_details.add(lblSemester_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Home Address");
-		lblNewLabel_2.setBounds(346, 90, 46, 14);
+		lblNewLabel_2.setFont(new Font("Lucida Sans", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(346, 90, 98, 14);
 		stu_up_details.add(lblNewLabel_2);
 		
 		JLabel lblDoj_1 = new JLabel("DOJ");
+		lblDoj_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblDoj_1.setBounds(346, 128, 46, 14);
 		stu_up_details.add(lblDoj_1);
 		
 		JLabel lblDol_1 = new JLabel("DOL");
+		lblDol_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		lblDol_1.setBounds(346, 167, 46, 14);
 		stu_up_details.add(lblDol_1);
 		
 		stu2_branch = new JTextField();
+		stu2_branch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_branch.setBounds(504, 26, 86, 20);
 		stu_up_details.add(stu2_branch);
 		stu2_branch.setColumns(10);
 		
 		stu2_semester = new JTextField();
+		stu2_semester.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_semester.setBounds(504, 56, 86, 20);
 		stu_up_details.add(stu2_semester);
 		stu2_semester.setColumns(10);
 		
 		stu2_address = new JTextField();
+		stu2_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_address.setBounds(504, 87, 86, 20);
 		stu_up_details.add(stu2_address);
 		stu2_address.setColumns(10);
 		
 		stu2_doj = new JTextField();
+		stu2_doj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_doj.setBounds(504, 125, 86, 20);
 		stu_up_details.add(stu2_doj);
 		stu2_doj.setColumns(10);
 		
 		stu2_dol = new JTextField();
+		stu2_dol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu2_dol.setBounds(504, 164, 86, 20);
 		stu_up_details.add(stu2_dol);
 		stu2_dol.setColumns(10);
 		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(10, 97, 668, 181);
+		update_student.add(scrollPane_5);
+		
 		table_up_stu = new JTable();
+		scrollPane_5.setViewportView(table_up_stu);
 		table_up_stu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -680,8 +819,6 @@ public class gui extends JFrame {
 				stu2_dol.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 11).toString());
 			}
 		});
-		table_up_stu.setBounds(10, 97, 668, 181);
-		update_student.add(table_up_stu);
 		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -734,15 +871,20 @@ public class gui extends JFrame {
 		delete_student.setLayout(null);
 		
 		JLabel lblEnterStudentId_2 = new JLabel("Enter Student Name");
-		lblEnterStudentId_2.setBounds(90, 56, 97, 14);
+		lblEnterStudentId_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStudentId_2.setBounds(90, 56, 140, 20);
 		delete_student.add(lblEnterStudentId_2);
 		
 		stu3_name = new JTextField();
-		stu3_name.setBounds(287, 53, 86, 20);
+		stu3_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu3_name.setBounds(287, 53, 118, 20);
 		delete_student.add(stu3_name);
 		stu3_name.setColumns(10);
 		
 		JButton btnUpdate_1 = new JButton("Get Details");
+		btnUpdate_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img21 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnUpdate_1.setIcon(new ImageIcon(img21));
 		btnUpdate_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
@@ -757,20 +899,29 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnUpdate_1.setBounds(510, 52, 89, 23);
+		btnUpdate_1.setBounds(479, 46, 140, 33);
 		delete_student.add(btnUpdate_1);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(0, 115, 688, 2);
+		separator_2.setBounds(0, 103, 688, 2);
 		delete_student.add(separator_2);
 		
 		JPanel stu_del_details = new JPanel();
-		stu_del_details.setBounds(20, 352, 658, 181);
+		stu_del_details.setBounds(20, 366, 658, 167);
 		delete_student.add(stu_del_details);
 		stu_del_details.setLayout(null);
 		stu_del_details.setVisible(false);
 		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(10, 125, 668, 230);
+		delete_student.add(scrollPane_4);
+		
 		table_del_stu = new JTable();
+		scrollPane_4.setViewportView(table_del_stu);
+		//Object[] column = {"ID","Name","Father's Name","phone","Age","Gender","dob","Branch","Semester","Home Address","DOJ","DOL"};
+		//DefaultTableModel model = new DefaultTableModel();
+		//model.setColumnIdentifiers(column);
+		//table_del_stu.setModel(model);
 		table_del_stu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -778,21 +929,24 @@ public class gui extends JFrame {
 				stu3_id.setText(table_del_stu.getValueAt(table_del_stu.getSelectedRow(), 0).toString());
 			}
 		});
-		table_del_stu.setBounds(10, 128, 668, 213);
-		delete_student.add(table_del_stu);
 		
 		
 		
 		JLabel lblStudentId_2 = new JLabel("Student ID");
-		lblStudentId_2.setBounds(206, 41, 46, 14);
+		lblStudentId_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStudentId_2.setBounds(206, 41, 86, 14);
 		stu_del_details.add(lblStudentId_2);
 		
 		stu3_id = new JTextField();
+		stu3_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu3_id.setBounds(391, 38, 86, 20);
 		stu_del_details.add(stu3_id);
 		stu3_id.setColumns(10);
 		
 		JButton btnDelete_1 = new JButton("Delete");
+		btnDelete_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img22 = new ImageIcon(this.getClass().getResource("/delete2.png")).getImage();
+		btnDelete_1.setIcon(new ImageIcon(img22));
 		btnDelete_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -811,7 +965,7 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnDelete_1.setBounds(300, 111, 89, 23);
+		btnDelete_1.setBounds(277, 110, 127, 33);
 		stu_del_details.add(btnDelete_1);
 		
 		JPanel add_staff = new JPanel();
@@ -824,91 +978,113 @@ public class gui extends JFrame {
 		add_staff.add(lblEnterStaffDetails);
 		
 		JLabel lblName_3 = new JLabel("Name");
+		lblName_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblName_3.setBounds(191, 75, 46, 14);
 		add_staff.add(lblName_3);
 		
 		JLabel lblPhoneNumber_3 = new JLabel("Phone Number");
-		lblPhoneNumber_3.setBounds(191, 112, 100, 14);
+		lblPhoneNumber_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblPhoneNumber_3.setBounds(191, 112, 123, 14);
 		add_staff.add(lblPhoneNumber_3);
 		
 		JLabel lblDepartment = new JLabel("Department");
+		lblDepartment.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDepartment.setBounds(191, 151, 100, 14);
 		add_staff.add(lblDepartment);
 		
 		JLabel lblDob_3 = new JLabel("DOB");
+		lblDob_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDob_3.setBounds(191, 190, 46, 14);
 		add_staff.add(lblDob_3);
 		
 		JLabel lblAge_3 = new JLabel("Age");
-		lblAge_3.setBounds(191, 231, 46, 14);
+		lblAge_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblAge_3.setBounds(191, 228, 46, 17);
 		add_staff.add(lblAge_3);
 		
 		JLabel lblGender_3 = new JLabel("Gender");
-		lblGender_3.setBounds(191, 273, 46, 14);
+		lblGender_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblGender_3.setBounds(191, 273, 70, 14);
 		add_staff.add(lblGender_3);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(191, 312, 46, 14);
+		lblAddress.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblAddress.setBounds(191, 312, 70, 14);
 		add_staff.add(lblAddress);
 		
 		JLabel lblSalary = new JLabel("Salary");
+		lblSalary.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblSalary.setBounds(191, 355, 46, 14);
 		add_staff.add(lblSalary);
 		
 		JLabel lblDoj_3 = new JLabel("DOJ");
+		lblDoj_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDoj_3.setBounds(191, 398, 46, 14);
 		add_staff.add(lblDoj_3);
 		
 		JLabel lblDol_3 = new JLabel("DOL");
+		lblDol_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDol_3.setBounds(191, 447, 46, 14);
 		add_staff.add(lblDol_3);
 		
 		st_name = new JTextField();
+		st_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_name.setBounds(380, 72, 86, 20);
 		add_staff.add(st_name);
 		st_name.setColumns(10);
 		
 		st_phone = new JTextField();
+		st_phone.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_phone.setBounds(380, 109, 86, 20);
 		add_staff.add(st_phone);
 		st_phone.setColumns(10);
 		
 		st_dept = new JTextField();
+		st_dept.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_dept.setBounds(380, 148, 86, 20);
 		add_staff.add(st_dept);
 		st_dept.setColumns(10);
 		
 		st_dob = new JTextField();
+		st_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_dob.setBounds(380, 187, 86, 20);
 		add_staff.add(st_dob);
 		st_dob.setColumns(10);
 		
 		st_age = new JTextField();
+		st_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_age.setBounds(380, 228, 86, 20);
 		add_staff.add(st_age);
 		st_age.setColumns(10);
 		
 		st_address = new JTextField();
+		st_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_address.setBounds(380, 309, 86, 20);
 		add_staff.add(st_address);
 		st_address.setColumns(10);
 		
 		st_salary = new JTextField();
+		st_salary.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_salary.setBounds(380, 352, 86, 20);
 		add_staff.add(st_salary);
 		st_salary.setColumns(10);
 		
 		st_doj = new JTextField();
+		st_doj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_doj.setBounds(380, 395, 86, 20);
 		add_staff.add(st_doj);
 		st_doj.setColumns(10);
 		
 		st_dol = new JTextField();
+		st_dol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_dol.setBounds(380, 444, 86, 20);
 		add_staff.add(st_dol);
 		st_dol.setColumns(10);
 		
 		JButton btnInsert_1 = new JButton("Insert");
+		btnInsert_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img23 = new ImageIcon(this.getClass().getResource("/insert.png")).getImage();
+		btnInsert_1.setIcon(new ImageIcon(img23));
 		btnInsert_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 db_config.connect_to_database();
@@ -949,11 +1125,12 @@ db_config.connect_to_database();
 				
 			}
 		});
-		btnInsert_1.setBounds(270, 502, 89, 23);
+		btnInsert_1.setBounds(270, 502, 123, 33);
 		add_staff.add(btnInsert_1);
 		
 		String st_gend [] = {"M","F"};
 		 st_gender = new JComboBox(st_gend);
+		 st_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_gender.setBounds(380, 270, 86, 20);
 		add_staff.add(st_gender);
 		
@@ -962,15 +1139,20 @@ db_config.connect_to_database();
 		retrieve_staff.setLayout(null);
 		
 		JLabel lblEnterStaffId = new JLabel("Enter Staff Name");
-		lblEnterStaffId.setBounds(97, 40, 114, 14);
+		lblEnterStaffId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStaffId.setBounds(97, 40, 135, 23);
 		retrieve_staff.add(lblEnterStaffId);
 		
 		st1_name = new JTextField();
-		st1_name.setBounds(289, 37, 86, 20);
+		st1_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st1_name.setBounds(289, 37, 135, 26);
 		retrieve_staff.add(st1_name);
 		st1_name.setColumns(10);
 		
-		JButton btnGo_2 = new JButton("Go");
+		JButton btnGo_2 = new JButton("Get Details");
+		btnGo_2.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img24 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGo_2.setIcon(new ImageIcon(img24));
 		btnGo_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
@@ -983,7 +1165,7 @@ db_config.connect_to_database();
 			}
 			}
 		});
-		btnGo_2.setBounds(509, 36, 89, 23);
+		btnGo_2.setBounds(499, 30, 127, 33);
 		retrieve_staff.add(btnGo_2);
 		
 		JSeparator separator_3 = new JSeparator();
@@ -1002,15 +1184,20 @@ db_config.connect_to_database();
 		update_staff.setLayout(null);
 		
 		JLabel lblEnterStaffId_1 = new JLabel("Enter Staff Name");
-		lblEnterStaffId_1.setBounds(105, 34, 101, 14);
+		lblEnterStaffId_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStaffId_1.setBounds(105, 34, 121, 20);
 		update_staff.add(lblEnterStaffId_1);
 		
 		st2_name = new JTextField();
-		st2_name.setBounds(282, 31, 86, 20);
+		st2_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st2_name.setBounds(290, 35, 112, 20);
 		update_staff.add(st2_name);
 		st2_name.setColumns(10);
 		
-		JButton btnGo_3 = new JButton("Go");
+		JButton btnGo_3 = new JButton("Get Details");
+		btnGo_3.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img26 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGo_3.setIcon(new ImageIcon(img26));
 		btnGo_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
@@ -1023,7 +1210,7 @@ db_config.connect_to_database();
 			}
 			}
 		});
-		btnGo_3.setBounds(493, 30, 89, 23);
+		btnGo_3.setBounds(480, 21, 133, 33);
 		update_staff.add(btnGo_3);
 		
 		JSeparator separator_4 = new JSeparator();
@@ -1057,109 +1244,139 @@ db_config.connect_to_database();
 		staff_up_details.setVisible(false);
 		
 		JLabel lblStaffId = new JLabel("Staff ID");
-		lblStaffId.setBounds(25, 11, 46, 14);
+		lblStaffId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStaffId.setBounds(25, 11, 78, 14);
 		staff_up_details.add(lblStaffId);
 		
 		JLabel lblName_2 = new JLabel("Name");
+		lblName_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblName_2.setBounds(25, 47, 46, 14);
 		staff_up_details.add(lblName_2);
 		
 		JLabel lblPhoneNumber_2 = new JLabel("Phone Number");
-		lblPhoneNumber_2.setBounds(25, 85, 91, 14);
+		lblPhoneNumber_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblPhoneNumber_2.setBounds(25, 85, 107, 14);
 		staff_up_details.add(lblPhoneNumber_2);
 		
 		JLabel lblDepartment_1 = new JLabel("Department");
-		lblDepartment_1.setBounds(25, 121, 46, 14);
+		lblDepartment_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblDepartment_1.setBounds(25, 121, 107, 14);
 		staff_up_details.add(lblDepartment_1);
 		
 		JLabel lblDob_2 = new JLabel("DOB");
+		lblDob_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDob_2.setBounds(25, 153, 46, 14);
 		staff_up_details.add(lblDob_2);
 		
 		JLabel lblAge_2 = new JLabel("Age");
-		lblAge_2.setBounds(25, 194, 46, 14);
+		lblAge_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblAge_2.setBounds(25, 194, 46, 17);
 		staff_up_details.add(lblAge_2);
 		
 		st2_id = new JTextField();
+		st2_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_id.setBounds(183, 8, 86, 20);
 		staff_up_details.add(st2_id);
 		st2_id.setColumns(10);
 		
 		st2_name2 = new JTextField();
+		st2_name2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_name2.setBounds(183, 44, 86, 20);
 		staff_up_details.add(st2_name2);
 		st2_name2.setColumns(10);
 		
 		st2_phone = new JTextField();
+		st2_phone.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_phone.setBounds(183, 82, 86, 20);
 		staff_up_details.add(st2_phone);
 		st2_phone.setColumns(10);
 		
 		st2_dept = new JTextField();
+		st2_dept.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_dept.setBounds(183, 118, 86, 20);
 		staff_up_details.add(st2_dept);
 		st2_dept.setColumns(10);
 		
 		st2_dob = new JTextField();
+		st2_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_dob.setBounds(183, 150, 86, 20);
 		staff_up_details.add(st2_dob);
 		st2_dob.setColumns(10);
 		
 		st2_age = new JTextField();
+		st2_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_age.setBounds(183, 191, 86, 20);
 		staff_up_details.add(st2_age);
 		st2_age.setColumns(10);
 		
 		JLabel lblGender_2 = new JLabel("Gender");
-		lblGender_2.setBounds(361, 11, 46, 14);
+		lblGender_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblGender_2.setBounds(361, 11, 78, 14);
 		staff_up_details.add(lblGender_2);
 		
 		JLabel lblHomeAddress_2 = new JLabel("Home Address");
+		lblHomeAddress_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblHomeAddress_2.setBounds(361, 47, 107, 14);
 		staff_up_details.add(lblHomeAddress_2);
 		
 		JLabel lblSalary_1 = new JLabel("Salary");
+		lblSalary_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblSalary_1.setBounds(361, 85, 46, 14);
 		staff_up_details.add(lblSalary_1);
 		
 		JLabel lblDoj_2 = new JLabel("DOJ");
+		lblDoj_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDoj_2.setBounds(361, 121, 46, 14);
 		staff_up_details.add(lblDoj_2);
 		
 		JLabel lblDol_2 = new JLabel("DOL");
+		lblDol_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblDol_2.setBounds(361, 153, 46, 14);
 		staff_up_details.add(lblDol_2);
 		
 		JButton btnUpdate_2 = new JButton("Update");
-		btnUpdate_2.setBounds(440, 190, 89, 23);
+		btnUpdate_2.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img27 = new ImageIcon(this.getClass().getResource("/update3.png")).getImage();
+		btnUpdate_2.setIcon(new ImageIcon(img27));
+		btnUpdate_2.setBounds(440, 190, 130, 33);
 		staff_up_details.add(btnUpdate_2);
 		
 		st2_gender = new JTextField();
+		st2_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_gender.setBounds(508, 8, 86, 20);
 		staff_up_details.add(st2_gender);
 		st2_gender.setColumns(10);
 		
 		st2_address = new JTextField();
+		st2_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_address.setBounds(508, 44, 86, 20);
 		staff_up_details.add(st2_address);
 		st2_address.setColumns(10);
 		
 		st2_salary = new JTextField();
+		st2_salary.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_salary.setBounds(508, 79, 86, 20);
 		staff_up_details.add(st2_salary);
 		st2_salary.setColumns(10);
 		
 		st2_doj = new JTextField();
+		st2_doj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_doj.setBounds(508, 118, 86, 20);
 		staff_up_details.add(st2_doj);
 		st2_doj.setColumns(10);
 		
 		st2_dol = new JTextField();
+		st2_dol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_dol.setBounds(508, 150, 86, 20);
 		staff_up_details.add(st2_dol);
 		st2_dol.setColumns(10);
 		
+		JScrollPane scrollPane_6 = new JScrollPane();
+		scrollPane_6.setBounds(10, 102, 668, 190);
+		update_staff.add(scrollPane_6);
+		
 		table_up_st = new JTable();
+		scrollPane_6.setViewportView(table_up_st);
 		table_up_st.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1178,8 +1395,6 @@ db_config.connect_to_database();
 				st2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
 			}
 		});
-		table_up_st.setBounds(10, 102, 668, 190);
-		update_staff.add(table_up_st);
 		btnUpdate_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -1216,15 +1431,20 @@ db_config.connect_to_database();
 		delete_staff.setLayout(null);
 		
 		JLabel lblEnterStaffId_2 = new JLabel("Enter Staff Name");
-		lblEnterStaffId_2.setBounds(81, 41, 100, 14);
+		lblEnterStaffId_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStaffId_2.setBounds(81, 41, 132, 23);
 		delete_staff.add(lblEnterStaffId_2);
 		
 		st3_name = new JTextField();
-		st3_name.setBounds(286, 38, 86, 20);
+		st3_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st3_name.setBounds(286, 38, 122, 26);
 		delete_staff.add(st3_name);
 		st3_name.setColumns(10);
 		
 		JButton btnDelete = new JButton("Get Details");
+		btnDelete.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img25 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnDelete.setIcon(new ImageIcon(img25));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
@@ -1237,7 +1457,7 @@ db_config.connect_to_database();
 			}
 			}
 		});
-		btnDelete.setBounds(506, 37, 89, 23);
+		btnDelete.setBounds(496, 31, 132, 33);
 		delete_staff.add(btnDelete);
 		
 		JSeparator separator_5 = new JSeparator();
@@ -1249,7 +1469,12 @@ db_config.connect_to_database();
 		st_del_details.setLayout(null);
 		st_del_details.setVisible(false);
 		
+		JScrollPane scrollPane_7 = new JScrollPane();
+		scrollPane_7.setBounds(10, 108, 668, 210);
+		delete_staff.add(scrollPane_7);
+		
 		table_del_st = new JTable();
+		scrollPane_7.setViewportView(table_del_st);
 		table_del_st.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1257,21 +1482,24 @@ db_config.connect_to_database();
 				st3_id.setText(table_del_st.getValueAt(table_del_st.getSelectedRow(), 0).toString());
 			}
 		});
-		table_del_st.setBounds(10, 108, 668, 210);
-		delete_staff.add(table_del_st);
 		
 		
 		
 		JLabel lblStaffName = new JLabel("Staff ID");
-		lblStaffName.setBounds(200, 82, 46, 14);
+		lblStaffName.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStaffName.setBounds(200, 82, 92, 14);
 		st_del_details.add(lblStaffName);
 		
 		st3_id = new JTextField();
+		st3_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st3_id.setBounds(372, 79, 86, 20);
 		st_del_details.add(st3_id);
 		st3_id.setColumns(10);
 		
 		JButton btnDelete_2 = new JButton("Delete");
+		btnDelete_2.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img28 = new ImageIcon(this.getClass().getResource("/delete2.png")).getImage();
+		btnDelete_2.setIcon(new ImageIcon(img28));
 		btnDelete_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1290,7 +1518,7 @@ db_config.connect_to_database();
 					}
 			}
 		});
-		btnDelete_2.setBounds(271, 140, 89, 23);
+		btnDelete_2.setBounds(271, 140, 128, 33);
 		st_del_details.add(btnDelete_2);
 		
 		JPanel assign_room = new JPanel();
@@ -1298,36 +1526,45 @@ db_config.connect_to_database();
 		assign_room.setLayout(null);
 		
 		JLabel lblRoomAllocation = new JLabel("Room Allocation");
-		lblRoomAllocation.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		lblRoomAllocation.setBounds(258, 23, 187, 21);
+		lblRoomAllocation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRoomAllocation.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		lblRoomAllocation.setBounds(231, 65, 187, 21);
 		assign_room.add(lblRoomAllocation);
 		
 		JLabel lblHostelId = new JLabel("Student ID");
-		lblHostelId.setBounds(199, 93, 89, 14);
+		lblHostelId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblHostelId.setBounds(199, 178, 89, 14);
 		assign_room.add(lblHostelId);
 		
 		JLabel lblRoomNumber = new JLabel("Hostel ID");
-		lblRoomNumber.setBounds(199, 142, 46, 14);
+		lblRoomNumber.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblRoomNumber.setBounds(199, 230, 65, 14);
 		assign_room.add(lblRoomNumber);
 		
 		JLabel lblRoomNumber_1 = new JLabel("Room Number");
-		lblRoomNumber_1.setBounds(199, 193, 89, 14);
+		lblRoomNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblRoomNumber_1.setBounds(199, 282, 97, 14);
 		assign_room.add(lblRoomNumber_1);
 		
 		
 		room_id = new JTextField();
-		room_id.setBounds(359, 90, 86, 20);
+		room_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room_id.setBounds(359, 172, 86, 20);
 		assign_room.add(room_id);
 		room_id.setColumns(10);
 		
 		room_hid = new JTextField();
-		room_hid.setBounds(359, 139, 86, 20);
+		room_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room_hid.setBounds(359, 224, 86, 20);
 		assign_room.add(room_hid);
 		room_hid.setColumns(10);
 		
 		
 		
 		JButton btnAssign = new JButton("Assign");
+		btnAssign.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img31 = new ImageIcon(this.getClass().getResource("/assign2.png")).getImage();
+		btnAssign.setIcon(new ImageIcon(img31));
 		btnAssign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -1344,7 +1581,7 @@ db_config.connect_to_database();
 				}
 			}
 		});
-		btnAssign.setBounds(267, 277, 89, 23);
+		btnAssign.setBounds(258, 376, 129, 33);
 		assign_room.add(btnAssign);
 		
 		//try {
@@ -1354,7 +1591,8 @@ db_config.connect_to_database();
 		//	System.out.println(e);
 		//}
 		 room_no = new JComboBox( );
-		room_no.setBounds(359, 190, 86, 20);
+		 room_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room_no.setBounds(359, 276, 86, 20);
 		assign_room.add(room_no);
 		
 		JPanel leave_room = new JPanel();
@@ -1362,15 +1600,20 @@ db_config.connect_to_database();
 		leave_room.setLayout(null);
 		
 		JLabel lblEnterStudentId_3 = new JLabel("Enter student Name");
-		lblEnterStudentId_3.setBounds(94, 48, 111, 14);
+		lblEnterStudentId_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStudentId_3.setBounds(94, 48, 142, 17);
 		leave_room.add(lblEnterStudentId_3);
 		
 		room2_name = new JTextField();
-		room2_name.setBounds(280, 45, 86, 20);
+		room2_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room2_name.setBounds(280, 45, 142, 20);
 		leave_room.add(room2_name);
 		room2_name.setColumns(10);
 		
 		JButton btnLeave = new JButton("Get Details");
+		btnLeave.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img29 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnLeave.setIcon(new ImageIcon(img29));
 		btnLeave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -1385,7 +1628,7 @@ db_config.connect_to_database();
 				}
 			}
 		});
-		btnLeave.setBounds(513, 44, 89, 23);
+		btnLeave.setBounds(497, 33, 127, 33);
 		leave_room.add(btnLeave);
 		
 		JSeparator separator_6 = new JSeparator();
@@ -1393,12 +1636,17 @@ db_config.connect_to_database();
 		leave_room.add(separator_6);
 		
 		JPanel room_details = new JPanel();
-		room_details.setBounds(10, 338, 668, 208);
+		room_details.setBounds(10, 353, 668, 193);
 		leave_room.add(room_details);
 		room_details.setLayout(null);
 		room_details.setVisible(false);
 		
+		JScrollPane scrollPane_8 = new JScrollPane();
+		scrollPane_8.setBounds(10, 136, 668, 217);
+		leave_room.add(scrollPane_8);
+		
 		table_room = new JTable();
+		scrollPane_8.setViewportView(table_room);
 		table_room.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1406,21 +1654,24 @@ db_config.connect_to_database();
 				room2_id.setText(table_room.getValueAt(table_room.getSelectedRow(), 0).toString());
 			}
 		});
-		table_room.setBounds(10, 113, 668, 217);
-		leave_room.add(table_room);
 		
 		
 		
 		JLabel lblStudentId_3 = new JLabel("Student ID");
-		lblStudentId_3.setBounds(200, 48, 46, 14);
+		lblStudentId_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStudentId_3.setBounds(200, 48, 86, 14);
 		room_details.add(lblStudentId_3);
 		
 		room2_id = new JTextField();
-		room2_id.setBounds(383, 45, 86, 20);
+		room2_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room2_id.setBounds(383, 45, 121, 20);
 		room_details.add(room2_id);
 		room2_id.setColumns(10);
 		
 		JButton btnLeave_1 = new JButton("Leave");
+		btnLeave_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img32 = new ImageIcon(this.getClass().getResource("/leave2.png")).getImage();
+		btnLeave_1.setIcon(new ImageIcon(img32));
 		btnLeave_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1440,7 +1691,7 @@ db_config.connect_to_database();
 					}
 			}
 		});
-		btnLeave_1.setBounds(281, 107, 89, 23);
+		btnLeave_1.setBounds(277, 106, 121, 33);
 		room_details.add(btnLeave_1);
 		
 		JPanel view_room = new JPanel();
@@ -1448,15 +1699,23 @@ db_config.connect_to_database();
 		view_room.setLayout(null);
 		
 		JLabel lblEnterStudentId_4 = new JLabel("Enter Hostel ID");
+		lblEnterStudentId_4.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblEnterStudentId_4.setBounds(92, 42, 102, 14);
 		view_room.add(lblEnterStudentId_4);
 		
 		room3_hid = new JTextField();
+		room3_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		room3_hid.setBounds(287, 39, 86, 20);
 		view_room.add(room3_hid);
 		room3_hid.setColumns(10);
 		
 		JButton btnGetDetails = new JButton("Get Details");
+		btnGetDetails.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img34 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGetDetails.setIcon(new ImageIcon(img34));
+		btnGetDetails.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img30 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGetDetails.setIcon(new ImageIcon(img30));
 		btnGetDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -1473,7 +1732,7 @@ db_config.connect_to_database();
 			   }
 			}
 		});
-		btnGetDetails.setBounds(505, 63, 89, 23);
+		btnGetDetails.setBounds(505, 53, 127, 33);
 		view_room.add(btnGetDetails);
 		
 		JSeparator separator_7 = new JSeparator();
@@ -1481,10 +1740,12 @@ db_config.connect_to_database();
 		view_room.add(separator_7);
 		
 		JLabel lblEnterRoomNumber = new JLabel("Enter Room Number");
-		lblEnterRoomNumber.setBounds(92, 97, 127, 14);
+		lblEnterRoomNumber.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterRoomNumber.setBounds(92, 97, 154, 14);
 		view_room.add(lblEnterRoomNumber);
 		
 		room3_no = new JTextField();
+		room3_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		room3_no.setBounds(287, 94, 86, 20);
 		view_room.add(room3_no);
 		room3_no.setColumns(10);
@@ -1501,38 +1762,48 @@ db_config.connect_to_database();
 		fees_pay.setLayout(null);
 		
 		JLabel lblFeesPayment = new JLabel("Fees Payment");
-		lblFeesPayment.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		lblFeesPayment.setBounds(262, 24, 181, 21);
+		lblFeesPayment.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFeesPayment.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		lblFeesPayment.setBounds(222, 86, 181, 21);
 		fees_pay.add(lblFeesPayment);
 		
 		JLabel lblStudentId = new JLabel("Student ID");
-		lblStudentId.setBounds(193, 93, 95, 14);
+		lblStudentId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStudentId.setBounds(193, 188, 95, 14);
 		fees_pay.add(lblStudentId);
 		
 		JLabel lblMonthyear = new JLabel("Month-Year");
-		lblMonthyear.setBounds(193, 135, 95, 14);
+		lblMonthyear.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblMonthyear.setBounds(193, 236, 95, 14);
 		fees_pay.add(lblMonthyear);
 		
 		JLabel lblPaymentDate = new JLabel("Payment Date");
-		lblPaymentDate.setBounds(193, 185, 95, 14);
+		lblPaymentDate.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblPaymentDate.setBounds(193, 289, 95, 14);
 		fees_pay.add(lblPaymentDate);
 		
 		fee_id = new JTextField();
-		fee_id.setBounds(357, 90, 86, 20);
+		fee_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		fee_id.setBounds(357, 182, 86, 20);
 		fees_pay.add(fee_id);
 		fee_id.setColumns(10);
 		
 		fees_mon_yr = new JTextField();
-		fees_mon_yr.setBounds(357, 132, 86, 20);
+		fees_mon_yr.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		fees_mon_yr.setBounds(357, 233, 86, 20);
 		fees_pay.add(fees_mon_yr);
 		fees_mon_yr.setColumns(10);
 		
 		fees_pay_date = new JTextField();
-		fees_pay_date.setBounds(357, 182, 86, 20);
+		fees_pay_date.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		fees_pay_date.setBounds(357, 286, 86, 20);
 		fees_pay.add(fees_pay_date);
 		fees_pay_date.setColumns(10);
 		
 		JButton btnPay = new JButton("Pay");
+		btnPay.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img33 = new ImageIcon(this.getClass().getResource("/fees2.png")).getImage();
+		btnPay.setIcon(new ImageIcon(img33));
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -1554,7 +1825,7 @@ db_config.connect_to_database();
 		});
 		
 			
-		btnPay.setBounds(274, 254, 89, 23);
+		btnPay.setBounds(262, 360, 104, 33);
 		fees_pay.add(btnPay);
 		
 		JPanel view_fees = new JPanel();
@@ -1562,21 +1833,26 @@ db_config.connect_to_database();
 		view_fees.setLayout(null);
 		
 		JLabel lblStudentId_1 = new JLabel("Student Name");
+		lblStudentId_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblStudentId_1.setBounds(74, 51, 112, 14);
 		view_fees.add(lblStudentId_1);
 		
 		fee2_name = new JTextField();
-		fee2_name.setBounds(285, 48, 86, 20);
+		fee2_name.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		fee2_name.setBounds(285, 48, 112, 20);
 		view_fees.add(fee2_name);
 		fee2_name.setColumns(10);
 		
-		JButton btnGo_4 = new JButton("Go");
+		JButton btnGo_4 = new JButton("Get Details");
+		btnGo_4.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img36 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
+		btnGo_4.setIcon(new ImageIcon(img36));
 		btnGo_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
 				
 				try {
-						ResultSet rs = db_config.getData_operation(fee2_name.getText(),"student_fees");
+						ResultSet rs = db_config.getData_operation(fee2_name.getText(),"fees");
 						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
 						fee2_name.setText("");
 						
@@ -1585,7 +1861,7 @@ db_config.connect_to_database();
 				}
 			}
 		});
-		btnGo_4.setBounds(507, 47, 89, 23);
+		btnGo_4.setBounds(491, 41, 141, 33);
 		view_fees.add(btnGo_4);
 		
 		JSeparator separator_8 = new JSeparator();
@@ -1593,6 +1869,9 @@ db_config.connect_to_database();
 		view_fees.add(separator_8);
 		
 		JButton btnDuesOfCurrent = new JButton("Dues of current month");
+		btnDuesOfCurrent.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		Image img37 = new ImageIcon(this.getClass().getResource("/dues.png")).getImage();
+		btnDuesOfCurrent.setIcon(new ImageIcon(img37));
 		btnDuesOfCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -1608,7 +1887,7 @@ db_config.connect_to_database();
 				}
 			}
 		});
-		btnDuesOfCurrent.setBounds(268, 135, 141, 23);
+		btnDuesOfCurrent.setBounds(231, 124, 231, 33);
 		view_fees.add(btnDuesOfCurrent);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
