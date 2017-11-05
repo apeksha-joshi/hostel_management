@@ -19,10 +19,14 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -30,6 +34,7 @@ import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JComboBox;
 
 public class gui extends JFrame {
 
@@ -39,13 +44,11 @@ public class gui extends JFrame {
 	private JTextField stu_father;
 	private JTextField stu_phone;
 	private JTextField stu_age;
-	private JTextField stu_gender;
 	private JTextField stu_dob;
 	private JTextField stu_branch;
 	private JTextField stu_sem;
 	private JTextField stu_address;
 	private JTextField stu_doj;
-	private JTextField stu_dol;
 	private JTextField stu1_name;
 	private JTextField stu2_name;
 	private JTextField stu3_name;
@@ -54,7 +57,6 @@ public class gui extends JFrame {
 	private JTextField st_dept;
 	private JTextField st_dob;
 	private JTextField st_age;
-	private JTextField st_gender;
 	private JTextField st_address;
 	private JTextField st_salary;
 	private JTextField st_doj;
@@ -64,13 +66,12 @@ public class gui extends JFrame {
 	private JTextField st3_name;
 	private JTextField room_id;
 	private JTextField room_hid;
-	private JTextField room_no;
 	private JTextField room2_name;
 	private JTextField room3_hid;
-	private JTextField textField_74;
-	private JTextField textField_75;
-	private JTextField textField_76;
-	private JTextField textField_77;
+	private JTextField fee_id;
+	private JTextField fees_mon_yr;
+	private JTextField fees_pay_date;
+	private JTextField fee2_name;
 	private JTable table_ret_stu;
 	private JTable table_ret_st;
     DefaultTableModel dm;
@@ -107,7 +108,12 @@ public class gui extends JFrame {
     private JTable table_room;
     private JTextField room2_id;
     private JTextField room3_no;
-    private JTable table;
+    private JTable table_room2;
+    private JTable table_fees;
+    private JComboBox stu_gender;
+    private JComboBox st_gender;
+    private JComboBox room_no;
+   
 	/**
 	 * Launch the application.
 	 */
@@ -142,6 +148,9 @@ public class gui extends JFrame {
 		dm.addColumn("doj");
 		dm.addColumn("dol");
 	}*/
+	
+
+	
 	public gui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 649);
@@ -340,10 +349,6 @@ public class gui extends JFrame {
 		lblDoj.setBounds(200, 450, 46, 14);
 		add_student.add(lblDoj);
 		
-		JLabel lblDol = new JLabel("DOL");
-		lblDol.setBounds(200, 496, 46, 14);
-		add_student.add(lblDol);
-		
 		stu_name = new JTextField();
 		stu_name.setBounds(372, 67, 86, 20);
 		add_student.add(stu_name);
@@ -363,11 +368,6 @@ public class gui extends JFrame {
 		stu_age.setBounds(372, 196, 86, 20);
 		add_student.add(stu_age);
 		stu_age.setColumns(10);
-		
-		stu_gender = new JTextField();
-		stu_gender.setBounds(372, 238, 86, 20);
-		add_student.add(stu_gender);
-		stu_gender.setColumns(10);
 		
 		stu_dob = new JTextField();
 		stu_dob.setBounds(372, 278, 86, 20);
@@ -394,11 +394,6 @@ public class gui extends JFrame {
 		add_student.add(stu_doj);
 		stu_doj.setColumns(10);
 		
-		stu_dol = new JTextField();
-		stu_dol.setBounds(372, 493, 86, 20);
-		add_student.add(stu_dol);
-		stu_dol.setColumns(10);
-		
 		
 		
 		
@@ -414,13 +409,13 @@ public class gui extends JFrame {
 				student.put(2, stu_father.getText());
 				student.put(3, stu_phone.getText());
 				student.put(4, stu_age.getText());
-				student.put(5, stu_gender.getText());
+				student.put(5, (String) stu_gender.getItemAt(stu_gender.getSelectedIndex()));
 				student.put(6, stu_dob.getText());
 				student.put(7, stu_branch.getText());
 				student.put(8, stu_sem.getText());
 				student.put(9, stu_address.getText());
 				student.put(10, stu_doj.getText());
-				student.put(11, stu_dol.getText());
+				
 				
 				ho.add_student(student);
 				
@@ -431,20 +426,26 @@ public class gui extends JFrame {
 				stu_father.setText("");
 				stu_phone.setText("");
 				stu_age.setText("");
-				stu_gender.setText("");
+				//stu_gender.setText("");
 				stu_dob.setText("");
 				stu_branch.setText("");
 				stu_sem.setText("");
 				stu_address.setText("");
 				stu_doj.setText("");
-				stu_dol.setText("");
+				
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null, "Failed");
 				}
 			}
 		});
-		btnInsert.setBounds(268, 534, 89, 23);
+		btnInsert.setBounds(276, 508, 89, 23);
 		add_student.add(btnInsert);
+		String gender[] = {"M","F"};
+		stu_gender = new JComboBox(gender);
+		
+			
+		stu_gender.setBounds(372, 238, 86, 20);
+		add_student.add(stu_gender);
 		
 		JPanel retrieve_student = new JPanel();
 		contentPane.add(retrieve_student, "p3");
@@ -876,11 +877,6 @@ public class gui extends JFrame {
 		add_staff.add(st_age);
 		st_age.setColumns(10);
 		
-		st_gender = new JTextField();
-		st_gender.setBounds(380, 270, 86, 20);
-		add_staff.add(st_gender);
-		st_gender.setColumns(10);
-		
 		st_address = new JTextField();
 		st_address.setBounds(380, 309, 86, 20);
 		add_staff.add(st_address);
@@ -914,7 +910,7 @@ db_config.connect_to_database();
 				faculty.put(3, st_dept.getText());
 				faculty.put(4, st_dob.getText());
 				faculty.put(5, st_age.getText());
-				faculty.put(6, st_gender.getText());
+				faculty.put(6, (String) st_gender.getItemAt(st_gender.getSelectedIndex()));
 				faculty.put(7, st_address.getText());
 				faculty.put(8, st_salary.getText());
 				faculty.put(9, st_doj.getText());
@@ -931,7 +927,7 @@ db_config.connect_to_database();
 				st_dept.setText("");
 				st_dob.setText("");
 				st_age.setText("");
-				st_gender.setText("");
+				//st_gender.setText("");
 				st_address.setText("");
 				st_salary.setText("");
 				st_doj.setText("");
@@ -944,6 +940,11 @@ db_config.connect_to_database();
 		});
 		btnInsert_1.setBounds(270, 502, 89, 23);
 		add_staff.add(btnInsert_1);
+		
+		String st_gend [] = {"M","F"};
+		 st_gender = new JComboBox(st_gend);
+		st_gender.setBounds(380, 270, 86, 20);
+		add_staff.add(st_gender);
 		
 		JPanel retrieve_staff = new JPanel();
 		contentPane.add(retrieve_staff, "p7");
@@ -1302,6 +1303,7 @@ db_config.connect_to_database();
 		lblRoomNumber_1.setBounds(199, 193, 89, 14);
 		assign_room.add(lblRoomNumber_1);
 		
+		
 		room_id = new JTextField();
 		room_id.setBounds(359, 90, 86, 20);
 		assign_room.add(room_id);
@@ -1312,10 +1314,7 @@ db_config.connect_to_database();
 		assign_room.add(room_hid);
 		room_hid.setColumns(10);
 		
-		room_no = new JTextField();
-		room_no.setBounds(359, 190, 86, 20);
-		assign_room.add(room_no);
-		room_no.setColumns(10);
+		
 		
 		JButton btnAssign = new JButton("Assign");
 		btnAssign.addActionListener(new ActionListener() {
@@ -1326,7 +1325,8 @@ db_config.connect_to_database();
 				HashMap<Integer, String> room = new HashMap<Integer, String>();
 				room.put(1, room_id.getText());
 				room.put(2, room_hid.getText());
-				room.put(3, room_no.getText());
+				
+				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				ho.allot_room(room);
 				}catch(Exception ex) {
 					System.out.println(ex);
@@ -1335,6 +1335,16 @@ db_config.connect_to_database();
 		});
 		btnAssign.setBounds(267, 277, 89, 23);
 		assign_room.add(btnAssign);
+		
+		//try {
+		//hostel_operations ho = new hostel_operations();
+		//ho.room_no(room_hid.getText());
+		//}catch(Exception e) {
+		//	System.out.println(e);
+		//}
+		 room_no = new JComboBox( );
+		room_no.setBounds(359, 190, 86, 20);
+		assign_room.add(room_no);
 		
 		JPanel leave_room = new JPanel();
 		contentPane.add(leave_room, "p11");
@@ -1443,8 +1453,8 @@ db_config.connect_to_database();
 					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM room_allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
 					
 					ResultSet rs =db_config.room_op(query);
-					System.out.println(rs);
-					table_room.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					table_room2.setModel(DbUtils.resultSetToTableModel(rs));
 					
 				}catch(Exception exe) {
 				//JOptionPane.showMessageDialog(null, "Error");
@@ -1472,8 +1482,8 @@ db_config.connect_to_database();
 		scrollPane_2.setBounds(10, 170, 668, 225);
 		view_room.add(scrollPane_2);
 		
-		table = new JTable();
-		scrollPane_2.setViewportView(table);
+		table_room2 = new JTable();
+		scrollPane_2.setViewportView(table_room2);
 		
 		JPanel fees_pay = new JPanel();
 		contentPane.add(fees_pay, "p13");
@@ -1496,22 +1506,43 @@ db_config.connect_to_database();
 		lblPaymentDate.setBounds(193, 185, 95, 14);
 		fees_pay.add(lblPaymentDate);
 		
-		textField_74 = new JTextField();
-		textField_74.setBounds(357, 90, 86, 20);
-		fees_pay.add(textField_74);
-		textField_74.setColumns(10);
+		fee_id = new JTextField();
+		fee_id.setBounds(357, 90, 86, 20);
+		fees_pay.add(fee_id);
+		fee_id.setColumns(10);
 		
-		textField_75 = new JTextField();
-		textField_75.setBounds(357, 132, 86, 20);
-		fees_pay.add(textField_75);
-		textField_75.setColumns(10);
+		fees_mon_yr = new JTextField();
+		fees_mon_yr.setBounds(357, 132, 86, 20);
+		fees_pay.add(fees_mon_yr);
+		fees_mon_yr.setColumns(10);
 		
-		textField_76 = new JTextField();
-		textField_76.setBounds(357, 182, 86, 20);
-		fees_pay.add(textField_76);
-		textField_76.setColumns(10);
+		fees_pay_date = new JTextField();
+		fees_pay_date.setBounds(357, 182, 86, 20);
+		fees_pay.add(fees_pay_date);
+		fees_pay_date.setColumns(10);
 		
 		JButton btnPay = new JButton("Pay");
+		btnPay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				
+				try {
+				hostel_operations ho = new hostel_operations();
+				HashMap<Integer, String> fees = new HashMap<Integer, String>();
+				fees.put(1, fee_id.getText());
+				fees.put(2, fees_mon_yr.getText());
+				fees.put(3, fees_pay_date.getText());
+				
+				
+				ho.pay_fees(fees);
+				
+			}catch(Exception ex) {
+				System.out.println(ex);
+			}
+			}
+		});
+		
+			
 		btnPay.setBounds(274, 254, 89, 23);
 		fees_pay.add(btnPay);
 		
@@ -1519,16 +1550,30 @@ db_config.connect_to_database();
 		contentPane.add(view_fees, "p14");
 		view_fees.setLayout(null);
 		
-		JLabel lblStudentId_1 = new JLabel("Student ID");
+		JLabel lblStudentId_1 = new JLabel("Student Name");
 		lblStudentId_1.setBounds(74, 51, 112, 14);
 		view_fees.add(lblStudentId_1);
 		
-		textField_77 = new JTextField();
-		textField_77.setBounds(285, 48, 86, 20);
-		view_fees.add(textField_77);
-		textField_77.setColumns(10);
+		fee2_name = new JTextField();
+		fee2_name.setBounds(285, 48, 86, 20);
+		view_fees.add(fee2_name);
+		fee2_name.setColumns(10);
 		
 		JButton btnGo_4 = new JButton("Go");
+		btnGo_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				
+				try {
+						ResultSet rs = db_config.getData_operation(fee2_name.getText(),"student_fees");
+						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
+						fee2_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnGo_4.setBounds(507, 47, 89, 23);
 		view_fees.add(btnGo_4);
 		
@@ -1537,7 +1582,29 @@ db_config.connect_to_database();
 		view_fees.add(separator_8);
 		
 		JButton btnDuesOfCurrent = new JButton("Dues of current month");
+		btnDuesOfCurrent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				db_config.connect_to_database();
+				
+				try {
+						String query ="SELECT sf.student_id, s.name, s.phone_number FROM student s, student_fees sf WHERE payment_date = \"\" AND monthly_status LIKE  '%NOW()%';";
+						//ResultSet rs = db_config.fees(query);
+						//table_fees.setModel(DbUtils.resultSetToTableModel(rs));
+						fee2_name.setText("");
+						
+				}catch(Exception e1) {
+					System.out.println("error"+e1);
+				}
+			}
+		});
 		btnDuesOfCurrent.setBounds(268, 135, 141, 23);
 		view_fees.add(btnDuesOfCurrent);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(10, 207, 668, 250);
+		view_fees.add(scrollPane_3);
+		
+		table_fees = new JTable();
+		scrollPane_3.setViewportView(table_fees);
 	}
 }

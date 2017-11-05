@@ -14,7 +14,7 @@ public class main_class {
 		gui gui_class = new gui();
 		gui_class.start_app();
 		//hostel_operations hs = new hostel_operations();
-		//hs.faculty_incharge_rooms("1");
+		//hs.room_no("1");
 		//show create table *table_name* without *..ok:)thanks!cool
 		//
 				

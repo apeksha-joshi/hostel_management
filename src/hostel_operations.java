@@ -45,6 +45,13 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, faculty);
 	}
 	
+	public void pay_fees(HashMap<Integer, String> fees) throws Exception{
+		String insert_query ="INSERT INTO  `hostel_management`.`student_fees` (`student_id` ,`monthly_status` ,`payment_date`)VALUES (?,?,?);";
+				
+		System.out.println("insert query is "+insert_query);
+		db_ops.insert_data(insert_query, fees);
+	}
+	
 	//public void allot_room(HashMap<Integer, String> room) throws Exception{
 	//	String insert_query="INSERT INTO `hostelmanagement`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
 	//	System.out.println("insert query is "+insert_query);
@@ -98,6 +105,26 @@ private static db_config db_ops = new db_config();
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, room);
 	}
+	
+	/*public void room_no(String hostel_id) throws Exception {
+	try {
+		String query = "Select room_no from room where hostel_id="+hostel_id+";";
+		ArrayList<String> rooms = new ArrayList<String>();
+		
+		
+		PreparedStatement ps = db_config.conn.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			rooms.add((String) rs.getObject(1));
+		}
+		String [] room = String.valueOf(rooms.toArray()); 
+		System.out.println(room);
+		//String [] countries = (String[]) ArrayList.toArray(new String[ArrayList.size()]);
+	}catch(Exception e) {
+		System.out.println(e);
+	}
+	}*/
 }
 
 	//ok juswet  malkel  it like na?waiwhere is retrieve student?
