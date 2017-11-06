@@ -10,7 +10,7 @@ private static db_config db_ops = new db_config();
 	
 	/*insert student into the db*/
 	public void add_student(HashMap<Integer, String> student) throws SQLException{
-		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `age`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`, `dol`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`, `dol`) VALUES (?,?,?,?,?,?,?,?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, student);
 	}

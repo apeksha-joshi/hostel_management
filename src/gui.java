@@ -56,7 +56,6 @@ public class gui extends JFrame {
 	private JTextField stu_name;
 	private JTextField stu_father;
 	private JTextField stu_phone;
-	private JTextField stu_age;
 	private JTextField stu_dob;
 	private JTextField stu_branch;
 	private JTextField stu_sem;
@@ -442,40 +441,35 @@ public class gui extends JFrame {
 		lblPhoneNumber.setBounds(200, 158, 111, 14);
 		add_student.add(lblPhoneNumber);
 		
-		JLabel lblAge = new JLabel("Age");
-		lblAge.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblAge.setBounds(200, 199, 46, 21);
-		add_student.add(lblAge);
-		
 		JLabel lblGender = new JLabel("Gender");
 		lblGender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblGender.setBounds(200, 241, 61, 14);
+		lblGender.setBounds(200, 199, 61, 14);
 		add_student.add(lblGender);
 		
 		JLabel lblDob = new JLabel("DOB");
 		lblDob.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDob.setFont(new Font("Lucida Sans", Font.BOLD, 14));
-		lblDob.setBounds(186, 280, 46, 14);
+		lblDob.setBounds(200, 245, 46, 14);
 		add_student.add(lblDob);
 		
 		JLabel lblBranch = new JLabel("Branch");
 		lblBranch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblBranch.setBounds(200, 324, 61, 14);
+		lblBranch.setBounds(200, 288, 61, 14);
 		add_student.add(lblBranch);
 		
 		JLabel lblSemester = new JLabel("Semester");
 		lblSemester.setFont(new Font("Lucida Sans", Font.BOLD, 14));
-		lblSemester.setBounds(200, 368, 86, 14);
+		lblSemester.setBounds(200, 331, 86, 14);
 		add_student.add(lblSemester);
 		
 		JLabel lblHomeAddress = new JLabel("Home Address");
 		lblHomeAddress.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblHomeAddress.setBounds(200, 407, 102, 14);
+		lblHomeAddress.setBounds(200, 373, 102, 14);
 		add_student.add(lblHomeAddress);
 		
 		JLabel lblDoj = new JLabel("DOJ");
 		lblDoj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblDoj.setBounds(200, 450, 46, 14);
+		lblDoj.setBounds(200, 416, 46, 14);
 		add_student.add(lblDoj);
 		
 		stu_name = new JTextField();
@@ -496,39 +490,33 @@ public class gui extends JFrame {
 		add_student.add(stu_phone);
 		stu_phone.setColumns(10);
 		
-		stu_age = new JTextField();
-		stu_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_age.setBounds(372, 196, 111, 20);
-		add_student.add(stu_age);
-		stu_age.setColumns(10);
-		
 		stu_dob = new JTextField();
 		stu_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_dob.setBounds(372, 278, 111, 20);
+		stu_dob.setBounds(372, 243, 111, 20);
 		add_student.add(stu_dob);
 		stu_dob.setColumns(10);
 		
 		stu_branch = new JTextField();
 		stu_branch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_branch.setBounds(372, 321, 111, 20);
+		stu_branch.setBounds(372, 285, 111, 20);
 		add_student.add(stu_branch);
 		stu_branch.setColumns(10);
 		
 		stu_sem = new JTextField();
 		stu_sem.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_sem.setBounds(372, 365, 111, 20);
+		stu_sem.setBounds(372, 329, 111, 20);
 		add_student.add(stu_sem);
 		stu_sem.setColumns(10);
 		
 		stu_address = new JTextField();
 		stu_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_address.setBounds(372, 404, 111, 20);
+		stu_address.setBounds(372, 370, 111, 20);
 		add_student.add(stu_address);
 		stu_address.setColumns(10);
 		
 		stu_doj = new JTextField();
 		stu_doj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_doj.setBounds(372, 444, 111, 20);
+		stu_doj.setBounds(372, 413, 111, 20);
 		add_student.add(stu_doj);
 		stu_doj.setColumns(10);
 		
@@ -550,14 +538,14 @@ public class gui extends JFrame {
 				student.put(1, stu_name.getText());
 				student.put(2, stu_father.getText());
 				student.put(3, stu_phone.getText());
-				student.put(4, stu_age.getText());
-				student.put(5, (String) stu_gender.getItemAt(stu_gender.getSelectedIndex()));
-				student.put(6, stu_dob.getText());
-				student.put(7, stu_branch.getText());
-				student.put(8, stu_sem.getText());
-				student.put(9, stu_address.getText());
-				student.put(10, stu_doj.getText());
-				student.put(11, stu_dol.getText());
+				
+				student.put(4, (String) stu_gender.getItemAt(stu_gender.getSelectedIndex()));
+				student.put(5, stu_dob.getText());
+				student.put(6, stu_branch.getText());
+				student.put(7, stu_sem.getText());
+				student.put(8, stu_address.getText());
+				student.put(9, stu_doj.getText());
+				student.put(10, stu_dol.getText());
 				
 				ho.add_student(student);
 				
@@ -569,7 +557,7 @@ public class gui extends JFrame {
 				stu_name.setText("");
 				stu_father.setText("");
 				stu_phone.setText("");
-				stu_age.setText("");
+				
 				//stu_gender.setText("");
 				stu_dob.setText("");
 				stu_branch.setText("");
@@ -583,24 +571,24 @@ public class gui extends JFrame {
 				}
 			}
 		});
-		btnInsert.setBounds(268, 520, 135, 33);
+		btnInsert.setBounds(259, 501, 135, 33);
 		add_student.add(btnInsert);
 		String gender[] = {"M","F"};
 		stu_gender = new JComboBox(gender);
 		stu_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		
 			
-		stu_gender.setBounds(372, 238, 111, 20);
+		stu_gender.setBounds(372, 196, 111, 20);
 		add_student.add(stu_gender);
 		
 		JLabel lblDol = new JLabel("DOL");
 		lblDol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblDol.setBounds(200, 486, 46, 14);
+		lblDol.setBounds(200, 459, 46, 14);
 		add_student.add(lblDol);
 		
 		stu_dol = new JTextField();
 		stu_dol.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_dol.setBounds(372, 489, 111, 20);
+		stu_dol.setBounds(372, 456, 111, 20);
 		add_student.add(stu_dol);
 		stu_dol.setColumns(10);
 		
