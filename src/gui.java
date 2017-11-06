@@ -69,7 +69,7 @@ public class gui extends JFrame {
 	private JTextField st_phone;
 	private JTextField st_dept;
 	private JTextField st_dob;
-	private JTextField st_age;
+	private JTextField st_hid;
 	private JTextField st_address;
 	private JTextField st_salary;
 	private JTextField st_doj;
@@ -1078,14 +1078,14 @@ public class gui extends JFrame {
 		lblDob_3.setBounds(191, 190, 46, 14);
 		add_staff.add(lblDob_3);
 		
-		JLabel lblAge_3 = new JLabel("Age");
+		JLabel lblAge_3 = new JLabel("Hostel ID");
 		lblAge_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblAge_3.setBounds(191, 228, 46, 17);
+		lblAge_3.setBounds(191, 269, 86, 17);
 		add_staff.add(lblAge_3);
 		
 		JLabel lblGender_3 = new JLabel("Gender");
 		lblGender_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblGender_3.setBounds(191, 273, 70, 14);
+		lblGender_3.setBounds(191, 231, 70, 14);
 		add_staff.add(lblGender_3);
 		
 		JLabel lblAddress = new JLabel("Address");
@@ -1132,11 +1132,11 @@ public class gui extends JFrame {
 		add_staff.add(st_dob);
 		st_dob.setColumns(10);
 		
-		st_age = new JTextField();
-		st_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st_age.setBounds(380, 228, 86, 20);
-		add_staff.add(st_age);
-		st_age.setColumns(10);
+		st_hid = new JTextField();
+		st_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st_hid.setBounds(380, 267, 86, 20);
+		add_staff.add(st_hid);
+		st_hid.setColumns(10);
 		
 		st_address = new JTextField();
 		st_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
@@ -1177,31 +1177,34 @@ db_config.connect_to_database();
 				faculty.put(2, st_phone.getText());
 				faculty.put(3, st_dept.getText());
 				faculty.put(4, st_dob.getText());
-				faculty.put(5, st_age.getText());
-				faculty.put(6, (String) st_gender.getItemAt(st_gender.getSelectedIndex()));
+				
+				faculty.put(5, (String) st_gender.getItemAt(st_gender.getSelectedIndex()));
+				faculty.put(6, st_hid.getText());
 				faculty.put(7, st_address.getText());
+				
 				faculty.put(8, st_salary.getText());
 				faculty.put(9, st_doj.getText());
 				faculty.put(10, st_dol.getText());
 				
 				
 				ho.add_faculty(faculty);
+				ho.faculty_incharge_rooms(st_hid.getText());
 				JOptionPane.showMessageDialog(null, "Data Inserted");
-				CardLayout c =(CardLayout)(contentPane.getLayout());
-				c.show(contentPane,"p10");
+				
 				
 				st_name.setText("");
 				st_phone.setText("");
 				st_dept.setText("");
 				st_dob.setText("");
-				st_age.setText("");
+				st_hid.setText("");
 				//st_gender.setText("");
 				st_address.setText("");
 				st_salary.setText("");
 				st_doj.setText("");
 				st_dol.setText("");
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Failed");
+					//JOptionPane.showMessageDialog(null, "Failed");
+					System.out.println(ex);
 				}
 				
 			}
@@ -1212,7 +1215,7 @@ db_config.connect_to_database();
 		String st_gend [] = {"M","F"};
 		 st_gender = new JComboBox(st_gend);
 		 st_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st_gender.setBounds(380, 270, 86, 20);
+		st_gender.setBounds(380, 228, 86, 20);
 		add_staff.add(st_gender);
 		
 		JLabel label_2 = new JLabel("");

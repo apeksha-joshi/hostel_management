@@ -61,7 +61,7 @@ private static db_config db_ops = new db_config();
 	
 	
 	public void add_faculty(HashMap<Integer, String> faculty) throws Exception{
-		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`,`age`,`gender` ,`address`,`salary` ,`doj`,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`, `gender` ,`hostel_id`, `address`,`salary` ,`doj`,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
 				
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, faculty);
@@ -83,7 +83,7 @@ private static db_config db_ops = new db_config();
 	public void faculty_incharge_rooms(String hostel_id) throws Exception {
 		
 		String query = "Select room_no from room where hostel_id = "+ Integer.parseInt(hostel_id) +";";
-		String query_faculty = "Select 	faculty_id from faculty;";
+		String query_faculty = "Select 	faculty_id from faculty where hostel_id = "+ Integer.parseInt(hostel_id) +";";
 		
 		ArrayList<Integer>room_ids = new ArrayList<Integer>();
 		ArrayList<Integer>faculty_ids = new ArrayList<Integer>();
@@ -105,14 +105,15 @@ private static db_config db_ops = new db_config();
 		
 		int rooms = room_ids.size();
 		int faculty_count = faculty_ids.size();
+		//System.out.println(rooms+"  "+faculty_count);
 		
 		//assigning the rooms in round robin fashion
 		for(int i=0,j=0;i<rooms;i++,j++) {
-			if(i == faculty_ids.size()) {
+			if(j == faculty_ids.size()) {
 				j=0;
 			}
-			String update_query = "Update room set faculty_id = "+faculty_ids.get(j)+" where room_no = "+ room_ids.get(i) +";";
-			System.out.println("the query is "+update_query);
+			String update_query = "Update room set faculty_id = "+faculty_ids.get(j)+" where room_no = "+ room_ids.get(i) +" and hostel_id="+hostel_id+";";
+			//System.out.println("the query is "+update_query);
 			Statement st = db_config.conn.createStatement();
 			st.executeUpdate(update_query);
 		}
@@ -128,7 +129,7 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, room);
 	}
 	
-	public String[] room_no(String hostel_id) throws Exception {
+	/*public String[] room_no(String hostel_id) throws Exception {
 		String[] rm = null;
 		try {
 		String query = "Select room_no from room where hostel_id='"+hostel_id+"';";
@@ -149,7 +150,7 @@ private static db_config db_ops = new db_config();
 		System.out.println(e);
 	}
 	return rm;
-	}
+	}*/
 }
 
 	//ok juswet  malkel  it like na?waiwhere is retrieve student?
