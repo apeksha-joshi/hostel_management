@@ -38,6 +38,28 @@ private static db_config db_ops = new db_config();
 		return result_set;
 	}
 	
+	public String pass_room(String name) {
+		String id="";
+		try {
+		String query="Select * from student where name = ?;";
+		
+		PreparedStatement ps = db_config.conn.prepareStatement(query);
+		//name="%"+ name +"%";
+		ps.setString(1, name);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			 id = rs.getString("student_id");
+		}
+
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		return id;
+	}
+	
+	
+	
 	public void add_faculty(HashMap<Integer, String> faculty) throws Exception{
 		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`,`age`,`gender` ,`address`,`salary` ,`doj`,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
 				
@@ -53,10 +75,10 @@ private static db_config db_ops = new db_config();
 	}
 	
 	//public void allot_room(HashMap<Integer, String> room) throws Exception{
-	//	String insert_query="INSERT INTO `hostelmanagement`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
-	//	System.out.println("insert query is "+insert_query);
-	//	db_ops.insert_data(insert_query, room);
-	//}
+	//	String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
+		//System.out.println("insert query is "+insert_query);
+		//db_ops.insert_data(insert_query, room);
+//	}
 	
 	public void faculty_incharge_rooms(String hostel_id) throws Exception {
 		
@@ -101,14 +123,15 @@ private static db_config db_ops = new db_config();
 	public void allot_room(HashMap<Integer, String> room) throws Exception {
 		// TODO Auto-generated method stub
 		//String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
-		String insert_query="INSERT INTO  `hostel_management`.`allot_student` (`student_id` ,`room_no` ,`hostel_id`)VALUES (?,?,?);";
+		String insert_query="INSERT INTO  `hostel_management`.`allot_student` (`student_id`,`hostel_id` ,`room_no` )VALUES (?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, room);
 	}
 	
-	/*public void room_no(String hostel_id) throws Exception {
-	try {
-		String query = "Select room_no from room where hostel_id="+hostel_id+";";
+	public String[] room_no(String hostel_id) throws Exception {
+		String[] rm = null;
+		try {
+		String query = "Select room_no from room where hostel_id='"+hostel_id+"';";
 		ArrayList<String> rooms = new ArrayList<String>();
 		
 		
@@ -118,13 +141,15 @@ private static db_config db_ops = new db_config();
 		while(rs.next()) {
 			rooms.add((String) rs.getObject(1));
 		}
-		String [] room = String.valueOf(rooms.toArray()); 
-		System.out.println(room);
+		rm = new String[rooms.size()];
+		rm=rooms.toArray(rm);
+		//System.out.println(room);
 		//String [] countries = (String[]) ArrayList.toArray(new String[ArrayList.size()]);
 	}catch(Exception e) {
 		System.out.println(e);
 	}
-	}*/
+	return rm;
+	}
 }
 
 	//ok juswet  malkel  it like na?waiwhere is retrieve student?

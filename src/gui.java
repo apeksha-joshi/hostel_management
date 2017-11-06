@@ -41,6 +41,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 public class gui extends JFrame {
 
@@ -120,6 +127,7 @@ public class gui extends JFrame {
     private JComboBox st_gender;
     private JComboBox room_no;
     private JTextField stu_dol;
+   // private String [] r = {};
    
 	/**
 	 * Launch the application.
@@ -163,15 +171,18 @@ public class gui extends JFrame {
 		setBounds(100, 100, 714, 649);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(204, 204, 255));
 		setJMenuBar(menuBar);
 		
 		JMenu mnStudent = new JMenu("Student");
+		mnStudent.setBackground(SystemColor.control);
 		mnStudent.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
 		Image img = new ImageIcon(this.getClass().getResource("/student.png")).getImage();
 		mnStudent.setIcon(new ImageIcon(img));
 		menuBar.add(mnStudent);
 		
 		JMenuItem mntmAdd = new JMenuItem("Add");
+		mntmAdd.setBackground(new Color(240, 248, 255));
 		mntmAdd.setFont(new Font("Mongolian Baiti", Font.BOLD, 13));
 		Image img1 = new ImageIcon(this.getClass().getResource("/add_student.png")).getImage();
 		 mntmAdd.setIcon(new ImageIcon(img1));
@@ -184,6 +195,7 @@ public class gui extends JFrame {
 		mnStudent.add(mntmAdd);
 		
 		JMenuItem mntmRetrieve = new JMenuItem("Retrieve");
+		mntmRetrieve.setBackground(new Color(240, 248, 255));
 		mntmRetrieve.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img2 = new ImageIcon(this.getClass().getResource("/retrieve.png")).getImage();
 		 mntmRetrieve.setIcon(new ImageIcon(img2));
@@ -196,6 +208,7 @@ public class gui extends JFrame {
 		mnStudent.add(mntmRetrieve);
 		
 		JMenuItem mntmUpdate = new JMenuItem("Update");
+		mntmUpdate.setBackground(new Color(240, 248, 255));
 		mntmUpdate.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img4 = new ImageIcon(this.getClass().getResource("/update.png")).getImage();
 		mntmUpdate.setIcon(new ImageIcon(img4));
@@ -208,6 +221,7 @@ public class gui extends JFrame {
 		mnStudent.add(mntmUpdate);
 		
 		JMenuItem mntmDelete = new JMenuItem("Delete");
+		mntmDelete.setBackground(new Color(240, 248, 255));
 		mntmDelete.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img3 = new ImageIcon(this.getClass().getResource("/delete.png")).getImage();
 		 mntmDelete.setIcon(new ImageIcon(img3));
@@ -220,12 +234,14 @@ public class gui extends JFrame {
 		mnStudent.add(mntmDelete);
 		
 		JMenu mnStaff = new JMenu("Staff");
+		mnStaff.setBorder(new CompoundBorder());
 		mnStaff.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
 		Image img5 = new ImageIcon(this.getClass().getResource("/staff.png")).getImage();
 		mnStaff.setIcon(new ImageIcon(img5));
 		menuBar.add(mnStaff);
 		
 		JMenuItem mntmAdd_1 = new JMenuItem("Add");
+		mntmAdd_1.setBackground(new Color(240, 248, 255));
 		mntmAdd_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img6 = new ImageIcon(this.getClass().getResource("/add_student.png")).getImage();
 		 mntmAdd_1.setIcon(new ImageIcon(img6));
@@ -238,6 +254,7 @@ public class gui extends JFrame {
 		mnStaff.add(mntmAdd_1);
 		
 		JMenuItem mntmRetrieve_1 = new JMenuItem("Retrieve");
+		mntmRetrieve_1.setBackground(new Color(240, 248, 255));
 		mntmRetrieve_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img7 = new ImageIcon(this.getClass().getResource("/retrieve.png")).getImage();
 		 mntmRetrieve_1.setIcon(new ImageIcon(img7));
@@ -250,6 +267,7 @@ public class gui extends JFrame {
 		mnStaff.add(mntmRetrieve_1);
 		
 		JMenuItem mntmUpdate_1 = new JMenuItem("Update");
+		mntmUpdate_1.setBackground(new Color(240, 248, 255));
 		mntmUpdate_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img8 = new ImageIcon(this.getClass().getResource("/update.png")).getImage();
 		mntmUpdate_1.setIcon(new ImageIcon(img8));
@@ -262,6 +280,7 @@ public class gui extends JFrame {
 		mnStaff.add(mntmUpdate_1);
 		
 		JMenuItem mntmDelete_1 = new JMenuItem("Delete");
+		mntmDelete_1.setBackground(new Color(240, 248, 255));
 		mntmDelete_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img9 = new ImageIcon(this.getClass().getResource("/delete.png")).getImage();
 		 mntmDelete_1.setIcon(new ImageIcon(img9));
@@ -274,12 +293,15 @@ public class gui extends JFrame {
 		mnStaff.add(mntmDelete_1);
 		
 		JMenu mnRoom = new JMenu("Room");
+		mnRoom.setBackground(new Color(255, 204, 255));
+		mnRoom.setBorder(new CompoundBorder());
 		 mnRoom.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
 		Image img10 = new ImageIcon(this.getClass().getResource("/room.png")).getImage();
 		mnRoom.setIcon(new ImageIcon(img10));
 		menuBar.add(mnRoom);
 		
 		JMenuItem mntmAssign = new JMenuItem("Assign");
+		mntmAssign.setBackground(new Color(240, 248, 255));
 		mntmAssign.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img11 = new ImageIcon(this.getClass().getResource("/assign.png")).getImage();
 		mntmAssign.setIcon(new ImageIcon(img11));
@@ -292,6 +314,7 @@ public class gui extends JFrame {
 		mnRoom.add(mntmAssign);
 		
 		JMenuItem mntmLeave = new JMenuItem("Leave");
+		mntmLeave.setBackground(new Color(240, 248, 255));
 		mntmLeave.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img12 = new ImageIcon(this.getClass().getResource("/leave.png")).getImage();
 		mntmLeave.setIcon(new ImageIcon(img12));
@@ -304,6 +327,7 @@ public class gui extends JFrame {
 		mnRoom.add(mntmLeave);
 		
 		JMenuItem mntmView = new JMenuItem("View");
+		mntmView.setBackground(new Color(240, 248, 255));
 		mntmView.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img13 = new ImageIcon(this.getClass().getResource("/view.png")).getImage();
 		mntmView.setIcon(new ImageIcon(img13));
@@ -316,12 +340,15 @@ public class gui extends JFrame {
 		mnRoom.add(mntmView);
 		
 		JMenu mnFeeDetails = new JMenu("Fee Details");
+		mnFeeDetails.setBackground(SystemColor.control);
+		mnFeeDetails.setBorder(new CompoundBorder());
 		mnFeeDetails.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
 			Image img14 = new ImageIcon(this.getClass().getResource("/fees.png")).getImage();
 			mnFeeDetails.setIcon(new ImageIcon(img14));
 		menuBar.add(mnFeeDetails);
 		
 		JMenuItem mntmPay = new JMenuItem("Pay");
+		mntmPay.setBackground(new Color(240, 248, 255));
 		mntmPay.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img15 = new ImageIcon(this.getClass().getResource("/pay.png")).getImage();
 		mntmPay.setIcon(new ImageIcon(img15));
@@ -334,6 +361,7 @@ public class gui extends JFrame {
 		mnFeeDetails.add(mntmPay);
 		
 		JMenuItem mntmView_1 = new JMenuItem("View");
+		mntmView_1.setBackground(new Color(240, 248, 255));
 		mntmView_1.setFont(new Font("Mongolian Baiti", Font.BOLD, 12));
 		Image img16 = new ImageIcon(this.getClass().getResource("/view.png")).getImage();
 		mntmView_1.setIcon(new ImageIcon(img16));
@@ -346,8 +374,9 @@ public class gui extends JFrame {
 		mnFeeDetails.add(mntmView_1);
 		
 		JButton btn_home = new JButton("Home");
+		btn_home.setBorder(new CompoundBorder());
 		btn_home.setFont(new Font("Mongolian Baiti", Font.BOLD, 15));
-		btn_home.setBackground(Color.LIGHT_GRAY);
+		btn_home.setBackground(new Color(204, 204, 255));
 		Image img39 = new ImageIcon(this.getClass().getResource("/home.png")).getImage();
 		btn_home.setIcon(new ImageIcon(img39));
 		btn_home.addActionListener(new ActionListener() {
@@ -363,14 +392,26 @@ public class gui extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel first = new JPanel();
+		first.setBackground(new Color(204, 204, 255));
 		first.setFont(new Font("Mongolian Baiti", Font.BOLD, 14));
 		contentPane.add(first, "p1");
 		first.setLayout(null);
 		
-		JLabel lblHostelManagement = new JLabel("Hostel Management");
-		lblHostelManagement.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		lblHostelManagement.setBounds(252, 256, 188, 28);
+		
+		JLabel lblHostelManagement = new JLabel("");
+		lblHostelManagement.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHostelManagement.setForeground(new Color(0, 0, 255));
+		lblHostelManagement.setFont(new Font("Constantia", Font.BOLD | Font.ITALIC, 34));
+		lblHostelManagement.setBounds(252, 144, 325, 43);
 		first.add(lblHostelManagement);
+		
+		JLabel label_1 = new JLabel("");
+		Image img40 = new ImageIcon(this.getClass().getResource("/hostel3.png")).getImage();
+		label_1.setIcon(new ImageIcon(img40));
+		label_1.setForeground(new Color(0, 0, 255));
+		
+		label_1.setBounds(0, -11, 708, 584);
+		first.add(label_1);
 		
 		JPanel add_student = new JPanel();
 		add_student.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
@@ -378,12 +419,16 @@ public class gui extends JFrame {
 		add_student.setLayout(null);
 		
 		JLabel lblEnterStudentDetails = new JLabel("Enter Student Details");
-		lblEnterStudentDetails.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		lblEnterStudentDetails.setBounds(243, 11, 182, 21);
+		lblEnterStudentDetails.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnterStudentDetails.setForeground(new Color(0, 0, 0));
+		lblEnterStudentDetails.setBackground(SystemColor.control);
+		lblEnterStudentDetails.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblEnterStudentDetails.setBounds(221, 11, 240, 33);
 		add_student.add(lblEnterStudentDetails);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblName.setForeground(new Color(0, 0, 0));
+		lblName.setFont(new Font("Lucida Sans", Font.BOLD, 14));
 		lblName.setBounds(200, 70, 46, 14);
 		add_student.add(lblName);
 		
@@ -408,8 +453,9 @@ public class gui extends JFrame {
 		add_student.add(lblGender);
 		
 		JLabel lblDob = new JLabel("DOB");
-		lblDob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblDob.setBounds(200, 281, 46, 14);
+		lblDob.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDob.setFont(new Font("Lucida Sans", Font.BOLD, 14));
+		lblDob.setBounds(186, 280, 46, 14);
 		add_student.add(lblDob);
 		
 		JLabel lblBranch = new JLabel("Branch");
@@ -418,7 +464,7 @@ public class gui extends JFrame {
 		add_student.add(lblBranch);
 		
 		JLabel lblSemester = new JLabel("Semester");
-		lblSemester.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblSemester.setFont(new Font("Lucida Sans", Font.BOLD, 14));
 		lblSemester.setBounds(200, 368, 86, 14);
 		add_student.add(lblSemester);
 		
@@ -490,6 +536,7 @@ public class gui extends JFrame {
 		
 		
 		JButton btnInsert = new JButton("Insert");
+		btnInsert.setBackground(SystemColor.control);
 		btnInsert.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img17 = new ImageIcon(this.getClass().getResource("/insert.png")).getImage();
 		btnInsert.setIcon(new ImageIcon(img17));
@@ -515,8 +562,10 @@ public class gui extends JFrame {
 				ho.add_student(student);
 				
 				JOptionPane.showMessageDialog(null, "Data Inserted");
+				String id=ho.pass_room(stu_name.getText());
 				CardLayout c =(CardLayout)(contentPane.getLayout());
 				c.show(contentPane,"p10");
+				room_id.setText(id);
 				stu_name.setText("");
 				stu_father.setText("");
 				stu_phone.setText("");
@@ -555,7 +604,14 @@ public class gui extends JFrame {
 		add_student.add(stu_dol);
 		stu_dol.setColumns(10);
 		
+		JLabel label = new JLabel("");
+		Image img41 = new ImageIcon(this.getClass().getResource("/insert9.jpg")).getImage();
+		label.setIcon(new ImageIcon(img41));
+		label.setBounds(0, 0, 688, 573);
+		add_student.add(label);
+		
 		JPanel retrieve_student = new JPanel();
+		retrieve_student.setBackground(new Color(32, 178, 170));
 		contentPane.add(retrieve_student, "p3");
 		retrieve_student.setLayout(null);
 		
@@ -576,10 +632,22 @@ public class gui extends JFrame {
 		btnGo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img19 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo.setIcon(new ImageIcon(img19));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVisible(false);
+		scrollPane.setBackground(new Color(135, 206, 235));
+		scrollPane.setBounds(10, 124, 668, 255);
+		retrieve_student.add(scrollPane);
+		
+		table_ret_stu = new JTable();
+		table_ret_stu.setVisible(false);
+		scrollPane.setViewportView(table_ret_stu);
+		
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
-			
+				scrollPane.setVisible(true);
+				table_ret_stu.setVisible(true);
 				try {
 						ResultSet rs = db_config.getData_operation(stu1_name.getText(),"student");
 						table_ret_stu.setModel(DbUtils.resultSetToTableModel(rs));
@@ -597,14 +665,10 @@ public class gui extends JFrame {
 		separator.setBounds(0, 96, 688, 2);
 		retrieve_student.add(separator);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 124, 668, 255);
-		retrieve_student.add(scrollPane);
 		
-		table_ret_stu = new JTable();
-		scrollPane.setViewportView(table_ret_stu);
 		
 		JPanel update_student = new JPanel();
+		update_student.setBackground(new Color(32, 178, 170));
 		contentPane.add(update_student, "p4");
 		update_student.setLayout(null);
 		
@@ -623,9 +687,21 @@ public class gui extends JFrame {
 		btnGo_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img20 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo_1.setIcon(new ImageIcon(img20));
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setVisible(false);
+		scrollPane_5.setBounds(10, 97, 668, 181);
+		update_student.add(scrollPane_5);
+		
+		table_up_stu = new JTable();
+		table_up_stu.setVisible(false);
+		scrollPane_5.setViewportView(table_up_stu);
+		
 		btnGo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
+				scrollPane_5.setVisible(true);
+				table_up_stu.setVisible(true);
 				search_str = stu2_name.getText();
 				try {
 						ResultSet rs = db_config.getData_operation(stu2_name.getText(),"student");
@@ -645,6 +721,7 @@ public class gui extends JFrame {
 		update_student.add(separator_1);
 		
 		JPanel stu_up_details = new JPanel();
+		stu_up_details.setBackground(new Color(135, 206, 235));
 		stu_up_details.setBounds(10, 289, 668, 279);
 		update_student.add(stu_up_details);
 		stu_up_details.setLayout(null);
@@ -795,12 +872,7 @@ public class gui extends JFrame {
 		stu_up_details.add(stu2_dol);
 		stu2_dol.setColumns(10);
 		
-		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(10, 97, 668, 181);
-		update_student.add(scrollPane_5);
 		
-		table_up_stu = new JTable();
-		scrollPane_5.setViewportView(table_up_stu);
 		table_up_stu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -867,6 +939,7 @@ public class gui extends JFrame {
 		});
 		
 		JPanel delete_student = new JPanel();
+		delete_student.setBackground(new Color(32, 178, 170));
 		contentPane.add(delete_student, "p5");
 		delete_student.setLayout(null);
 		
@@ -885,10 +958,22 @@ public class gui extends JFrame {
 		btnUpdate_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img21 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnUpdate_1.setIcon(new ImageIcon(img21));
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBackground(new Color(210, 180, 140));
+		scrollPane_4.setVisible(false);
+		scrollPane_4.setBounds(10, 125, 668, 230);
+		delete_student.add(scrollPane_4);
+		
+		table_del_stu = new JTable();
+		table_del_stu.setVisible(false);
+		scrollPane_4.setViewportView(table_del_stu);
+		
 		btnUpdate_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
-				
+				scrollPane_4.setVisible(true);
+				table_del_stu.setVisible(true);
 				try {
 						ResultSet rs = db_config.getData_operation(stu3_name.getText(),"student");
 						table_del_stu.setModel(DbUtils.resultSetToTableModel(rs));
@@ -907,17 +992,13 @@ public class gui extends JFrame {
 		delete_student.add(separator_2);
 		
 		JPanel stu_del_details = new JPanel();
-		stu_del_details.setBounds(20, 366, 658, 167);
+		stu_del_details.setBackground(new Color(176, 224, 230));
+		stu_del_details.setBounds(20, 366, 658, 196);
 		delete_student.add(stu_del_details);
 		stu_del_details.setLayout(null);
 		stu_del_details.setVisible(false);
 		
-		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(10, 125, 668, 230);
-		delete_student.add(scrollPane_4);
 		
-		table_del_stu = new JTable();
-		scrollPane_4.setViewportView(table_del_stu);
 		//Object[] column = {"ID","Name","Father's Name","phone","Age","Gender","dob","Branch","Semester","Home Address","DOJ","DOL"};
 		//DefaultTableModel model = new DefaultTableModel();
 		//model.setColumnIdentifiers(column);
@@ -1134,12 +1215,19 @@ db_config.connect_to_database();
 		st_gender.setBounds(380, 270, 86, 20);
 		add_staff.add(st_gender);
 		
+		JLabel label_2 = new JLabel("");
+		Image img42 = new ImageIcon(this.getClass().getResource("/insertstaff5.jpg")).getImage();
+		label_2.setIcon(new ImageIcon(img42));
+		label_2.setBounds(0, 0, 688, 573);
+		add_staff.add(label_2);
+		
 		JPanel retrieve_staff = new JPanel();
+		retrieve_staff.setBackground(new Color(255, 218, 185));
 		contentPane.add(retrieve_staff, "p7");
 		retrieve_staff.setLayout(null);
 		
 		JLabel lblEnterStaffId = new JLabel("Enter Staff Name");
-		lblEnterStaffId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblEnterStaffId.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		lblEnterStaffId.setBounds(97, 40, 135, 23);
 		retrieve_staff.add(lblEnterStaffId);
 		
@@ -1153,9 +1241,21 @@ db_config.connect_to_database();
 		btnGo_2.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img24 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo_2.setIcon(new ImageIcon(img24));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVisible(false);
+		scrollPane_1.setBounds(10, 131, 668, 267);
+		retrieve_staff.add(scrollPane_1);
+		
+		table_ret_st = new JTable();
+		table_ret_st.setVisible(false);
+		scrollPane_1.setViewportView(table_ret_st);
+		
 		btnGo_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
+				scrollPane_1.setVisible(true);
+				table_ret_st.setVisible(true);
 				try {
 					ResultSet rs = db_config.getData_operation(st1_name.getText(),"faculty");
 					table_ret_st.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1172,14 +1272,10 @@ db_config.connect_to_database();
 		separator_3.setBounds(0, 96, 688, 2);
 		retrieve_staff.add(separator_3);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 131, 668, 267);
-		retrieve_staff.add(scrollPane_1);
 		
-		table_ret_st = new JTable();
-		scrollPane_1.setViewportView(table_ret_st);
 		
 		JPanel update_staff = new JPanel();
+		update_staff.setBackground(new Color(255, 218, 185));
 		contentPane.add(update_staff, "p8");
 		update_staff.setLayout(null);
 		
@@ -1198,9 +1294,22 @@ db_config.connect_to_database();
 		btnGo_3.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img26 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo_3.setIcon(new ImageIcon(img26));
+		
+		JScrollPane scrollPane_6 = new JScrollPane();
+		scrollPane_6.setVisible(false);
+		scrollPane_6.setBackground(SystemColor.control);
+		scrollPane_6.setBounds(10, 102, 668, 190);
+		update_staff.add(scrollPane_6);
+		
+		table_up_st = new JTable();
+		table_up_st.setVisible(false);
+		scrollPane_6.setViewportView(table_up_st);
+		
 		btnGo_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				db_config.connect_to_database();
+				scrollPane_6.setVisible(true);
+				table_up_st.setVisible(true);
 				try {
 					ResultSet rs = db_config.getData_operation(st2_name.getText(),"faculty");
 					table_up_st.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1238,6 +1347,7 @@ db_config.connect_to_database();
 				});*/
 		
 		JPanel staff_up_details = new JPanel();
+		staff_up_details.setBackground(new Color(204, 204, 204));
 		staff_up_details.setBounds(10, 300, 668, 234);
 		update_staff.add(staff_up_details);
 		staff_up_details.setLayout(null);
@@ -1371,12 +1481,7 @@ db_config.connect_to_database();
 		staff_up_details.add(st2_dol);
 		st2_dol.setColumns(10);
 		
-		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_6.setBounds(10, 102, 668, 190);
-		update_staff.add(scrollPane_6);
 		
-		table_up_st = new JTable();
-		scrollPane_6.setViewportView(table_up_st);
 		table_up_st.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1427,6 +1532,7 @@ db_config.connect_to_database();
 		});
 		
 		JPanel delete_staff = new JPanel();
+		delete_staff.setBackground(new Color(255, 218, 185));
 		contentPane.add(delete_staff, "p9");
 		delete_staff.setLayout(null);
 		
@@ -1445,8 +1551,21 @@ db_config.connect_to_database();
 		btnDelete.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img25 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnDelete.setIcon(new ImageIcon(img25));
+		
+
+		JScrollPane scrollPane_7 = new JScrollPane();
+		scrollPane_7.setVisible(false);
+		scrollPane_7.setBounds(10, 108, 668, 210);
+		delete_staff.add(scrollPane_7);
+		
+		table_del_st = new JTable();
+		table_del_st.setVisible(false);
+		scrollPane_7.setViewportView(table_del_st);
+		
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				scrollPane_7.setVisible(true);
+				table_del_st.setVisible(true);
 				db_config.connect_to_database();
 				try {
 					ResultSet rs = db_config.getData_operation(st3_name.getText(),"faculty");
@@ -1464,17 +1583,12 @@ db_config.connect_to_database();
 		separator_5.setBounds(0, 95, 688, 2);
 		delete_staff.add(separator_5);
 		JPanel st_del_details = new JPanel();
+		st_del_details.setBackground(new Color(204, 204, 204));
 		st_del_details.setBounds(20, 329, 658, 210);
 		delete_staff.add(st_del_details);
 		st_del_details.setLayout(null);
 		st_del_details.setVisible(false);
 		
-		JScrollPane scrollPane_7 = new JScrollPane();
-		scrollPane_7.setBounds(10, 108, 668, 210);
-		delete_staff.add(scrollPane_7);
-		
-		table_del_st = new JTable();
-		scrollPane_7.setViewportView(table_del_st);
 		table_del_st.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1522,8 +1636,10 @@ db_config.connect_to_database();
 		st_del_details.add(btnDelete_2);
 		
 		JPanel assign_room = new JPanel();
+		
 		contentPane.add(assign_room, "p10");
 		assign_room.setLayout(null);
+		Image img43 = new ImageIcon(this.getClass().getResource("/room2.jpg")).getImage();
 		
 		JLabel lblRoomAllocation = new JLabel("Room Allocation");
 		lblRoomAllocation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1548,6 +1664,9 @@ db_config.connect_to_database();
 		
 		
 		room_id = new JTextField();
+		
+		
+		
 		room_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		room_id.setBounds(359, 172, 86, 20);
 		assign_room.add(room_id);
@@ -1565,6 +1684,10 @@ db_config.connect_to_database();
 		btnAssign.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img31 = new ImageIcon(this.getClass().getResource("/assign2.png")).getImage();
 		btnAssign.setIcon(new ImageIcon(img31));
+		
+		
+		 
+		
 		btnAssign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
@@ -1572,9 +1695,14 @@ db_config.connect_to_database();
 				hostel_operations ho = new hostel_operations();
 				HashMap<Integer, String> room = new HashMap<Integer, String>();
 				room.put(1, room_id.getText());
-				room.put(3, room_hid.getText());
+				room.put(2, room_hid.getText());
 				
-				room.put(2,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
+				
+				
+				//System.out.println(room_hid.getText());
+				
+				
+				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				ho.allot_room(room);
 				}catch(Exception ex) {
 					System.out.println(ex);
@@ -1583,25 +1711,33 @@ db_config.connect_to_database();
 		});
 		btnAssign.setBounds(258, 376, 129, 33);
 		assign_room.add(btnAssign);
-		
 		//try {
 		//hostel_operations ho = new hostel_operations();
-		//ho.room_no(room_hid.getText());
+		//String [] r =ho.room_no(room_hid.getText());
 		//}catch(Exception e) {
-		//	System.out.println(e);
+			//System.out.println(e);
 		//}
-		 room_no = new JComboBox( );
+		String [] r= {"1","2","3"};
+		room_no = new JComboBox(r);
+		
 		 room_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		room_no.setBounds(359, 276, 86, 20);
 		assign_room.add(room_no);
 		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(img43));
+		label_3.setBounds(0, 0, 688, 573);
+		assign_room.add(label_3);
+
+		
 		JPanel leave_room = new JPanel();
+		leave_room.setBackground(new Color(219, 112, 147));
 		contentPane.add(leave_room, "p11");
 		leave_room.setLayout(null);
 		
 		JLabel lblEnterStudentId_3 = new JLabel("Enter student Name");
-		lblEnterStudentId_3.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblEnterStudentId_3.setBounds(94, 48, 142, 17);
+		lblEnterStudentId_3.setFont(new Font("Lucida Sans", Font.BOLD, 14));
+		lblEnterStudentId_3.setBounds(75, 46, 164, 17);
 		leave_room.add(lblEnterStudentId_3);
 		
 		room2_name = new JTextField();
@@ -1614,8 +1750,20 @@ db_config.connect_to_database();
 		btnLeave.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img29 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnLeave.setIcon(new ImageIcon(img29));
+		
+		JScrollPane scrollPane_8 = new JScrollPane();
+		scrollPane_8.setVisible(false);
+		scrollPane_8.setBounds(10, 136, 668, 217);
+		leave_room.add(scrollPane_8);
+		
+		table_room = new JTable();
+		table_room.setVisible(false);
+		scrollPane_8.setViewportView(table_room);
+		
 		btnLeave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane_8.setVisible(true);
+				table_room.setVisible(true);
 				db_config.connect_to_database();
 				
 				try {
@@ -1636,17 +1784,13 @@ db_config.connect_to_database();
 		leave_room.add(separator_6);
 		
 		JPanel room_details = new JPanel();
-		room_details.setBounds(10, 353, 668, 193);
+		room_details.setBackground(new Color(255, 204, 204));
+		room_details.setBounds(10, 364, 668, 193);
 		leave_room.add(room_details);
 		room_details.setLayout(null);
 		room_details.setVisible(false);
 		
-		JScrollPane scrollPane_8 = new JScrollPane();
-		scrollPane_8.setBounds(10, 136, 668, 217);
-		leave_room.add(scrollPane_8);
 		
-		table_room = new JTable();
-		scrollPane_8.setViewportView(table_room);
 		table_room.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1695,6 +1839,7 @@ db_config.connect_to_database();
 		room_details.add(btnLeave_1);
 		
 		JPanel view_room = new JPanel();
+		view_room.setBackground(new Color(219, 112, 147));
 		contentPane.add(view_room, "p12");
 		view_room.setLayout(null);
 		
@@ -1716,9 +1861,22 @@ db_config.connect_to_database();
 		btnGetDetails.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img30 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGetDetails.setIcon(new ImageIcon(img30));
+		
+
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVisible(false);
+		scrollPane_2.setBounds(10, 170, 668, 225);
+		view_room.add(scrollPane_2);
+		
+		table_room2 = new JTable();
+		table_room2.setVisible(false);
+		scrollPane_2.setViewportView(table_room2);
+		
 		btnGetDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					scrollPane_2.setVisible(true);
+					table_room2.setVisible(true);
 					db_config.connect_to_database();
 					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
 					
@@ -1750,36 +1908,36 @@ db_config.connect_to_database();
 		view_room.add(room3_no);
 		room3_no.setColumns(10);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 170, 668, 225);
-		view_room.add(scrollPane_2);
-		
-		table_room2 = new JTable();
-		scrollPane_2.setViewportView(table_room2);
 		
 		JPanel fees_pay = new JPanel();
+		fees_pay.setBackground(new Color(255, 239, 213));
 		contentPane.add(fees_pay, "p13");
 		fees_pay.setLayout(null);
 		
 		JLabel lblFeesPayment = new JLabel("Fees Payment");
+		lblFeesPayment.setBackground(new Color(255, 255, 255));
+		lblFeesPayment.setForeground(new Color(0, 128, 128));
 		lblFeesPayment.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFeesPayment.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		lblFeesPayment.setBounds(222, 86, 181, 21);
+		lblFeesPayment.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
+		lblFeesPayment.setBounds(230, 127, 181, 21);
 		fees_pay.add(lblFeesPayment);
 		
 		JLabel lblStudentId = new JLabel("Student ID");
-		lblStudentId.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStudentId.setForeground(new Color(0, 0, 255));
+		lblStudentId.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		lblStudentId.setBounds(193, 188, 95, 14);
 		fees_pay.add(lblStudentId);
 		
 		JLabel lblMonthyear = new JLabel("Month-Year");
-		lblMonthyear.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblMonthyear.setForeground(new Color(0, 0, 255));
+		lblMonthyear.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		lblMonthyear.setBounds(193, 236, 95, 14);
 		fees_pay.add(lblMonthyear);
 		
 		JLabel lblPaymentDate = new JLabel("Payment Date");
-		lblPaymentDate.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblPaymentDate.setBounds(193, 289, 95, 14);
+		lblPaymentDate.setForeground(new Color(0, 0, 255));
+		lblPaymentDate.setFont(new Font("Lucida Sans", Font.BOLD, 15));
+		lblPaymentDate.setBounds(193, 289, 129, 17);
 		fees_pay.add(lblPaymentDate);
 		
 		fee_id = new JTextField();
@@ -1828,7 +1986,15 @@ db_config.connect_to_database();
 		btnPay.setBounds(262, 360, 104, 33);
 		fees_pay.add(btnPay);
 		
+		JLabel label_4 = new JLabel("");
+		label_4.setForeground(new Color(85, 107, 47));
+		Image img44 = new ImageIcon(this.getClass().getResource("/money3.jpg")).getImage();
+		label_4.setIcon(new ImageIcon(img44));
+		label_4.setBounds(0, 0, 688, 573);
+		fees_pay.add(label_4);
+		
 		JPanel view_fees = new JPanel();
+		view_fees.setBackground(new Color(0, 153, 204));
 		contentPane.add(view_fees, "p14");
 		view_fees.setLayout(null);
 		
@@ -1847,8 +2013,20 @@ db_config.connect_to_database();
 		btnGo_4.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img36 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo_4.setIcon(new ImageIcon(img36));
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setVisible(false);
+		scrollPane_3.setBounds(10, 207, 668, 250);
+		view_fees.add(scrollPane_3);
+		
+		table_fees = new JTable();
+		table_fees.setVisible(false);
+		scrollPane_3.setViewportView(table_fees);
+		
 		btnGo_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane_3.setVisible(true);
+				table_fees.setVisible(true);
 				db_config.connect_to_database();
 				
 				try {
@@ -1874,6 +2052,8 @@ db_config.connect_to_database();
 		btnDuesOfCurrent.setIcon(new ImageIcon(img37));
 		btnDuesOfCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				scrollPane_3.setVisible(true);
+				table_fees.setVisible(true);
 				db_config.connect_to_database();
 				
 				try {
@@ -1890,11 +2070,6 @@ db_config.connect_to_database();
 		btnDuesOfCurrent.setBounds(231, 124, 231, 33);
 		view_fees.add(btnDuesOfCurrent);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(10, 207, 668, 250);
-		view_fees.add(scrollPane_3);
 		
-		table_fees = new JTable();
-		scrollPane_3.setViewportView(table_fees);
 	}
 }
