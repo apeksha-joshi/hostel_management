@@ -126,6 +126,7 @@ public class gui extends JFrame {
     private JComboBox st_gender;
     private JComboBox room_no;
     private JTextField stu_dol;
+    private HashMap<Integer, String> room;
    // private String [] r = {};
    
 	/**
@@ -162,8 +163,23 @@ public class gui extends JFrame {
 		dm.addColumn("doj");
 		dm.addColumn("dol");
 	}*/
+	public void combobox(String hostel_id) {
+	try {
+		db_config.connect_to_database();
+		
+		String query = "Select * from room where hostel_id='"+hostel_id+"' and vacancy >0;";
+		System.out.println(query);
+		PreparedStatement ps = db_config.conn.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			room_no.addItem(rs.getString(1));
+		}
+	}catch(Exception ex) {
+		System.out.println(ex);
+	}
+	}
 	
-
 	
 	public gui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1648,13 +1664,9 @@ db_config.connect_to_database();
 		lblRoomNumber.setBounds(199, 230, 65, 14);
 		assign_room.add(lblRoomNumber);
 		
-		JLabel lblRoomNumber_1 = new JLabel("Room Number");
-		lblRoomNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblRoomNumber_1.setBounds(199, 282, 97, 14);
-		assign_room.add(lblRoomNumber_1);
-		
 		
 		room_id = new JTextField();
+		
 		
 		
 		
@@ -1677,6 +1689,33 @@ db_config.connect_to_database();
 		btnAssign.setIcon(new ImageIcon(img31));
 		
 		
+		room_no = new JComboBox();
+		 room_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		 room_no.setBounds(359, 312, 86, 20);
+		 assign_room.add(room_no);
+		 
+		 JButton btnCheckVacancy = new JButton("Check Vacancy");
+		 btnCheckVacancy.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		 room = new HashMap<Integer, String>();
+				
+				room.put(1, room_id.getText());
+				room.put(2, room_hid.getText());
+				
+				
+						combobox(room_hid.getText());
+					
+				
+				
+			
+				System.out.println(room_hid.getText());
+				
+				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
+				//pass_room(room);
+		 	}
+		 });
+		 btnCheckVacancy.setBounds(258, 270, 129, 23);
+		 assign_room.add(btnCheckVacancy);
 		 
 		
 		btnAssign.addActionListener(new ActionListener() {
@@ -1684,16 +1723,19 @@ db_config.connect_to_database();
 				db_config.connect_to_database();
 				try {
 				hostel_operations ho = new hostel_operations();
-				HashMap<Integer, String> room = new HashMap<Integer, String>();
-				room.put(1, room_id.getText());
-				room.put(2, room_hid.getText());
+			//	HashMap<Integer, String> room = new HashMap<Integer, String>();
+				
+				//room.put(1, room_id.getText());
+				//room.put(2, room_hid.getText());
 				
 				
 				
+				
+			
 				//System.out.println(room_hid.getText());
 				
+				//room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				
-				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				ho.allot_room(room);
 				}catch(Exception ex) {
 					System.out.println(ex);
@@ -1702,23 +1744,30 @@ db_config.connect_to_database();
 		});
 		btnAssign.setBounds(258, 376, 129, 33);
 		assign_room.add(btnAssign);
-		//try {
-		//hostel_operations ho = new hostel_operations();
-		//String [] r =ho.room_no(room_hid.getText());
-		//}catch(Exception e) {
-			//System.out.println(e);
-		//}
-		String [] r= {"1","2","3"};
-		room_no = new JComboBox(r);
 		
-		 room_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		room_no.setBounds(359, 276, 86, 20);
-		assign_room.add(room_no);
+		JLabel label_5 = new JLabel("");
+		label_5.setBounds(185, 304, 271, 48);
+		assign_room.add(label_5);
 		
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(img43));
-		label_3.setBounds(0, 0, 688, 573);
-		assign_room.add(label_3);
+		JLabel lblRoomNumber_1 = new JLabel("Room Number");
+		lblRoomNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblRoomNumber_1.setBounds(199, 315, 97, 14);
+		assign_room.add(lblRoomNumber_1);
+		
+
+	
+		 //try {
+		 //hostel_operations ho = new hostel_operations();
+		 //String [] r =ho.room_no(room_hid.getText());
+		 //}catch(Exception e) {
+		 	//System.out.println(e);
+		 //}
+		 
+		 
+		 JLabel label_3 = new JLabel("");
+		 label_3.setIcon(new ImageIcon(img43));
+		 label_3.setBounds(0, 0, 688, 573);
+		 assign_room.add(label_3);
 
 		
 		JPanel leave_room = new JPanel();
