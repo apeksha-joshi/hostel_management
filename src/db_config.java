@@ -110,13 +110,14 @@ public static ResultSet room_op(String query) throws SQLException{
 	return rs;
 }
 
-//public static ResultSet fees(String query) throws SQLException{
+public static ResultSet fees(String query) throws SQLException{
 
-	//PreparedStatement ps = conn.prepareStatement(query);
-	//ResultSet rs = ps.executeQuery();
+	System.out.println(query);
+	PreparedStatement ps = conn.prepareStatement(query);
+	ResultSet rs = ps.executeQuery();
 	
-	///return rs;
-//}
+	return rs;
+}
 
 
 public static void update_operation(String query) throws SQLException{

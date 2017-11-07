@@ -1694,9 +1694,15 @@ db_config.connect_to_database();
 		 room_no.setBounds(359, 312, 86, 20);
 		 assign_room.add(room_no);
 		 
+		 JLabel label_5 = new JLabel("");
+			label_5.setVisible(false);
+			label_5.setBounds(185, 304, 271, 48);
+			assign_room.add(label_5);
+		 
 		 JButton btnCheckVacancy = new JButton("Check Vacancy");
 		 btnCheckVacancy.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
+		 		label_5.setVisible(true);
 		 		 room = new HashMap<Integer, String>();
 				
 				room.put(1, room_id.getText());
@@ -1745,9 +1751,7 @@ db_config.connect_to_database();
 		btnAssign.setBounds(258, 376, 129, 33);
 		assign_room.add(btnAssign);
 		
-		JLabel label_5 = new JLabel("");
-		label_5.setBounds(185, 304, 271, 48);
-		assign_room.add(label_5);
+		
 		
 		JLabel lblRoomNumber_1 = new JLabel("Room Number");
 		lblRoomNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
@@ -2097,9 +2101,10 @@ db_config.connect_to_database();
 				db_config.connect_to_database();
 				
 				try {
-						String query ="SELECT sf.student_id, s.name, s.phone_number FROM student s, student_fees sf WHERE payment_date = \"\" AND monthly_status LIKE  '%NOW()%';";
-						//ResultSet rs = db_config.fees(query);
-						//table_fees.setModel(DbUtils.resultSetToTableModel(rs));
+						String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
+						
+						ResultSet rs = db_config.fees(query);
+						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
 						fee2_name.setText("");
 						
 				}catch(Exception e1) {

@@ -68,7 +68,7 @@ private static db_config db_ops = new db_config();
 	}
 	
 	public void pay_fees(HashMap<Integer, String> fees) throws Exception{
-		String insert_query ="INSERT INTO  `hostel_management`.`student_fees` (`student_id` ,`monthly_status` ,`payment_date`)VALUES (?,?,?);";
+		String insert_query ="INSERT INTO  `hostel_management`.`fees` (`student_id` ,`month_year` ,`payment_date`)VALUES (?,?,?);";
 				
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, fees);
@@ -129,28 +129,6 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, room);
 	}
 	
-	/*public String[] room_no(String hostel_id) throws Exception {
-		String[] rm = null;
-		try {
-		String query = "Select room_no from room where hostel_id='"+hostel_id+"';";
-		ArrayList<String> rooms = new ArrayList<String>();
-		
-		
-		PreparedStatement ps = db_config.conn.prepareStatement(query);
-		ResultSet rs = ps.executeQuery();
-		
-		while(rs.next()) {
-			rooms.add((String) rs.getObject(1));
-		}
-		rm = new String[rooms.size()];
-		rm=rooms.toArray(rm);
-		//System.out.println(room);
-		//String [] countries = (String[]) ArrayList.toArray(new String[ArrayList.size()]);
-	}catch(Exception e) {
-		System.out.println(e);
-	}
-	return rm;
-	}*/
 }
 
 	//ok juswet  malkel  it like na?waiwhere is retrieve student?
