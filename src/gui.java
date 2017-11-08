@@ -1037,8 +1037,12 @@ public class gui extends JFrame {
 				try {
 				db_config.connect_to_database();
 				String query = "update student set dol = NOW() where student_id ='"+stu3_id.getText()+"';";
+//				System.out.println("updated th dol");
 				db_config.update_operation(query);
-				
+//				System.out.println("updated th dol");
+				query = "update allot_student set is_deleted='Y' where student_id = "+stu3_id.getText()+";";
+				db_config.update_operation(query);
+				System.out.println("updated th allotroom");
 				ResultSet rs3 = db_config.delete_operation(stu3_id.getText(),"student");
 				table_del_stu.setModel(DbUtils.resultSetToTableModel(rs3));
 				JOptionPane.showMessageDialog(null, "Deleted");
@@ -1866,8 +1870,10 @@ db_config.connect_to_database();
 					try {
 					db_config.connect_to_database();
 					String query = "update student set dol = NOW() where student_id ='"+room2_id.getText()+"';";
+					System.out.println("this the thing");
 					db_config.update_operation(query);
-					
+					query = "update allot_student set is_deleted='Y' where student_id = "+room2_id.getText()+";";
+					db_config.update_operation(query);
 					ResultSet rs3 = db_config.delete_operation(room2_id.getText(),"student");
 					table_room.setModel(DbUtils.resultSetToTableModel(rs3));
 					JOptionPane.showMessageDialog(null, "Left");
