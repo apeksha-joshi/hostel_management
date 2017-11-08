@@ -885,14 +885,14 @@ public class gui extends JFrame {
 				stu2_name2.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 1).toString());
 				stu2_father.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 2).toString());
 				stu2_phone.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 3).toString());
-				stu2_age.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
-				stu2_gender.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 5).toString());
-				stu2_dob.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 6).toString());
-				stu2_branch.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 7).toString());
-				stu2_semester.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 8).toString());
-				stu2_address.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 9).toString());
-				stu2_doj.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 10).toString());
-				stu2_dol.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 11).toString());
+				//stu2_age.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
+				stu2_gender.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
+				stu2_dob.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(),5).toString());
+				stu2_branch.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 6).toString());
+				stu2_semester.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 7).toString());
+				stu2_address.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 8).toString());
+				stu2_doj.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 9).toString());
+				stu2_dol.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 10).toString());
 			}
 		});
 		
