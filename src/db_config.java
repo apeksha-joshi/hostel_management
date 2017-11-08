@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class db_config {
 	public static Connection conn = null;
 	private static String db_username = "root";
-	private static String db_password = "";
+	private static String db_password = "root";
 	private static String db_name = "hostel_management";
 	private static String db_host = "localhost";
 //	call the gui from the main class u llo do kor i do?
@@ -122,6 +122,7 @@ public static ResultSet fees(String query) throws SQLException{
 
 public static void update_operation(String query) throws SQLException{
 	Statement st = conn.createStatement();
+	System.out.println("query is "+query);
 	st.executeUpdate(query);
  }
 
