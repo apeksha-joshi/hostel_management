@@ -94,7 +94,6 @@ public class gui extends JFrame {
     private JTextField st2_phone;
     private JTextField st2_dept;
     private JTextField st2_dob;
-    private JTextField st2_age;
     private JTextField st2_gender;
     private JTextField st2_address;
     private JTextField st2_salary;
@@ -105,7 +104,6 @@ public class gui extends JFrame {
     private JTextField stu2_name2;
     private JTextField stu2_father;
     private JTextField stu2_phone;
-    private JTextField stu2_age;
     private JTextField stu2_gender;
     private JTextField stu2_dob;
     private JTextField stu2_branch;
@@ -121,12 +119,14 @@ public class gui extends JFrame {
     private JTextField room2_id;
     private JTextField room3_no;
     private JTable table_room2;
-    private JTable table_fees;
     private JComboBox stu_gender;
     private JComboBox st_gender;
     private JComboBox room_no;
     private JTextField stu_dol;
     private HashMap<Integer, String> room;
+    private JTextField st3_hid;
+    private JTextField fee2_id;
+    private JTable table_fees;
    // private String [] r = {};
    
 	/**
@@ -764,19 +764,14 @@ public class gui extends JFrame {
 		lblPhoneNumber_1.setBounds(34, 128, 123, 14);
 		stu_up_details.add(lblPhoneNumber_1);
 		
-		JLabel lblAge_1 = new JLabel("Age");
-		lblAge_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
-		lblAge_1.setBounds(34, 167, 46, 14);
-		stu_up_details.add(lblAge_1);
-		
 		JLabel lblGender_1 = new JLabel("Gender");
 		lblGender_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
-		lblGender_1.setBounds(34, 201, 46, 14);
+		lblGender_1.setBounds(34, 167, 46, 14);
 		stu_up_details.add(lblGender_1);
 		
 		JLabel lblDob_1 = new JLabel("DOB");
 		lblDob_1.setFont(new Font("Lucida Sans", Font.BOLD, 12));
-		lblDob_1.setBounds(34, 233, 46, 14);
+		lblDob_1.setBounds(34, 204, 46, 14);
 		stu_up_details.add(lblDob_1);
 		
 		stu2_id = new JTextField();
@@ -803,21 +798,15 @@ public class gui extends JFrame {
 		stu_up_details.add(stu2_phone);
 		stu2_phone.setColumns(10);
 		
-		stu2_age = new JTextField();
-		stu2_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu2_age.setBounds(183, 164, 86, 20);
-		stu_up_details.add(stu2_age);
-		stu2_age.setColumns(10);
-		
 		stu2_gender = new JTextField();
 		stu2_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu2_gender.setBounds(183, 198, 86, 20);
+		stu2_gender.setBounds(183, 164, 86, 20);
 		stu_up_details.add(stu2_gender);
 		stu2_gender.setColumns(10);
 		
 		stu2_dob = new JTextField();
 		stu2_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu2_dob.setBounds(183, 230, 86, 20);
+		stu2_dob.setBounds(183, 201, 86, 20);
 		stu_up_details.add(stu2_dob);
 		stu2_dob.setColumns(10);
 		
@@ -903,7 +892,7 @@ public class gui extends JFrame {
 				
 				
 				
-				String query = "update student set student_id = '"+stu2_id.getText()+"', name = '"+stu2_name2.getText()+"',father_name = '"+stu2_father.getText()+"',phone_number = '"+stu2_phone.getText()+"',age = '"+stu2_age.getText()+"',gender = '"+stu2_gender.getText()+"',dob = '"+stu2_dob.getText()+"',branch = '"+stu2_branch.getText()+"',semester = '"+stu2_semester.getText()+"',home_address = '"+stu2_address.getText()+"',doj = '"+stu2_doj.getText()+"',dol = '"+stu2_dol.getText()+"'where student_id='"+stu2_id.getText()+"'";
+				String query = "update student set student_id = '"+stu2_id.getText()+"', name = '"+stu2_name2.getText()+"',father_name = '"+stu2_father.getText()+"',phone_number = '"+stu2_phone.getText()+"',gender = '"+stu2_gender.getText()+"',dob = '"+stu2_dob.getText()+"',branch = '"+stu2_branch.getText()+"',semester = '"+stu2_semester.getText()+"',home_address = '"+stu2_address.getText()+"',doj = '"+stu2_doj.getText()+"',dol = '"+stu2_dol.getText()+"'where student_id='"+stu2_id.getText()+"'";
 				db_config.update_operation(query);
 				
 				ResultSet rs = db_config.getData_operation(stu2_name2.getText(),"student");
@@ -928,7 +917,7 @@ public class gui extends JFrame {
 				stu2_name2.setText("");
 				stu2_father.setText("");
 				stu2_phone.setText("");
-				stu2_age.setText("");
+				//stu2_age.setText("");
 				stu2_gender.setText("");
 				stu2_dob.setText("");
 				stu2_branch.setText("");
@@ -1039,10 +1028,15 @@ public class gui extends JFrame {
 				String query = "update student set dol = NOW() where student_id ='"+stu3_id.getText()+"';";
 				db_config.update_operation(query);
 				
+//				System.out.println("updated th dol");
+				query = "update allot_student set is_deleted='Y' where student_id = "+stu3_id.getText()+";";
+				db_config.update_operation(query);
 				ResultSet rs3 = db_config.delete_operation(stu3_id.getText(),"student");
 				table_del_stu.setModel(DbUtils.resultSetToTableModel(rs3));
 				JOptionPane.showMessageDialog(null, "Deleted");
 				stu3_id.setText("");
+				CardLayout c =(CardLayout)(contentPane.getLayout());
+				c.show(contentPane,"p11");
 				}
 				catch(Exception exe) {
 					//JOptionPane.showMessageDialog(null, "Could not Delete");
@@ -1385,11 +1379,6 @@ db_config.connect_to_database();
 		lblDob_2.setBounds(25, 153, 46, 14);
 		staff_up_details.add(lblDob_2);
 		
-		JLabel lblAge_2 = new JLabel("Age");
-		lblAge_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblAge_2.setBounds(25, 194, 46, 17);
-		staff_up_details.add(lblAge_2);
-		
 		st2_id = new JTextField();
 		st2_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st2_id.setBounds(183, 8, 86, 20);
@@ -1419,12 +1408,6 @@ db_config.connect_to_database();
 		st2_dob.setBounds(183, 150, 86, 20);
 		staff_up_details.add(st2_dob);
 		st2_dob.setColumns(10);
-		
-		st2_age = new JTextField();
-		st2_age.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st2_age.setBounds(183, 191, 86, 20);
-		staff_up_details.add(st2_age);
-		st2_age.setColumns(10);
 		
 		JLabel lblGender_2 = new JLabel("Gender");
 		lblGender_2.setFont(new Font("Lucida Sans", Font.BOLD, 13));
@@ -1498,13 +1481,13 @@ db_config.connect_to_database();
 				st2_phone.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 2).toString());
 				st2_dept.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 3).toString());
 				st2_dob.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 4).toString());
-				st2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
-				st2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
-				st2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
-				st2_salary.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
+				//st2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
+				st2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
+				st2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
+				st2_salary.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
 				
-				st2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
-				st2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
+				st2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
+				st2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
 			}
 		});
 		btnUpdate_2.addActionListener(new ActionListener() {
@@ -1515,7 +1498,7 @@ db_config.connect_to_database();
 					
 					ResultSet rs = db_config.getData_operation(st2_name2.getText(),"faculty");
 					table_up_st.setModel(DbUtils.resultSetToTableModel(rs));
-				String query = "update faculty set faculty_id = '"+st2_id.getText()+"',name = '"+st2_name2.getText()+"',phone_number = '"+st2_phone.getText()+"',department = '"+st2_dept.getText()+"',dob = '"+st2_dob.getText()+"',age = '"+st2_age.getText()+"',gender = '"+st2_gender.getText()+"',address = '"+st2_address.getText()+"',salary = '"+st2_salary.getText()+"',doj = '"+st2_doj.getText()+"',dol = '"+st2_dol.getText()+"'where faculty_id='"+st2_id.getText()+"'";
+				String query = "update faculty set faculty_id = '"+st2_id.getText()+"',name = '"+st2_name2.getText()+"',phone_number = '"+st2_phone.getText()+"',department = '"+st2_dept.getText()+"',dob = '"+st2_dob.getText()+"',gender = '"+st2_gender.getText()+"',address = '"+st2_address.getText()+"',salary = '"+st2_salary.getText()+"',doj = '"+st2_doj.getText()+"',dol = '"+st2_dol.getText()+"'where faculty_id='"+st2_id.getText()+"'";
 				db_config.update_operation(query);
 				
 				ResultSet rs2 = db_config.getData_operation(st2_name2.getText(),"faculty");
@@ -1526,7 +1509,7 @@ db_config.connect_to_database();
 				st2_phone.setText("");
 				st2_dept.setText("");
 				st2_dob.setText("");
-				st2_age.setText("");
+				//st2_age.setText("");
 				st2_gender.setText("");
 				st2_address.setText("");
 				st2_salary.setText("");
@@ -1601,6 +1584,7 @@ db_config.connect_to_database();
 			public void mouseClicked(MouseEvent arg0) {
 				st_del_details.setVisible(true);
 				st3_id.setText(table_del_st.getValueAt(table_del_st.getSelectedRow(), 0).toString());
+				st3_hid.setText(table_del_st.getValueAt(table_del_st.getSelectedRow(), 6).toString());
 			}
 		});
 		
@@ -1608,12 +1592,12 @@ db_config.connect_to_database();
 		
 		JLabel lblStaffName = new JLabel("Staff ID");
 		lblStaffName.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblStaffName.setBounds(200, 82, 92, 14);
+		lblStaffName.setBounds(197, 45, 92, 14);
 		st_del_details.add(lblStaffName);
 		
 		st3_id = new JTextField();
 		st3_id.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st3_id.setBounds(372, 79, 86, 20);
+		st3_id.setBounds(364, 42, 86, 20);
 		st_del_details.add(st3_id);
 		st3_id.setColumns(10);
 		
@@ -1625,13 +1609,15 @@ db_config.connect_to_database();
 			public void actionPerformed(ActionEvent e) {
 				try {
 					db_config.connect_to_database();
+					hostel_operations ho = new hostel_operations();
 					String query = "update faculty set dol = NOW() where faculty_id ='"+st3_id.getText()+"';";
 					db_config.update_operation(query);
-					
+					ho.faculty_incharge_rooms(st3_hid.getText());
 					ResultSet rs3 = db_config.delete_operation(st3_id.getText(),"faculty");
 					table_del_st.setModel(DbUtils.resultSetToTableModel(rs3));
 					JOptionPane.showMessageDialog(null, "Deleted");
 					st3_id.setText("");
+					st3_hid.setText("");
 					}
 					catch(Exception exe) {
 						//JOptionPane.showMessageDialog(null, "Could not Delete");
@@ -1641,6 +1627,16 @@ db_config.connect_to_database();
 		});
 		btnDelete_2.setBounds(271, 140, 128, 33);
 		st_del_details.add(btnDelete_2);
+		
+		JLabel lblHostelId_1 = new JLabel("Hostel ID");
+		lblHostelId_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblHostelId_1.setBounds(197, 94, 92, 14);
+		st_del_details.add(lblHostelId_1);
+		
+		st3_hid = new JTextField();
+		st3_hid.setBounds(364, 92, 86, 20);
+		st_del_details.add(st3_hid);
+		st3_hid.setColumns(10);
 		
 		JPanel assign_room = new JPanel();
 		
@@ -2058,18 +2054,9 @@ db_config.connect_to_database();
 		Image img36 = new ImageIcon(this.getClass().getResource("/getdetails.png")).getImage();
 		btnGo_4.setIcon(new ImageIcon(img36));
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setVisible(false);
-		scrollPane_3.setBounds(10, 207, 668, 250);
-		view_fees.add(scrollPane_3);
-		
-		table_fees = new JTable();
-		table_fees.setVisible(false);
-		scrollPane_3.setViewportView(table_fees);
-		
 		btnGo_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrollPane_3.setVisible(true);
+			//	scrollPane_3.setVisible(true);
 				table_fees.setVisible(true);
 				db_config.connect_to_database();
 				
@@ -2083,11 +2070,18 @@ db_config.connect_to_database();
 				}
 			}
 		});
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(20, 163, 640, 234);
+		view_fees.add(scrollPane_3);
+		
+		table_fees = new JTable();
+		scrollPane_3.setViewportView(table_fees);
 		btnGo_4.setBounds(491, 41, 141, 33);
 		view_fees.add(btnGo_4);
 		
 		JSeparator separator_8 = new JSeparator();
-		separator_8.setBounds(0, 106, 688, 2);
+		separator_8.setBounds(10, 150, 688, 2);
 		view_fees.add(separator_8);
 		
 		JButton btnDuesOfCurrent = new JButton("Dues of current month");
@@ -2101,10 +2095,18 @@ db_config.connect_to_database();
 				db_config.connect_to_database();
 				
 				try {
-						String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
+						//String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
+						//hostel_operations ho = new hostel_operations();
+						//ResultSet rs = db_config.fees(query);
+						//ArrayList<String> unpaid = ho.get_payment_details(fee2_id.getText());
 						
-						ResultSet rs = db_config.fees(query);
-						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
+						//DefaultTableModel model = (DefaultTableModel)table_fees.getModel();
+						//Object rowData[] = new Object[1];
+						//for(int i=0;i<unpaid.size();i++) {
+						//	rowData[i] = unpaid.get(i);
+						//	model.addRow(rowData);
+						//}
+						//table_fees.setModel(DbUtils.resultSetToTableModel((ResultSet) unpaid));
 						fee2_name.setText("");
 						
 				}catch(Exception e1) {
@@ -2112,8 +2114,18 @@ db_config.connect_to_database();
 				}
 			}
 		});
-		btnDuesOfCurrent.setBounds(231, 124, 231, 33);
+		btnDuesOfCurrent.setBounds(429, 95, 231, 33);
 		view_fees.add(btnDuesOfCurrent);
+		
+		fee2_id = new JTextField();
+		fee2_id.setBounds(285, 102, 86, 20);
+		view_fees.add(fee2_id);
+		fee2_id.setColumns(10);
+		
+		JLabel lblStudentId_4 = new JLabel("Student ID");
+		lblStudentId_4.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		lblStudentId_4.setBounds(74, 95, 112, 24);
+		view_fees.add(lblStudentId_4);
 		
 		
 	}

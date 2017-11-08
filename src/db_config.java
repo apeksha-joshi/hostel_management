@@ -124,4 +124,12 @@ public static void update_operation(String query) throws SQLException{
 	Statement st = conn.createStatement();
 	st.executeUpdate(query);
  }
+
+public static ResultSet retireve_data(String query) throws Exception {
+	
+	PreparedStatement ps = conn.prepareStatement(query);
+	ResultSet rs = ps.executeQuery();
+	
+	return rs;
+}
 }

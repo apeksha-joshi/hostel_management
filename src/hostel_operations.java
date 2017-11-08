@@ -3,7 +3,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 public class hostel_operations {
 private static db_config db_ops = new db_config();
@@ -83,7 +87,7 @@ private static db_config db_ops = new db_config();
 	public void faculty_incharge_rooms(String hostel_id) throws Exception {
 		
 		String query = "Select room_no from room where hostel_id = "+ Integer.parseInt(hostel_id) +";";
-		String query_faculty = "Select 	faculty_id from faculty where hostel_id = "+ Integer.parseInt(hostel_id) +";";
+		String query_faculty = "Select 	faculty_id from faculty where hostel_id = "+ Integer.parseInt(hostel_id) +" and dol = \"\";";
 		
 		ArrayList<Integer>room_ids = new ArrayList<Integer>();
 		ArrayList<Integer>faculty_ids = new ArrayList<Integer>();
@@ -105,7 +109,7 @@ private static db_config db_ops = new db_config();
 		
 		int rooms = room_ids.size();
 		int faculty_count = faculty_ids.size();
-		//System.out.println(rooms+"  "+faculty_count);
+		System.out.println(rooms+"  "+faculty_count);
 		
 		//assigning the rooms in round robin fashion
 		for(int i=0,j=0;i<rooms;i++,j++) {
@@ -113,7 +117,7 @@ private static db_config db_ops = new db_config();
 				j=0;
 			}
 			String update_query = "Update room set faculty_id = "+faculty_ids.get(j)+" where room_no = "+ room_ids.get(i) +" and hostel_id="+hostel_id+";";
-			//System.out.println("the query is "+update_query);
+			System.out.println("the query is "+update_query);
 			Statement st = db_config.conn.createStatement();
 			st.executeUpdate(update_query);
 		}
@@ -127,6 +131,90 @@ private static db_config db_ops = new db_config();
 		String insert_query="INSERT INTO  `hostel_management`.`allot_student` (`student_id`,`hostel_id` ,`room_no` )VALUES (?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, room);
+	}
+	
+	public static Date get_parsed_date(String date, String format) throws ParseException {
+		Date date_obj = new Date();
+		if (format.equals("dd-MM-yyyy")) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			date_obj = sdf.parse(date);
+		} else if (format.equals("MMM-yyyy")) {
+			SimpleDateFormat sdf = new SimpleDateFormat("MMM-yyyy");
+			date_obj = sdf.parse(date);
+		}
+		return date_obj;
+	}
+
+	public static ArrayList<String> get_master_list(Date doj_date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM-yyyy");
+		ArrayList<String> master_dates = new ArrayList<String>();
+		Calendar c = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
+		c.setTime(doj_date);
+		master_dates.add(sdf.format(doj_date));
+		while (true) {
+			if (c.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
+				if (c.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
+					break;
+				}
+			}
+			System.out.println("inside loop");
+			c.add(Calendar.MONTH, 1);
+			master_dates.add(sdf.format(new Date(c.getTimeInMillis())));
+		}
+		return master_dates;
+	}
+
+	public static ArrayList<String> get_paid_dates_list(ResultSet rs, int col_num) throws SQLException, ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM-yyyy");
+		ArrayList<String> paid_dates = new ArrayList<String>();
+		Calendar cal = Calendar.getInstance();
+		while (rs.next()) {
+			cal.setTime(get_parsed_date((String) rs.getObject(col_num), "MMM-yyyy"));
+			paid_dates.add(sdf.format(new Date(cal.getTimeInMillis())));
+		}
+		return paid_dates;
+	}
+
+	public static ArrayList<String> get_unpaid_months(ArrayList<String> master, ArrayList<String> paid) {
+		for (int i = 0; i < paid.size(); i++) {
+			if (master.indexOf(paid.get(i)) > -1) {
+				master.remove(master.indexOf(paid.get(i)));
+			}
+		}
+		return master;
+
+	}
+
+	public ArrayList<String> get_payment_details(String student_id) throws Exception {
+		String query = "select * from fees where student_id=" + student_id + ";";
+		String query_1 = "select doj from student where student_id=" + student_id + ";";
+		ResultSet rs_student = db_config.retireve_data(query_1);
+		rs_student.next();
+
+		Date doj_date = get_parsed_date((String) rs_student.getObject(1), "dd-MM-yyyy");
+		System.out.println("date object is " + doj_date);
+
+		ArrayList<String> master_dates = new ArrayList<String>();
+		master_dates = get_master_list(doj_date);
+		System.out.println(master_dates);
+		ResultSet rs_fees = db_config.retireve_data(query);
+		ArrayList<String> paid_dates = new ArrayList<String>();
+		paid_dates = get_paid_dates_list(rs_fees, 2);
+		System.out.println(paid_dates);
+		ArrayList<String> unpaid_dates = new ArrayList<String>();
+		unpaid_dates = get_unpaid_months(master_dates, paid_dates);
+		System.out.println("due months are " + unpaid_dates);
+		ArrayList<String> header = new ArrayList<String>();
+		header.add("Unpaid_months");
+		
+		//ResultSet rs_final ;
+		//rs_final.moveToInsertRow();
+		//rs_final.updateString("someColumn", "someValue");
+		//rs.insertRow();
+		
+		return unpaid_dates;
+		
 	}
 	
 }
