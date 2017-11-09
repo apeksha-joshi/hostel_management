@@ -16,7 +16,7 @@ private static db_config db_ops = new db_config();
 	
 	/*insert student into the db*/
 	public void add_student(HashMap<Integer, String> student) throws SQLException{
-		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`, `dol`) VALUES (?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO `hostel_management`.`student` (`name`, `father_name`, `phone_number`, `gender`, `dob`, `branch`, `semester`, `home_address`, `doj`) VALUES (?,?,?,?,?,?,?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, student);
 	}
@@ -67,7 +67,7 @@ private static db_config db_ops = new db_config();
 	
 	
 	public void add_faculty(HashMap<Integer, String> faculty) throws Exception{
-		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`, `gender` ,`hostel_id`, `address`,`salary` ,`doj`,`dol`)VALUES (?,?,?,?,?,?,?,?,?,?);";
+		String insert_query = "INSERT INTO  `hostel_management`.`faculty` (`name` ,`phone_number` ,`department` ,`dob`, `gender` ,`hostel_id`, `address`,`salary` ,`doj`)VALUES (?,?,?,?,?,?,?,?,?);";
 				
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, faculty);
@@ -178,9 +178,12 @@ private static db_config db_ops = new db_config();
 		SimpleDateFormat sdf = new SimpleDateFormat("MMM-yyyy");
 		ArrayList<String> paid_dates = new ArrayList<String>();
 		Calendar cal = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();
 		while (rs.next()) {
 			cal.setTime(get_parsed_date((String) rs.getObject(col_num), "MMM-yyyy"));
+			if (cal.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
 			paid_dates.add(sdf.format(new Date(cal.getTimeInMillis())));
+			}
 		}
 		return paid_dates;
 	}
