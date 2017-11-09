@@ -167,7 +167,7 @@ public class gui extends JFrame {
 	try {
 		db_config.connect_to_database();
 		
-		String query = "Select * from room where hostel_id='"+hostel_id+"' and vacancy >0;";
+		String query = "Select * from room where hostel_id='"+hostel_id+"' and NEW.vacancy >0;";
 		System.out.println(query);
 		PreparedStatement ps = db_config.conn.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
@@ -1918,7 +1918,7 @@ db_config.connect_to_database();
 					scrollPane_2.setVisible(true);
 					table_room2.setVisible(true);
 					db_config.connect_to_database();
-					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
+					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, a.is_deleted, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
 					
 					ResultSet rs =db_config.room_op(query);
 					
@@ -2091,16 +2091,21 @@ db_config.connect_to_database();
 		btnDuesOfCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane_3.setVisible(true);
-				table_fees.setVisible(true);
+				//table_fees.setVisible(true);
 				db_config.connect_to_database();
 				
 				try {
 						//String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
-						//hostel_operations ho = new hostel_operations();
+						hostel_operations ho = new hostel_operations();
 						//ResultSet rs = db_config.fees(query);
-						//ArrayList<String> unpaid = ho.get_payment_details(fee2_id.getText());
-						
-						//DefaultTableModel model = (DefaultTableModel)table_fees.getModel();
+						 ho.get_payment_details(fee2_id.getText());
+						//for(int i=0;i<unpaid.length;i++) {
+						//System.out.println("object is"+unpaid);
+						//}
+						//String head[] = {"Unpaid_month"};
+						//DefaultTableModel model = new DefaultTableModel(head,0);
+						//table_fees=new JTable(model);
+						//model.addRow(unpaid);
 						//Object rowData[] = new Object[1];
 						//for(int i=0;i<unpaid.size();i++) {
 						//	rowData[i] = unpaid.get(i);

@@ -186,7 +186,7 @@ private static db_config db_ops = new db_config();
 
 	}
 
-	public ArrayList<String> get_payment_details(String student_id) throws Exception {
+	public void get_payment_details(String student_id) throws Exception {
 		String query = "select * from fees where student_id=" + student_id + ";";
 		String query_1 = "select doj from student where student_id=" + student_id + ";";
 		ResultSet rs_student = db_config.retireve_data(query_1);
@@ -205,15 +205,17 @@ private static db_config db_ops = new db_config();
 		ArrayList<String> unpaid_dates = new ArrayList<String>();
 		unpaid_dates = get_unpaid_months(master_dates, paid_dates);
 		System.out.println("due months are " + unpaid_dates);
-		ArrayList<String> header = new ArrayList<String>();
-		header.add("Unpaid_months");
+		//ArrayList<String> header = new ArrayList<String>();
+		//header.add("Unpaid_months");
+		String[] rs_final = (String[]) unpaid_dates.toArray() ;
+		
 		
 		//ResultSet rs_final ;
 		//rs_final.moveToInsertRow();
 		//rs_final.updateString("someColumn", "someValue");
 		//rs.insertRow();
 		
-		return unpaid_dates;
+		//return rs_final;
 		
 	}
 	

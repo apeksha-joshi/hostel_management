@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class db_config {
 	public static Connection conn = null;
 	private static String db_username = "root";
-	private static String db_password = "root";
+	private static String db_password = "";
 	private static String db_name = "hostel_management";
 	private static String db_host = "localhost";
 //	call the gui from the main class u llo do kor i do?
@@ -64,7 +64,7 @@ public static ResultSet getData_operation(String name, String table_name) throws
 	}else if(table_name == "faculty") {
 		query="Select * from faculty where name like ?;";
 	}else if(table_name == "room") {
-		query = "Select s.student_id,s.name,r.room_no,r.hostel_id from student s,allot_student r where s.student_id=r.student_id and s.name like ?;";
+		query = "Select s.student_id,s.name,r.room_no,r.hostel_id, r.is_deleted from student s,allot_student r where s.student_id=r.student_id and s.name like ?;";
 	}else if(table_name == "fees") {
 		query = "select sf.student_id,s.name,sf.month_year,sf.payment_date from student s,fees sf where sf.student_id=s.student_id and s.name like ?;";
 	}
