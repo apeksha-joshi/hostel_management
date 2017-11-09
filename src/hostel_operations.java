@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import com.mockrunner.mock.jdbc.MockResultSet;
 public class hostel_operations {
 private static db_config db_ops = new db_config();
 	
@@ -193,7 +195,7 @@ private static db_config db_ops = new db_config();
 
 	}
 
-	public void get_payment_details(String student_id) throws Exception {
+	public ResultSet get_payment_details(String student_id) throws Exception {
 		String query = "select * from fees where student_id=" + student_id + ";";
 		String query_1 = "select doj from student where student_id=" + student_id + ";";
 		ResultSet rs_student = db_config.retireve_data(query_1);
@@ -211,18 +213,18 @@ private static db_config db_ops = new db_config();
 		System.out.println(paid_dates);
 		ArrayList<String> unpaid_dates = new ArrayList<String>();
 		unpaid_dates = get_unpaid_months(master_dates, paid_dates);
-		System.out.println("due months are " + unpaid_dates);
-		//ArrayList<String> header = new ArrayList<String>();
-		//header.add("Unpaid_months");
-		String[] rs_final = (String[]) unpaid_dates.toArray() ;
 		
+		MockResultSet mrs = new MockResultSet("hostel_operations");
+		mrs.addColumn("Due Months");
+		for (int j=0;j<unpaid_dates.size();j++) {
+			ArrayList singleList = new ArrayList<Object>();
+			singleList.add(unpaid_dates.get(j));
+			mrs.addRow(singleList);
+		}
+		ResultSet rs = mrs;
+		System.out.println(rs instanceof ResultSet);
 		
-		//ResultSet rs_final ;
-		//rs_final.moveToInsertRow();
-		//rs_final.updateString("someColumn", "someValue");
-		//rs.insertRow();
-		
-		//return rs_final;
+		return rs;
 		
 	}
 	

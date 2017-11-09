@@ -171,7 +171,7 @@ public class gui extends JFrame {
 		System.out.println(query);
 		PreparedStatement ps = db_config.conn.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
-		
+		room_no.removeAllItems();
 		while(rs.next()) {
 			room_no.addItem(rs.getString(1));
 		}
@@ -2091,14 +2091,14 @@ db_config.connect_to_database();
 		btnDuesOfCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrollPane_3.setVisible(true);
-				//table_fees.setVisible(true);
+				table_fees.setVisible(true);
 				db_config.connect_to_database();
 				
 				try {
 						//String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
 						hostel_operations ho = new hostel_operations();
 						//ResultSet rs = db_config.fees(query);
-						 ho.get_payment_details(fee2_id.getText());
+						ResultSet rs = ho.get_payment_details(fee2_id.getText());
 						//for(int i=0;i<unpaid.length;i++) {
 						//System.out.println("object is"+unpaid);
 						//}
@@ -2111,7 +2111,7 @@ db_config.connect_to_database();
 						//	rowData[i] = unpaid.get(i);
 						//	model.addRow(rowData);
 						//}
-						//table_fees.setModel(DbUtils.resultSetToTableModel((ResultSet) unpaid));
+						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
 						fee2_name.setText("");
 						
 				}catch(Exception e1) {
