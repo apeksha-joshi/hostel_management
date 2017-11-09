@@ -151,16 +151,23 @@ private static db_config db_ops = new db_config();
 		Calendar c = Calendar.getInstance();
 		Calendar today = Calendar.getInstance();
 		c.setTime(doj_date);
-		master_dates.add(sdf.format(doj_date));
+		//master_dates.add(sdf.format(doj_date));
 		while (true) {
 			if (c.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
 				if (c.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
+				//	System.out.println("Inside if");
 					break;
 				}
 			}
 			System.out.println("inside loop");
-			c.add(Calendar.MONTH, 1);
+			if (c.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
+			//c.add(Calendar.MONTH, 1);
 			master_dates.add(sdf.format(new Date(c.getTimeInMillis())));
+			c.add(Calendar.MONTH, 1);
+			continue;
+			//System.out.println("added to master");
+			}
+			c.add(Calendar.MONTH, 1);
 		}
 		return master_dates;
 	}
@@ -197,7 +204,7 @@ private static db_config db_ops = new db_config();
 
 		ArrayList<String> master_dates = new ArrayList<String>();
 		master_dates = get_master_list(doj_date);
-		System.out.println(master_dates);
+		System.out.println("master is"+master_dates);
 		ResultSet rs_fees = db_config.retireve_data(query);
 		ArrayList<String> paid_dates = new ArrayList<String>();
 		paid_dates = get_paid_dates_list(rs_fees, 2);

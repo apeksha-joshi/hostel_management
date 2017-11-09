@@ -167,7 +167,7 @@ public class gui extends JFrame {
 	try {
 		db_config.connect_to_database();
 		
-		String query = "Select * from room where hostel_id='"+hostel_id+"' and NEW.vacancy >0;";
+		String query = "Select * from room where hostel_id='"+hostel_id+"' and vacancy >0;";
 		System.out.println(query);
 		PreparedStatement ps = db_config.conn.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
