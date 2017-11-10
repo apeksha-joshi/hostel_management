@@ -57,8 +57,6 @@ public class gui extends JFrame {
 	private JTextField stu_father;
 	private JTextField stu_phone;
 	private JTextField stu_dob;
-	private JTextField stu_branch;
-	private JTextField stu_sem;
 	private JTextField stu_address;
 	private JTextField stu_doj;
 	private JTextField stu1_name;
@@ -66,9 +64,7 @@ public class gui extends JFrame {
 	private JTextField stu3_name;
 	private JTextField st_name;
 	private JTextField st_phone;
-	private JTextField st_dept;
 	private JTextField st_dob;
-	private JTextField st_hid;
 	private JTextField st_address;
 	private JTextField st_salary;
 	private JTextField st_doj;
@@ -76,9 +72,7 @@ public class gui extends JFrame {
 	private JTextField st2_name;
 	private JTextField st3_name;
 	private JTextField room_id;
-	private JTextField room_hid;
 	private JTextField room2_name;
-	private JTextField room3_hid;
 	private JTextField fee_id;
 	private JTextField fees_mon_yr;
 	private JTextField fees_pay_date;
@@ -116,7 +110,6 @@ public class gui extends JFrame {
     private JTextField st3_id;
     private JTable table_room;
     private JTextField room2_id;
-    private JTextField room3_no;
     private JTable table_room2;
     private JComboBox stu_gender;
     private JComboBox st_gender;
@@ -127,6 +120,13 @@ public class gui extends JFrame {
     private JTable table_fees;
     private JTextField st2_hid;
    // private String [] r = {};
+    private JComboBox stu_branch;
+    private JComboBox stu_sem;
+    private JComboBox st_hid;
+    private JComboBox st_dept;
+    private JComboBox room_hid;
+    private JComboBox room3_hid;
+    private JComboBox room3_no;
    
 	/**
 	 * Launch the application.
@@ -178,6 +178,16 @@ public class gui extends JFrame {
 		System.out.println(ex);
 	}
 	}
+	
+	/* public String hostel_combo(String gender) {
+		 String id;
+		 if(gender == "M") {
+			 id="1";
+		 }else {
+			 id="2";
+		 }
+		 return id;
+	 }*/
 	
 	
 	public gui() {
@@ -511,18 +521,6 @@ public class gui extends JFrame {
 		add_student.add(stu_dob);
 		stu_dob.setColumns(10);
 		
-		stu_branch = new JTextField();
-		stu_branch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_branch.setBounds(372, 285, 111, 20);
-		add_student.add(stu_branch);
-		stu_branch.setColumns(10);
-		
-		stu_sem = new JTextField();
-		stu_sem.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		stu_sem.setBounds(372, 329, 111, 20);
-		add_student.add(stu_sem);
-		stu_sem.setColumns(10);
-		
 		stu_address = new JTextField();
 		stu_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu_address.setBounds(372, 370, 111, 20);
@@ -556,8 +554,8 @@ public class gui extends JFrame {
 				
 				student.put(4, (String) stu_gender.getItemAt(stu_gender.getSelectedIndex()));
 				student.put(5, stu_dob.getText());
-				student.put(6, stu_branch.getText());
-				student.put(7, stu_sem.getText());
+				student.put(6,(String) stu_branch.getItemAt(stu_gender.getSelectedIndex()));
+				student.put(7, (String) stu_sem.getItemAt(stu_gender.getSelectedIndex()));
 				student.put(8, stu_address.getText());
 				student.put(9, stu_doj.getText());
 				//student.put(10, stu_dol.getText());
@@ -575,8 +573,8 @@ public class gui extends JFrame {
 				
 				//stu_gender.setText("");
 				stu_dob.setText("");
-				stu_branch.setText("");
-				stu_sem.setText("");
+				//stu_branch.setText("");
+				//stu_sem.setText("");
 				stu_address.setText("");
 				stu_doj.setText("");
 				//stu_dol.setText("");
@@ -595,9 +593,21 @@ public class gui extends JFrame {
 			
 		stu_gender.setBounds(372, 196, 111, 20);
 		add_student.add(stu_gender);
+		Image img41 = new ImageIcon(this.getClass().getResource("/insert9.jpg")).getImage();
+		
+		String branch[] = {"CSE","ECE","ISE","MECH"};
+		stu_branch = new JComboBox(branch);
+		stu_branch.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_branch.setBounds(372, 286, 111, 20);
+		add_student.add(stu_branch);
+		
+		String sem[] = {"1","2","3","4","5","6","7","8"};
+		 stu_sem = new JComboBox(sem);
+		 stu_sem.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		stu_sem.setBounds(372, 330, 111, 20);
+		add_student.add(stu_sem);
 		
 		JLabel label = new JLabel("");
-		Image img41 = new ImageIcon(this.getClass().getResource("/insert9.jpg")).getImage();
 		label.setIcon(new ImageIcon(img41));
 		label.setBounds(0, 0, 688, 573);
 		add_student.add(label);
@@ -1101,23 +1111,11 @@ public class gui extends JFrame {
 		add_staff.add(st_phone);
 		st_phone.setColumns(10);
 		
-		st_dept = new JTextField();
-		st_dept.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st_dept.setBounds(380, 148, 86, 20);
-		add_staff.add(st_dept);
-		st_dept.setColumns(10);
-		
 		st_dob = new JTextField();
 		st_dob.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_dob.setBounds(380, 187, 86, 20);
 		add_staff.add(st_dob);
 		st_dob.setColumns(10);
-		
-		st_hid = new JTextField();
-		st_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		st_hid.setBounds(380, 267, 86, 20);
-		add_staff.add(st_hid);
-		st_hid.setColumns(10);
 		
 		st_address = new JTextField();
 		st_address.setFont(new Font("Lucida Sans", Font.BOLD, 13));
@@ -1143,18 +1141,20 @@ public class gui extends JFrame {
 		btnInsert_1.setIcon(new ImageIcon(img23));
 		btnInsert_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-db_config.connect_to_database();
+				db_config.connect_to_database();
 				
 				try {
 				hostel_operations ho = new hostel_operations();
 				HashMap<Integer, String> faculty = new HashMap<Integer, String>();
 				faculty.put(1, st_name.getText());
 				faculty.put(2, st_phone.getText());
-				faculty.put(3, st_dept.getText());
+				faculty.put(3, (String) st_dept.getItemAt(st_dept.getSelectedIndex()));
 				faculty.put(4, st_dob.getText());
 				
 				faculty.put(5, (String) st_gender.getItemAt(st_gender.getSelectedIndex()));
-				faculty.put(6, st_hid.getText());
+				//String id = hostel_combo((String) st_gender.getItemAt(st_gender.getSelectedIndex()));
+				//System.out.println(id);
+				faculty.put(6, (String) st_hid.getItemAt(st_hid.getSelectedIndex()));
 				faculty.put(7, st_address.getText());
 				
 				faculty.put(8, st_salary.getText());
@@ -1163,23 +1163,23 @@ db_config.connect_to_database();
 				
 				
 				ho.add_faculty(faculty);
-				ho.faculty_incharge_rooms(st_hid.getText());
+				ho.faculty_incharge_rooms((String) st_hid.getItemAt(st_hid.getSelectedIndex()));
 				JOptionPane.showMessageDialog(null, "Data Inserted");
 				
 				
 				st_name.setText("");
 				st_phone.setText("");
-				st_dept.setText("");
+				//st_dept.setText("");
 				st_dob.setText("");
-				st_hid.setText("");
+				//st_hid.setText("");
 				//st_gender.setText("");
 				st_address.setText("");
 				st_salary.setText("");
 				st_doj.setText("");
 				//st_dol.setText("");
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Failed");
-					//System.out.println(ex);
+					//JOptionPane.showMessageDialog(null, "Failed");
+					System.out.println(ex);
 				}
 				
 			}
@@ -1192,9 +1192,21 @@ db_config.connect_to_database();
 		 st_gender.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		st_gender.setBounds(380, 228, 86, 20);
 		add_staff.add(st_gender);
+		Image img42 = new ImageIcon(this.getClass().getResource("/insertstaff5.jpg")).getImage();
+		
+		String hostel_id[] = {"1","2"};
+		 st_hid = new JComboBox(hostel_id);
+		 st_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st_hid.setBounds(380, 268, 86, 20);
+		add_staff.add(st_hid);
+		
+		String dept[] = {"CSE","ECE","MECH","ISE"};
+		 st_dept = new JComboBox(dept);
+		 st_dept.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		st_dept.setBounds(380, 149, 86, 20);
+		add_staff.add(st_dept);
 		
 		JLabel label_2 = new JLabel("");
-		Image img42 = new ImageIcon(this.getClass().getResource("/insertstaff5.jpg")).getImage();
 		label_2.setIcon(new ImageIcon(img42));
 		label_2.setBounds(0, 0, 688, 573);
 		add_staff.add(label_2);
@@ -1660,12 +1672,6 @@ db_config.connect_to_database();
 		assign_room.add(room_id);
 		room_id.setColumns(10);
 		
-		room_hid = new JTextField();
-		room_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		room_hid.setBounds(359, 224, 86, 20);
-		assign_room.add(room_hid);
-		room_hid.setColumns(10);
-		
 		
 		
 		JButton btnAssign = new JButton("Assign");
@@ -1691,15 +1697,15 @@ db_config.connect_to_database();
 		 		 room = new HashMap<Integer, String>();
 				
 				room.put(1, room_id.getText());
-				room.put(2, room_hid.getText());
+				room.put(2, (String) room_hid.getItemAt(room_hid.getSelectedIndex()));
 				
 				
-						combobox(room_hid.getText());
+						combobox((String) room_hid.getItemAt(room_hid.getSelectedIndex()));
 					
 				
 				
 			
-				System.out.println(room_hid.getText());
+				//System.out.println(room_hid.getText());
 				
 				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				//pass_room(room);
@@ -1742,21 +1748,27 @@ db_config.connect_to_database();
 		lblRoomNumber_1.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblRoomNumber_1.setBounds(199, 315, 97, 14);
 		assign_room.add(lblRoomNumber_1);
-		
+		 
+		String hid[] = {"1","2"};
+		  room_hid = new JComboBox(hid);
+		  room_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		 room_hid.setBounds(359, 228, 86, 20);
+		 assign_room.add(room_hid);
+		 
 
 	
-		 //try {
-		 //hostel_operations ho = new hostel_operations();
-		 //String [] r =ho.room_no(room_hid.getText());
-		 //}catch(Exception e) {
-		 	//System.out.println(e);
-		 //}
-		 
-		 
-		 JLabel label_3 = new JLabel("");
-		 label_3.setIcon(new ImageIcon(img43));
-		 label_3.setBounds(0, 0, 688, 573);
-		 assign_room.add(label_3);
+		  //try {
+		  //hostel_operations ho = new hostel_operations();
+		  //String [] r =ho.room_no(room_hid.getText());
+		  //}catch(Exception e) {
+		  	//System.out.println(e);
+		  //}
+		  
+		  
+		  JLabel label_3 = new JLabel("");
+		  label_3.setIcon(new ImageIcon(img43));
+		  label_3.setBounds(0, 0, 688, 573);
+		  assign_room.add(label_3);
 
 		
 		JPanel leave_room = new JPanel();
@@ -1852,8 +1864,13 @@ db_config.connect_to_database();
 					db_config.connect_to_database();
 					String query = "update student set dol = NOW() where student_id ='"+room2_id.getText()+"';";
 					db_config.update_operation(query);
-					
-					ResultSet rs3 = db_config.delete_operation(room2_id.getText(),"student");
+					query = "update allot_student set is_deleted='Y' where student_id = "+room2_id.getText()+";";
+					db_config.update_operation(query);
+					//ResultSet rs2 = db_config.delete_operation(room2_id.getText(),"allot_student");
+					//table_del_stu.setModel(DbUtils.resultSetToTableModel(rs2));
+					//JOptionPane.showMessageDialog(null, "Deleted");
+					//stu3_id.setText("");
+					ResultSet rs3 = db_config.delete_operation(room2_id.getText(),"allot_student");
 					table_room.setModel(DbUtils.resultSetToTableModel(rs3));
 					JOptionPane.showMessageDialog(null, "Left");
 					room2_id.setText("");
@@ -1876,12 +1893,6 @@ db_config.connect_to_database();
 		lblEnterStudentId_4.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		lblEnterStudentId_4.setBounds(92, 42, 102, 14);
 		view_room.add(lblEnterStudentId_4);
-		
-		room3_hid = new JTextField();
-		room3_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		room3_hid.setBounds(287, 39, 86, 20);
-		view_room.add(room3_hid);
-		room3_hid.setColumns(10);
 		
 		JButton btnGetDetails = new JButton("Get Details");
 		btnGetDetails.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
@@ -1907,7 +1918,7 @@ db_config.connect_to_database();
 					scrollPane_2.setVisible(true);
 					table_room2.setVisible(true);
 					db_config.connect_to_database();
-					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, a.is_deleted, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+room3_hid.getText()+" and a.room_no="+room3_no.getText()+";";
+					String query="SELECT a.hostel_id, a.room_no, s.student_id, s.name, a.is_deleted, s.phone_number, f.name FROM allot_student a, student s, room r, faculty f WHERE a.hostel_id = r.hostel_id AND a.room_no = r.room_no AND a.student_id = s.student_id AND r.faculty_id = f.faculty_id AND a.hostel_id ="+(String)room3_hid.getItemAt(room3_hid.getSelectedIndex())+" and a.room_no="+(String)room3_no.getItemAt(room3_no.getSelectedIndex())+";";
 					
 					ResultSet rs =db_config.room_op(query);
 					
@@ -1931,11 +1942,17 @@ db_config.connect_to_database();
 		lblEnterRoomNumber.setBounds(92, 97, 154, 14);
 		view_room.add(lblEnterRoomNumber);
 		
-		room3_no = new JTextField();
-		room3_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		room3_no.setBounds(287, 94, 86, 20);
+		String hid2[] = {"1","2"};
+		 room3_hid = new JComboBox(hid2);
+		 room3_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room3_hid.setBounds(287, 40, 86, 20);
+		view_room.add(room3_hid);
+		
+		String room[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
+		 room3_no = new JComboBox(room);
+		 room3_no.setFont(new Font("Lucida Sans", Font.BOLD, 13));
+		room3_no.setBounds(287, 95, 86, 20);
 		view_room.add(room3_no);
-		room3_no.setColumns(10);
 		
 		
 		JPanel fees_pay = new JPanel();
@@ -2076,7 +2093,7 @@ db_config.connect_to_database();
 		separator_8.setBounds(10, 150, 688, 2);
 		view_fees.add(separator_8);
 		
-		JButton btnDuesOfCurrent = new JButton("Dues of current month");
+		JButton btnDuesOfCurrent = new JButton("Dues of current year");
 		btnDuesOfCurrent.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		Image img37 = new ImageIcon(this.getClass().getResource("/dues.png")).getImage();
 		btnDuesOfCurrent.setIcon(new ImageIcon(img37));

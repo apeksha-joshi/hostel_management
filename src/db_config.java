@@ -89,7 +89,10 @@ public static ResultSet delete_operation(String id, String table_name) throws SQ
 		query="Select * from student where student_id = ?;";
 	}else if(table_name == "faculty") {
 		query="Select * from faculty where faculty_id = ?;";
-	}else {
+	}else if(table_name == "allot_student") {
+		query = "Select student_id, hostel_id, room_no, is_deleted from allot_student where student_id =?;";
+	}
+	else {
 		System.out.println("Encountered new table name please handle accordingly");
 		System.exit(1);
 	}
