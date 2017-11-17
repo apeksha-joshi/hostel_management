@@ -428,9 +428,30 @@ public class gui extends JFrame {
 		lblHostelManagement.setFont(new Font("Constantia", Font.BOLD | Font.ITALIC, 34));
 		lblHostelManagement.setBounds(252, 144, 325, 43);
 		first.add(lblHostelManagement);
+		Image img40 = new ImageIcon(this.getClass().getResource("/hostel3.png")).getImage();
+		
+		JLabel lblNewLabel_3 = new JLabel("Hostel Management");
+		lblNewLabel_3.setFont(new Font("Modern No. 20", Font.BOLD | Font.ITALIC, 25));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(233, 32, 247, 37);
+		first.add(lblNewLabel_3);
+		
+		JLabel lblDoneBy = new JLabel("Done By-");
+		lblDoneBy.setFont(new Font("Lucida Sans", Font.BOLD | Font.ITALIC, 15));
+		lblDoneBy.setBounds(405, 515, 87, 35);
+		first.add(lblDoneBy);
+		
+		JLabel lblApekshaSJoshi = new JLabel("Apeksha S Joshi");
+		lblApekshaSJoshi.setFont(new Font("Lucida Sans", Font.BOLD | Font.ITALIC, 14));
+		lblApekshaSJoshi.setBounds(543, 525, 135, 17);
+		first.add(lblApekshaSJoshi);
+		
+		JLabel lblAbhayDeshpande = new JLabel("Abhay Deshpande");
+		lblAbhayDeshpande.setFont(new Font("Lucida Sans", Font.BOLD | Font.ITALIC, 14));
+		lblAbhayDeshpande.setBounds(517, 545, 161, 17);
+		first.add(lblAbhayDeshpande);
 		
 		JLabel label_1 = new JLabel("");
-		Image img40 = new ImageIcon(this.getClass().getResource("/hostel3.png")).getImage();
 		label_1.setIcon(new ImageIcon(img40));
 		label_1.setForeground(new Color(0, 0, 255));
 		
@@ -492,9 +513,9 @@ public class gui extends JFrame {
 		lblHomeAddress.setBounds(200, 373, 102, 14);
 		add_student.add(lblHomeAddress);
 		
-		JLabel lblDoj = new JLabel("DOJ");
+		JLabel lblDoj = new JLabel("DOJ ");
 		lblDoj.setFont(new Font("Lucida Sans", Font.BOLD, 13));
-		lblDoj.setBounds(200, 416, 46, 14);
+		lblDoj.setBounds(200, 416, 135, 14);
 		add_student.add(lblDoj);
 		
 		stu_name = new JTextField();
@@ -606,6 +627,14 @@ public class gui extends JFrame {
 		 stu_sem.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		stu_sem.setBounds(372, 330, 111, 20);
 		add_student.add(stu_sem);
+		
+		JLabel lblDdmmyyyy = new JLabel("(DD-MM-YYYY)");
+		lblDdmmyyyy.setBounds(200, 259, 75, 14);
+		add_student.add(lblDdmmyyyy);
+		
+		JLabel lblDdmmyyyy_1 = new JLabel("(DD-MM-YYYY)");
+		lblDdmmyyyy_1.setBounds(189, 430, 86, 14);
+		add_student.add(lblDdmmyyyy_1);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(img41));
@@ -1206,6 +1235,14 @@ public class gui extends JFrame {
 		st_dept.setBounds(380, 149, 86, 20);
 		add_staff.add(st_dept);
 		
+		JLabel lblddmmyyyy = new JLabel("(DD-MM-YYYY)");
+		lblddmmyyyy.setBounds(191, 204, 100, 14);
+		add_staff.add(lblddmmyyyy);
+		
+		JLabel lblddmmyyyy_1 = new JLabel("(DD-MM-YYYY)");
+		lblddmmyyyy_1.setBounds(191, 411, 86, 14);
+		add_staff.add(lblddmmyyyy_1);
+		
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(img42));
 		label_2.setBounds(0, 0, 688, 573);
@@ -1694,6 +1731,7 @@ public class gui extends JFrame {
 		 btnCheckVacancy.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		label_5.setVisible(true);
+		 		int flag=-1;
 		 		 room = new HashMap<Integer, String>();
 				
 				room.put(1, room_id.getText());
@@ -1701,7 +1739,28 @@ public class gui extends JFrame {
 				
 				
 						combobox((String) room_hid.getItemAt(room_hid.getSelectedIndex()));
+					try{
+						db_config.connect_to_database();
+						String query_call="call allot_room(?,@bool)";
+						PreparedStatement pst = db_config.conn.prepareStatement(query_call);
+						//pst.setInt(1,5);
+						pst.setString(1,room_id.getText());
+						pst.execute();
+						String ret_val ="select @bool";
+						PreparedStatement pst1 = db_config.conn.prepareStatement(ret_val);
+						ResultSet rs = pst1.executeQuery();
 					
+						while(rs.next()) {
+							flag = rs.getInt("@bool");	
+						}
+						System.out.println(flag);
+						if(flag == 0) {
+						JOptionPane.showMessageDialog(null, "Room already alloted to this ID");
+						}
+						
+					}catch(Exception ec) {
+						System.out.println(ec);
+					}
 				
 				
 			
@@ -2034,10 +2093,17 @@ public class gui extends JFrame {
 			
 		btnPay.setBounds(262, 360, 104, 33);
 		fees_pay.add(btnPay);
+		Image img44 = new ImageIcon(this.getClass().getResource("/money3.jpg")).getImage();
+		
+		JLabel lblMmmyyyy = new JLabel("(MMM-YYYY)");
+		lblMmmyyyy.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMmmyyyy.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblMmmyyyy.setForeground(Color.BLUE);
+		lblMmmyyyy.setBounds(193, 250, 95, 14);
+		fees_pay.add(lblMmmyyyy);
 		
 		JLabel label_4 = new JLabel("");
 		label_4.setForeground(new Color(85, 107, 47));
-		Image img44 = new ImageIcon(this.getClass().getResource("/money3.jpg")).getImage();
 		label_4.setIcon(new ImageIcon(img44));
 		label_4.setBounds(0, 0, 688, 573);
 		fees_pay.add(label_4);
