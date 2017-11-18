@@ -147,21 +147,7 @@ public class gui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	/*private void createColumns() throws Exception {
-		dm=(DefaultTableModel)table_up_stu.getModel();
-		dm.addColumn("ID");
-		dm.addColumn("Name");
-		dm.addColumn("Father's Name");
-		dm.addColumn("Phone Number");
-		dm.addColumn("Age");
-		dm.addColumn("Gender");
-		dm.addColumn("DOB");
-		dm.addColumn("Branch");
-		dm.addColumn("Semester");
-		dm.addColumn("Home Address");
-		dm.addColumn("doj");
-		dm.addColumn("dol");
-	}*/
+	
 	public void combobox(String hostel_id) {
 	try {
 		db_config.connect_to_database();
@@ -179,15 +165,7 @@ public class gui extends JFrame {
 	}
 	}
 	
-	/* public String hostel_combo(String gender) {
-		 String id;
-		 if(gender == "M") {
-			 id="1";
-		 }else {
-			 id="2";
-		 }
-		 return id;
-	 }*/
+	
 	
 	
 	public gui() {
@@ -579,7 +557,7 @@ public class gui extends JFrame {
 				student.put(7, (String) stu_sem.getItemAt(stu_gender.getSelectedIndex()));
 				student.put(8, stu_address.getText());
 				student.put(9, stu_doj.getText());
-				//student.put(10, stu_dol.getText());
+				
 				
 				ho.add_student(student);
 				
@@ -591,14 +569,10 @@ public class gui extends JFrame {
 				stu_name.setText("");
 				stu_father.setText("");
 				stu_phone.setText("");
-				
-				//stu_gender.setText("");
 				stu_dob.setText("");
-				//stu_branch.setText("");
-				//stu_sem.setText("");
 				stu_address.setText("");
 				stu_doj.setText("");
-				//stu_dol.setText("");
+				
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null, "Failed");
 					//System.out.println(ex);
@@ -901,7 +875,6 @@ public class gui extends JFrame {
 				stu2_name2.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 1).toString());
 				stu2_father.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 2).toString());
 				stu2_phone.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 3).toString());
-				//stu2_age.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
 				stu2_gender.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 4).toString());
 				stu2_dob.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(),5).toString());
 				stu2_branch.setText(table_up_stu.getValueAt(table_up_stu.getSelectedRow(), 6).toString());
@@ -924,27 +897,12 @@ public class gui extends JFrame {
 				
 				ResultSet rs = db_config.getData_operation(stu2_name2.getText(),"student");
 				table_up_stu.setModel(DbUtils.resultSetToTableModel(rs));
-				//stu2_name.setText("");
 				
-				//System.out.println("value of he table is "+table_up_stu);
-				/*dm.setValueAt(stu2_id.getText(), table_up_stu.getSelectedRow(), 0);
-				dm.setValueAt(stu2_name2.getText(), table_up_stu.getSelectedRow(), 1);
-				dm.setValueAt(stu2_father.getText(), table_up_stu.getSelectedRow(), 2);
-				dm.setValueAt(stu2_phone.getText(), table_up_stu.getSelectedRow(), 3);
-				dm.setValueAt(stu2_age.getText(), table_up_stu.getSelectedRow(), 4);
-				dm.setValueAt(stu2_gender.getText(), table_up_stu.getSelectedRow(), 5);
-				dm.setValueAt(stu2_dob.getText(), table_up_stu.getSelectedRow(), 6);
-				dm.setValueAt(stu2_branch.getText(), table_up_stu.getSelectedRow(), 7);
-				dm.setValueAt(stu2_semester.getText(), table_up_stu.getSelectedRow(), 8);
-				dm.setValueAt(stu2_address.getText(), table_up_stu.getSelectedRow(), 9);
-				dm.setValueAt(stu2_doj.getText(), table_up_stu.getSelectedRow(), 10);
-				dm.setValueAt(stu2_dol.getText(), table_up_stu.getSelectedRow(), 11);*/
 				JOptionPane.showMessageDialog(null, "Data Updated");
 				stu2_id.setText("");
 				stu2_name2.setText("");
 				stu2_father.setText("");
 				stu2_phone.setText("");
-				//stu2_age.setText("");
 				stu2_gender.setText("");
 				stu2_dob.setText("");
 				stu2_branch.setText("");
@@ -1019,10 +977,6 @@ public class gui extends JFrame {
 		stu_del_details.setVisible(false);
 		
 		
-		//Object[] column = {"ID","Name","Father's Name","phone","Age","Gender","dob","Branch","Semester","Home Address","DOJ","DOL"};
-		//DefaultTableModel model = new DefaultTableModel();
-		//model.setColumnIdentifiers(column);
-		//table_del_stu.setModel(model);
 		table_del_stu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1055,7 +1009,7 @@ public class gui extends JFrame {
 				String query = "update student set dol = NOW() where student_id ='"+stu3_id.getText()+"';";
 				db_config.update_operation(query);
 				
-//				System.out.println("updated th dol");
+
 				query = "update allot_student set is_deleted='Y' where student_id = "+stu3_id.getText()+";";
 				db_config.update_operation(query);
 				ResultSet rs3 = db_config.delete_operation(stu3_id.getText(),"student");
@@ -1066,8 +1020,8 @@ public class gui extends JFrame {
 				c.show(contentPane,"p11");
 				}
 				catch(Exception exe) {
-					//JOptionPane.showMessageDialog(null, "Could not Delete");
-					System.out.println(exe);
+					JOptionPane.showMessageDialog(null, "Could not Delete");
+					//System.out.println(exe);
 				}
 			}
 		});
@@ -1181,34 +1135,24 @@ public class gui extends JFrame {
 				faculty.put(4, st_dob.getText());
 				
 				faculty.put(5, (String) st_gender.getItemAt(st_gender.getSelectedIndex()));
-				//String id = hostel_combo((String) st_gender.getItemAt(st_gender.getSelectedIndex()));
-				//System.out.println(id);
 				faculty.put(6, (String) st_hid.getItemAt(st_hid.getSelectedIndex()));
 				faculty.put(7, st_address.getText());
-				
 				faculty.put(8, st_salary.getText());
 				faculty.put(9, st_doj.getText());
-				//faculty.put(10, st_dol.getText());
-				
 				
 				ho.add_faculty(faculty);
 				ho.faculty_incharge_rooms((String) st_hid.getItemAt(st_hid.getSelectedIndex()));
 				JOptionPane.showMessageDialog(null, "Data Inserted");
 				
-				
 				st_name.setText("");
-				st_phone.setText("");
-				//st_dept.setText("");
+				st_phone.setText("");		
 				st_dob.setText("");
-				//st_hid.setText("");
-				//st_gender.setText("");
 				st_address.setText("");
 				st_salary.setText("");
 				st_doj.setText("");
-				//st_dol.setText("");
 				}catch(Exception ex) {
-					//JOptionPane.showMessageDialog(null, "Failed");
-					System.out.println(ex);
+					JOptionPane.showMessageDialog(null, "Failed");
+					//System.out.println(ex);
 				}
 				
 			}
@@ -1354,25 +1298,6 @@ public class gui extends JFrame {
 		update_staff.add(separator_4);
 		
 		
-				
-				/*table_up_st.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						stu2_id.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 0).toString());
-						stu2_name2.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 1).toString());
-						stu2_father.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 2).toString());
-						stu2_phone.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 3).toString());
-						stu2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 4).toString());
-						stu2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
-						stu2_dob.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
-						stu2_branch.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
-						stu2_semester.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
-						stu2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
-						stu2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
-						stu2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 11).toString());
-					}
-				});*/
-		
 		JPanel staff_up_details = new JPanel();
 		staff_up_details.setBackground(new Color(204, 204, 204));
 		staff_up_details.setBounds(10, 300, 668, 234);
@@ -1517,12 +1442,10 @@ public class gui extends JFrame {
 				st2_phone.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 2).toString());
 				st2_dept.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 3).toString());
 				st2_dob.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 4).toString());
-				//st2_age.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
 				st2_gender.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 5).toString());
 				st2_hid.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 6).toString());
 				st2_address.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 7).toString());
 				st2_salary.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 8).toString());
-				
 				st2_doj.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 9).toString());
 				st2_dol.setText(table_up_st.getValueAt(table_up_st.getSelectedRow(), 10).toString());
 			}
@@ -1738,7 +1661,7 @@ public class gui extends JFrame {
 				room.put(2, (String) room_hid.getItemAt(room_hid.getSelectedIndex()));
 				
 				
-						combobox((String) room_hid.getItemAt(room_hid.getSelectedIndex()));
+				combobox((String) room_hid.getItemAt(room_hid.getSelectedIndex()));
 					try{
 						db_config.connect_to_database();
 						String query_call="call allot_room(?,@bool)";
@@ -1762,10 +1685,6 @@ public class gui extends JFrame {
 						System.out.println(ec);
 					}
 				
-				
-			
-				//System.out.println(room_hid.getText());
-				
 				room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
 				//pass_room(room);
 		 	}
@@ -1778,23 +1697,12 @@ public class gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				db_config.connect_to_database();
 				try {
-				hostel_operations ho = new hostel_operations();
-			//	HashMap<Integer, String> room = new HashMap<Integer, String>();
-				
-				//room.put(1, room_id.getText());
-				//room.put(2, room_hid.getText());
-				
-				
-				
-				
-			
-				//System.out.println(room_hid.getText());
-				
-				//room.put(3,  (String)room_no.getItemAt(room_no.getSelectedIndex()));
-				
+				hostel_operations ho = new hostel_operations();					
 				ho.allot_room(room);
+				JOptionPane.showMessageDialog(null, "Room Alloted");
 				}catch(Exception ex) {
-					System.out.println(ex);
+					//System.out.println(ex);
+					JOptionPane.showMessageDialog(null, "Failed");
 				}
 			}
 		});
@@ -1813,16 +1721,6 @@ public class gui extends JFrame {
 		  room_hid.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		 room_hid.setBounds(359, 228, 86, 20);
 		 assign_room.add(room_hid);
-		 
-
-	
-		  //try {
-		  //hostel_operations ho = new hostel_operations();
-		  //String [] r =ho.room_no(room_hid.getText());
-		  //}catch(Exception e) {
-		  	//System.out.println(e);
-		  //}
-		  
 		  
 		  JLabel label_3 = new JLabel("");
 		  label_3.setIcon(new ImageIcon(img43));
@@ -1925,10 +1823,6 @@ public class gui extends JFrame {
 					db_config.update_operation(query);
 					query = "update allot_student set is_deleted='Y' where student_id = "+room2_id.getText()+";";
 					db_config.update_operation(query);
-					//ResultSet rs2 = db_config.delete_operation(room2_id.getText(),"allot_student");
-					//table_del_stu.setModel(DbUtils.resultSetToTableModel(rs2));
-					//JOptionPane.showMessageDialog(null, "Deleted");
-					//stu3_id.setText("");
 					ResultSet rs3 = db_config.delete_operation(room2_id.getText(),"allot_student");
 					table_room.setModel(DbUtils.resultSetToTableModel(rs3));
 					JOptionPane.showMessageDialog(null, "Left");
@@ -2078,14 +1972,16 @@ public class gui extends JFrame {
 				fees.put(2, fees_mon_yr.getText());
 				fees.put(3, fees_pay_date.getText());
 				
-				
 				ho.pay_fees(fees);
+				
+				JOptionPane.showMessageDialog(null, "Fee Paid");
 				fee_id.setText("");
 				fees_mon_yr.setText("");
 				fees_pay_date.setText("");
 				
 			}catch(Exception ex) {
-				System.out.println(ex);
+				//System.out.println(ex);
+				JOptionPane.showMessageDialog(null, "Fee not paid");
 			}
 			}
 		});
@@ -2170,22 +2066,9 @@ public class gui extends JFrame {
 				db_config.connect_to_database();
 				
 				try {
-						//String query ="SELECT f.student_id, s.name, s.phone_number FROM student s, fees f WHERE payment_date = \"\" AND s.student_id = f.student_id and month_year LIKE  '%MONTH(NOW())%';";
+						
 						hostel_operations ho = new hostel_operations();
-						//ResultSet rs = db_config.fees(query);
 						ResultSet rs = ho.get_payment_details(fee2_id.getText());
-						//for(int i=0;i<unpaid.length;i++) {
-						//System.out.println("object is"+unpaid);
-						//}
-						//String head[] = {"Unpaid_month"};
-						//DefaultTableModel model = new DefaultTableModel(head,0);
-						//table_fees=new JTable(model);
-						//model.addRow(unpaid);
-						//Object rowData[] = new Object[1];
-						//for(int i=0;i<unpaid.size();i++) {
-						//	rowData[i] = unpaid.get(i);
-						//	model.addRow(rowData);
-						//}
 						table_fees.setModel(DbUtils.resultSetToTableModel(rs));
 						fee2_name.setText("");
 						

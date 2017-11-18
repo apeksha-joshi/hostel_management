@@ -21,28 +21,7 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, student);
 	}
 	
-	public ArrayList<HashMap<Integer, String>> get_all_students() throws Exception{
-		ArrayList<HashMap<Integer, String>> result_map = new ArrayList<HashMap<Integer,String>>();
-		String get_students = "Select * from student;";
-		ResultSet rs = db_ops.execute_query(get_students);
-		result_map = resultSet_to_hashMap(rs);
-		return result_map;
-	}
 	
-	private static ArrayList<HashMap<Integer, String>> resultSet_to_hashMap(ResultSet rs) throws Exception{
-		int row_index = 1;
-		ArrayList<HashMap<Integer, String>> result_set = new ArrayList<HashMap<Integer,String>>();
-		while(rs.next()){
-			int col_index = rs.getMetaData().getColumnCount();
-			HashMap<Integer, String> temp_var = new HashMap<Integer, String>();
-			for (int j=1;j<=col_index;j++){
-				temp_var.put(j, String.valueOf(rs.getObject(j)));
-			}
-			result_set.add(temp_var);
-			row_index++;
-		}
-		return result_set;
-	}
 	
 	public String pass_room(String name) {
 		String id="";
@@ -80,11 +59,7 @@ private static db_config db_ops = new db_config();
 		db_ops.insert_data(insert_query, fees);
 	}
 	
-	//public void allot_room(HashMap<Integer, String> room) throws Exception{
-	//	String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
-		//System.out.println("insert query is "+insert_query);
-		//db_ops.insert_data(insert_query, room);
-//	}
+	
 	
 	public void faculty_incharge_rooms(String hostel_id) throws Exception {
 		
@@ -129,7 +104,7 @@ private static db_config db_ops = new db_config();
 
 	public void allot_room(HashMap<Integer, String> room) throws Exception {
 		// TODO Auto-generated method stub
-		//String insert_query="INSERT INTO `hostel_management`.`room`(`room_no`,`student_id`,`hostel_id`)VALUES(?,?,?);";
+		
 		String insert_query="INSERT INTO  `hostel_management`.`allot_student` (`student_id`,`hostel_id` ,`room_no` )VALUES (?,?,?);";
 		System.out.println("insert query is "+insert_query);
 		db_ops.insert_data(insert_query, room);
@@ -157,7 +132,6 @@ private static db_config db_ops = new db_config();
 		while (true) {
 			if (c.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
 				if (c.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
-				//	System.out.println("Inside if");
 					break;
 				}
 			}
@@ -167,7 +141,6 @@ private static db_config db_ops = new db_config();
 			master_dates.add(sdf.format(new Date(c.getTimeInMillis())));
 			c.add(Calendar.MONTH, 1);
 			continue;
-			//System.out.println("added to master");
 			}
 			c.add(Calendar.MONTH, 1);
 		}
@@ -233,4 +206,4 @@ private static db_config db_ops = new db_config();
 	
 }
 
-	//ok juswet  malkel  it like na?waiwhere is retrieve student?
+	

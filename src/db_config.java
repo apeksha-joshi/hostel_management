@@ -11,8 +11,7 @@ public class db_config {
 	private static String db_password = "";
 	private static String db_name = "hostel_management";
 	private static String db_host = "localhost";
-//	call the gui from the main class u llo do kor i do?
-	//please do
+
 	public static void connect_to_database(){
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://"+ db_host +"/"+ db_name +"", db_username, db_password);
@@ -41,20 +40,12 @@ public class db_config {
 				preparedStmt.setInt (i, Integer.parseInt(data.get(i)));
 			}catch(NumberFormatException e)
 			{
-				/* If parameter is not String */
+				/* If parameter is not Integer */
 				preparedStmt.setString (i, data.get(i));
 			}
 		}
 		preparedStmt.execute();
 	}
-	
-//public static ResultSet get_student(String s) throws SQLException {
-		
-		//PreparedStatement ps = conn.prepareStatement("Select * from student where student_id=?;");
-		//ps.setString(1, s);
-		//ResultSet rs = ps.executeQuery();
-		//return rs;
-	//}
 
 public static ResultSet getData_operation(String name, String table_name) throws SQLException {
 	// TODO Auto-generated method stub

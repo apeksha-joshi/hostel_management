@@ -30,8 +30,6 @@ public class main_class {
 		gui gui_class = new gui();
 		gui_class.start_app();
 		
-		/*hostel_operations hs = new hostel_operations();
-		hs.get_payment_details("3");*/
 	}
 
 }
